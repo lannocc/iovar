@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>isStyled()</refname>
+
+    <refpurpose>Determine whether or not CSS is enabled in the
+    browser</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <funcsynopsis language="javascript">
+      <funcsynopsisinfo><filename>/usr/include/iovar/common.js</filename></funcsynopsisinfo>
+
+      <funcprototype>
+        <funcdef><type>bool</type> <function>isStyled</function></funcdef>
+
+        <void/>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting language="javascript">if ( ! <function role="javascript">isStyled</function>() ) {
+    // stylesheets are disabled or unsupported for this user
+    document.write ('&lt;hr/&gt;');
+}    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="javascript"
+                    xlink:href="/usr/include/iovar/common.js#isStyled"
+                    xlink:role="js_function" xlink:show="replace"/>
+  </refsection>
+</refentry>

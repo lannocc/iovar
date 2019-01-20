@@ -1,0 +1,153 @@
+@media all {
+
+    .edit form {
+        /*
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        */
+    }
+
+    .edit .fields, .edit .other {
+        background-color: #F8F6D4;
+        border: 0.5em solid #F8F6D4;
+        border-radius: 0.5em;
+        padding: 1em;
+        margin: 0;
+        margin-top: 1em;
+        /*
+        max-width: 100%;
+        */
+    }
+
+    #popup2 .edit .fields, #popup2 .edit .other {
+        background-color: #D4F6F8;
+        border-color: #D4F6F8;
+    }
+
+    .edit fieldset.fields, .edit fieldset.other {
+        padding: 0;
+    }
+
+    .edit ul.fields, .edit fieldset.fields>ul {
+        display: block;
+        list-style-type: none;
+    }
+
+    .edit ul.fields>li, .edit fieldset.fields>ul>li {
+        display: block;
+        list-style-type: none;
+        white-space: nowrap;
+        margin: 0.2em;
+    }
+
+    .edit fieldset.fields>legend, .edit fieldset.other>legend {
+        font-style: italic;
+        background-color: white;
+    }
+
+    .edit .fields .label {
+        display: inline-block;
+        width: 6em;
+        white-space: normal;
+        text-align: right;
+        vertical-align: middle;
+    }
+
+    .edit .fields li input[type=text] {
+        vertical-align: middle;
+        width: 15em;
+    }
+
+    .edit .fields textarea {
+        width: 15em;
+        height: 10em;
+        vertical-align: middle;
+    }
+
+    .edit .fields textarea[name="Description"] {
+        height: 3em;
+    }
+
+    .edit .buttons {
+        margin-top: 1em;
+    }
+
+    .edit .buttons .submit {
+        float: right;
+    }
+    
+    .edit .buttons a.delete {
+        /* float: left; */
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .edit .buttons input.submit, .edit .buttons input.cancel {
+        cursor: pointer;
+    }
+
+    .edit textarea.address {
+        white-space: nowrap;
+        overflow: auto;
+        width: 20em;
+        height: 4em;
+    }
+
+    .edit input.city {
+        width: 6em !important;
+    }
+
+    .edit input.state {
+        width: 2em !important;
+    }
+
+    .edit input.zip {
+        width: 4em !important;
+    }
+
+    .edit a.create {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 0.5em;
+        background-color: #E8E6C4;
+        border: 0.5em #E8E6C4 solid;
+        border-radius: 0.5em;
+    }
+
+    #popup2 .edit a.create {
+        background-color: #C4E6E8;
+        border-color: #C4E6E8;
+    }
+
+    .edit a.create:hover {
+        background-color: #D8D6B4;
+        border-color: #D8D6B4;
+        text-decoration: none;
+    }
+
+    #popup2 .edit a.create:hover {
+        background-color: #B4D6D8;
+        border-color: #B4D6D8;
+    }
+
+    .edit option.deleted {
+        color: gray;
+        font-style: italic;
+    }
+
+    .edit iframe.image, .edit iframe.audio {
+        border: none;
+        width: 100%;
+    }
+
+    .edit iframe.image {
+        height: 150px;
+    }
+
+    .edit iframe.audio {
+        height: 80px;
+    }
+}
+

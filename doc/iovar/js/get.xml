@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>get()</refname>
+
+    <refpurpose>Get DOM node by id</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <funcsynopsis language="javascript">
+      <funcsynopsisinfo><filename>/usr/include/iovar/common.js</filename></funcsynopsisinfo>
+
+      <funcprototype>
+        <funcdef><type>Node</type> <function>get</function></funcdef>
+
+        <paramdef><type>String</type> <parameter>id</parameter></paramdef>
+      </funcprototype>
+    </funcsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <example>
+      <title>Basic Usage</title>
+
+      <programlisting language="javascript">// retrieve the DOM node that has attribute id='home'
+var home = get ('home');
+
+// do something with it...
+home.style.color = 'red';</programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="javascript"
+                    xlink:href="/usr/include/iovar/common.js#get"
+                    xlink:role="js_function" xlink:show="replace"/>
+  </refsection>
+</refentry>

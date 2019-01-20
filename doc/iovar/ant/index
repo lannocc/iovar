@@ -1,0 +1,8 @@
+#!/bin/iosh
+#
+# Copyright (C) 2019 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+local "$0" | set source_local
+reindex command ant "Ant Build Targets" | view "$source_local"
+

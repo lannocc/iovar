@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>print</refname>
+
+    <refpurpose>Print variable contents (value)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/print" role="iosh">
+      <command role="iosh">print</command>
+
+      <arg choice="req"><replaceable>name</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Output the contents of shell variable called
+    <replaceable>name</replaceable>. Shell variables can be defined with the
+    <command role="iosh">set</command> command.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Display the running IOVAR shell version</title>
+
+      <programlisting language="shell">print IOVAR_VERSION</programlisting>
+
+      <screen>1.1</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/bin/shell/Print.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

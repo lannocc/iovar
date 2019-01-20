@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>basename</refname>
+
+    <refpurpose>Print only the last component of a given path</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/basename" role="iosh">
+      <command role="iosh">basename</command>
+
+      <arg rep="repeat"><replaceable>path</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Outputs the final path component (the filename) of any paths
+    specified.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A simple example</title>
+
+      <programlisting language="shell">basename /foo/bar/hello.world</programlisting>
+
+      <screen>hello.world</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/Basename.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>app</refname>
+
+    <refpurpose>Perform all steps necessary to build the functioning
+    application</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <command role="ant">app</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Build on Mac (nothing to do)</title>
+
+      <programlisting language="terminal"><prompt>SomeMac:iovar dummy$ </prompt><userinput>ant app</userinput>
+<computeroutput>Buildfile: /Users/dummy/iovar/build.xml
+
+project.init:
+     [echo] Prepare IOVAR Java Foundation
+
+project.install.fail:
+
+app.install.check:
+
+app.install.fail:
+
+tasks.init:
+     [echo] Prepare Ant Tasks
+
+tasks:
+     [echo] Ant Tasks
+
+code.init:
+     [echo] Prepare Java Code
+
+code:
+     [echo] Java Code
+
+app.libs:
+
+ant.task.WebBuilder:
+
+app.webxml:
+    [unzip] Expanding: /Users/dummy/iovar/WEB-INF/lib/jars/iovar/idfree-1.0-dev.jar into /Users/dummy/iovar/WEB-INF/tmp/ant
+[web-build] scanning for symbolic links to .class files...
+[web-build] link to unsupported location: index.xml
+[web-build] link to unsupported location: index.xml
+[web-build] link to unsupported location: index.xml
+[web-build] link to unsupported location: index.xml
+[web-build] link to unsupported location: app/index
+[web-build] web-app definition generated at: /Users/dummy/iovar/WEB-INF/web.xml
+
+app:
+     [echo] IOVAR Web Platform and Shell
+
+BUILD SUCCESSFUL
+Total time: 0 seconds</computeroutput></programlisting>
+    </example>
+
+    <example>
+      <title>Build on Linux (nothing to do)</title>
+
+      <programlisting language="terminal"><prompt>dummy@tux ~/iovar $ </prompt><userinput>ant app</userinput>
+<computeroutput>Buildfile: /home/dummy/iovar/build.xml
+
+project.init:
+     [echo] Prepare IOVAR Java Foundation
+
+project.install.fail:
+
+app.install.check:
+
+app.install.fail:
+
+tasks.init:
+     [echo] Prepare Ant Tasks
+
+tasks:
+     [echo] Ant Tasks
+
+tasks.jar:
+
+code.init:
+     [echo] Prepare Java Code
+
+code:
+     [echo] Java Code
+
+app.libs:
+
+ant.task.WebBuilder:
+
+app.webxml:
+    [unzip] Expanding: /home/dummy/iovar/WEB-INF/lib/jars/iovar/idfree-1.0-dev.jar into /home/dummy/iovar/WEB-INF/tmp/ant
+[web-build] scanning for symbolic links to .class files...
+[web-build] link to unsupported location: checklink-target
+[web-build] link to unsupported location: index.xml
+[web-build] link to unsupported location: app/index
+[web-build] web-app definition generated at: /home/dummy/iovar/WEB-INF/web.xml
+
+app:
+     [echo] IOVAR Web Platform and Shell
+
+app.jars.nodeps:
+      [jar] Building jar: /home/dummy/iovar/WEB-INF/lib/iovar.jar
+
+app.jars:
+     [echo] IOVAR Web Platform and Shell
+
+project.jars:
+     [echo] IOVAR Java Foundation
+
+BUILD SUCCESSFUL
+Total time: 1 second</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/build.xml#app"
+                    xlink:role="ant_target" xlink:show="replace"/>
+  </refsection>
+</refentry>

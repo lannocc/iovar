@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export PATH="local:/usr/local/sbin,local:/usr/sbin,local:/sbin,$PATH"
+

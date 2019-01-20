@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>set</refname>
+
+    <refpurpose>Define a variable or display all variables</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/set" role="iosh">
+      <command role="iosh">set</command>
+
+      <arg><replaceable>name</replaceable><arg>=<replaceable>val</replaceable></arg></arg>
+    </cmdsynopsis>
+
+    <para>When invoked without arguments, displays currently assigned
+    variables. Otherwise define a variable named
+    <replaceable>name</replaceable> and assign it
+    <replaceable>val</replaceable> or from standard input. See the <command
+    role="iosh">print</command> command for the recommended way to output a
+    variable's value.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Display all variables for the user</title>
+
+      <programlisting language="shell">set</programlisting>
+
+      <screen>PATH=local:/usr/local/bin,local:/usr/bin,local:/bin,local:/opt/bin
+INSTANCE=-1466552604
+cmd=set
+USER=null
+VIEW=text
+IOVAR_VERSION=1.0
+HISTORY=set
+export VIEW=text
+print IOVAR_VERSION
+local 0=local:/bin/set
+local @=
+local #=0</screen>
+    </example>
+
+    <example>
+      <title>Assign a new variable with a simple value, then display it (via
+      shell reference)</title>
+
+      <programlisting language="shell">set foo=bar; echo $foo</programlisting>
+
+      <screen>bar</screen>
+    </example>
+
+    <example>
+      <title>Assign a new variable from the output of another command, then
+      display it (via <command role="iosh">print</command> command)</title>
+
+      <programlisting language="shell">echo hello world | set bar; print bar</programlisting>
+
+      <screen>hello world</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/bin/shell/Set.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

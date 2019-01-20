@@ -1,0 +1,79 @@
+/*
+ * Copyright (C) 2018-2019 Virgo Venture, Inc.
+ * @%@~LICENSE~@%@
+ */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+#cmd {
+    display: block;
+    white-space: nowrap;
+    margin: .1em 5em .1em 0;
+    /*
+    padding-left: 26px;
+    background: url(favicon/favicon-16.png) no-repeat 5px center;
+    */
+}
+
+@keyframes spin { 100% { transform: rotate(-360deg); } }
+@keyframes salute {
+    50% { transform: rotate(90deg); }
+    100% { transform: rotate(0); }
+}
+
+#prompt {
+    vertical-align: middle;
+    transition: transform .2s ease-in;
+}
+
+#prompt.begin {
+    animation: 2s ease-in-out 1 salute;
+}
+
+#prompt:hover {
+    transform: rotate(90deg);
+}
+
+#prompt.busy {
+    animation: 2s linear infinite spin;
+}
+
+#cmd_in {
+    width: auto;
+    width: 100%;
+}
+
+#cmd_exec {
+    clear: right;
+    float: right;
+}
+
+iframe {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.legacy {
+    display: none;
+}
+

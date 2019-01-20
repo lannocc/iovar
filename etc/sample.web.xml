@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<!--
+     Copyright (C) 2016-2019 Virgo Venture, Inc.
+     Copyright (C) 2011-2015 Lannocc Technologies
+     @%@~LICENSE~@%@
+-->
+<web-app>
+    <display-name>IOVAR</display-name>
+    <description>
+        IOVAR Web Platform and Shell
+    </description>
+
+    <listener>
+        <listener-class>net.iovar.web.proc.Sessions$Listener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>iovar.loopback</param-name>
+        <param-value>localhost:8080</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>iovar.sessions</param-name>
+        <!--
+        <param-value>http://inf.lanno.cc/proc/shell/</param-value>
+        <param-value>http://web.s:8720/proc/shell/</param-value>
+        -->
+        <param-value>/proc/shell</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>iovar.log.level</param-name>
+        <param-value>WARN</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>iovar.log.file</param-name>
+        <param-value>/var/log/shell</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>log</servlet-name>
+        <servlet-class>net.iovar.web.dev.Log</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>uptime</servlet-name>
+        <servlet-class>net.iovar.web.proc.Uptime</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>init</servlet-name>
+        <servlet-class>net.iovar.web.sbin.Init</servlet-class>
+        <load-on-startup>10</load-on-startup>
+        <init-param>
+            <param-name>inittab</param-name>
+            <param-value>local:/etc/init</param-value>
+        </init-param>
+        <init-param>
+            <param-name>wait</param-name>
+            <param-value>1000</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- [iovar] - DO NOT REMOVE THIS LINE - Symlink'd servlets get inserted here -->
+
+    <servlet>
+        <servlet-name>iovar-application</servlet-name>
+        <servlet-class>net.iovar.web.Application</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>iovar-application</servlet-name>
+        <url-pattern>/app/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>iovar-application</servlet-name>
+        <url-pattern>/doc/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>iovar-application</servlet-name>
+        <url-pattern>/sapp/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>iovar-application</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>iovar-application</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>iovar-default</servlet-name>
+        <servlet-class>net.iovar.web.Default</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>iovar-default</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>720</session-timeout>
+    </session-config>
+</web-app>
+

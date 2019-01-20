@@ -1,0 +1,9 @@
+#!/bin/iosh
+# Copyright (C) 2014-2015 Lannocc Technologies
+# @%@~LICENSE~@%@
+
+# Adds <?xml-stylesheet?> directive to XML document (passed as input)
+
+xslt ?href=$1 /lib/setxsl.xsl || { echo fail in $0; exit 1 }
+exit 0
+

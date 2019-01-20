@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.1" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:trans="http://docbook.org/ns/transclusion"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Embracing The Unix Philosophy</title>
+
+    <author>
+      <personname><firstname>Shawn</firstname><surname>Wilson</surname></personname>
+
+      <uri type="facebook">https://facebook.com/lannocc</uri>
+
+      <affiliation>
+        <orgname>Virgo Venture, Inc.</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate>2018-12-24</pubdate>
+
+    <revhistory>
+      <revision>
+        <date>2019-01-18</date>
+      </revision>
+    </revhistory>
+  </info>
+
+  <preface>
+    <title/>
+
+    <para>Originating with <link
+    xlink:href="https://en.wikipedia.org/wiki/Ken_Thompson"><personname><firstname>Ken</firstname><surname>Thompson</surname></personname></link>'s
+    early meditations on designing a small but capable operating system with a
+    clean interface, the <link
+    xlink:href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix
+    philosophy</link> was perhaps first documented by <link
+    xlink:href="https://en.wikipedia.org/wiki/Douglas_McIlroy"><personname><firstname>Doug</firstname><surname>McIlroy</surname></personname></link>
+    in the <link
+    xlink:href="https://www.amazon.com/Unix-Time-Sharing-System-Technical-Journal/dp/B004BHP0TE"><citetitle
+    pubwork="book">Bell System Technical Journal</citetitle></link> of
+    1978.</para>
+  </preface>
+
+  <toc/>
+
+  <chapter>
+    <title>Do One Thing and Do It Well</title>
+
+    <para>IOVAR, like Unix, contains a large number of simple, single-purpose
+    programs. Each program should <link
+    xlink:href="http://www.faqs.org/docs/artu/ch01s06.html">do one thing
+    well</link>, and we expect the output of every program/command to become the input
+    to another.</para>
+  </chapter>
+
+  <chapter>
+    <title>Everything is a "File"</title>
+
+    <para>Unix systems have popularized the concept that all devices within
+    and connected to the system may be written to and read from just as if
+    they were ordinary files on some storage medium. The "<link
+    xlink:href="https://en.wikipedia.org/wiki/Everything_is_a_file">everything
+    is a file</link>" idea is a defining feature of Unix.</para>
+
+    <para>IOVAR, as a web system, does not merely work directly with files
+    on local storage but instead addresses URI resources through any number of
+    protocol handlers. One such handler is in fact a local file handler. Thus,
+    in IOVAR, everything is a URI.</para>
+  </chapter>
+
+  <chapter>
+    <title>Filesystem Hierarchy Standard</title>
+
+    <para>GNU/Linux and other Unix-like systems have mostly standardized on
+    the locations for various resources such as executables, libraries,
+    documentation, user home directories, etc. These standard locations are
+    defined in the <link xlink:href="http://www.pathname.com/fhs/">Filesystem
+    Hierarchy Standard</link> and so for consistency this project will conform
+    to that standard when it is practical to do so.</para>
+
+    <para>An outline of the main project directories is below, and any
+    deviations from the FHS are noted:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><filename class="directory">/</filename></term>
+
+        <listitem>
+          <para>Project root folder</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><filename class="directory">WEB-INF/</filename></term>
+
+              <listitem>
+                <para><remark>Not in FHS</remark> Java resources used by the
+                servlet container (Tomcat)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">app/</filename></term>
+
+              <listitem>
+                <para><remark>Not in FHS</remark> User web applications</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">bin/</filename></term>
+
+              <listitem>
+                <para>Essential user commands</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">dev/</filename></term>
+
+              <listitem>
+                <para>Devices</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">doc/</filename></term>
+
+              <listitem>
+                <para><remark>Not in FHS</remark> System documentation</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">etc/</filename></term>
+
+              <listitem>
+                <para>Configuration</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">lib/</filename></term>
+
+              <listitem>
+                <para>Essential shared libraries</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term><filename class="directory">iovar/</filename></term>
+
+                    <listitem>
+                      <para>General helpers and utilities provided by this
+                      project</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">qtui/</filename></term>
+
+                    <listitem>
+                      <para>FIXME</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">ui/</filename></term>
+
+                    <listitem>
+                      <para>FIXME</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">xhtml/</filename></term>
+
+                    <listitem>
+                      <para>Shared and reusable XSL for XHTML output</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">proc/</filename></term>
+
+              <listitem>
+                <para>Process information</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">root/</filename></term>
+
+              <listitem>
+                <para>Home directory for the root user</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">sbin/</filename></term>
+
+              <listitem>
+                <para>System commands</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">src/</filename></term>
+
+              <listitem>
+                <para><remark>/usr/src in FHS</remark> System source
+                code</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term><filename class="directory">net/</filename></term>
+
+                    <listitem>
+                      <para/>
+
+                      <variablelist>
+                        <varlistentry>
+                          <term><filename
+                          class="directory">iovar/</filename></term>
+
+                          <listitem>
+                            <para>IOVAR Java package namespace root
+                            (<package>net.iovar</package>)</para>
+
+                            <variablelist>
+                              <varlistentry>
+                                <term><filename
+                                class="directory">web/</filename></term>
+
+                                <listitem>
+                                  <para>The IOVAR web platform
+                                  (<package>net.iovar.web</package>)</para>
+                                </listitem>
+                              </varlistentry>
+                            </variablelist>
+                          </listitem>
+                        </varlistentry>
+                      </variablelist>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">srv/</filename></term>
+
+              <listitem>
+                <para>Server-side view rendering resources such as XSL
+                stylesheets</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term><filename class="directory">text/</filename></term>
+
+                    <listitem>
+                      <para>For plain text output</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">xhtml/</filename></term>
+
+                    <listitem>
+                      <para>For XHTML output</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">usr/</filename></term>
+
+              <listitem>
+                <para/>
+
+                <variablelist>
+                  <varlistentry>
+                    <term><filename
+                    class="directory">include/</filename></term>
+
+                    <listitem>
+                      <para>Client-side view rendering resources such as
+                      images, CSS, and JS</para>
+
+                      <variablelist>
+                        <varlistentry>
+                          <term><filename
+                          class="directory">iovar/</filename></term>
+
+                          <listitem>
+                            <para>Resources used by this project</para>
+                          </listitem>
+                        </varlistentry>
+                      </variablelist>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">var/</filename></term>
+
+              <listitem>
+                <para>Variable data</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term><filename class="directory">lib/</filename></term>
+
+                    <listitem>
+                      <para>Application data</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">log/</filename></term>
+
+                    <listitem>
+                      <para>Logs</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </chapter>
+</book>

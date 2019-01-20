@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xslt</refname>
+
+    <refpurpose>Perform XSL transformation</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/xslt" role="iosh">
+      <command role="iosh">xslt</command>
+
+      <arg choice="req"><replaceable>stylesheet</replaceable></arg>
+
+      <arg><replaceable>xml-document</replaceable></arg>
+
+      <arg>--</arg>
+
+      <arg rep="repeat"><replaceable>arg</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Extensible Stylesheet Language Transformation processor.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>when <replaceable>xml-document</replaceable> is omitted then
+        stdin is used</para>
+      </listitem>
+
+      <listitem>
+        <para>any named parameters are passed to the stylesheet as xsl param
+        variables</para>
+      </listitem>
+
+      <listitem>
+        <para>unless <literal>?variables</literal> is used, any additional
+        arguments (use '<literal>--</literal>' when
+        <replaceable>xml-document</replaceable> is omitted) are passed as
+        parameters named <literal>arg1</literal>, <literal>arg2</literal>,
+        etc.</para>
+      </listitem>
+    </itemizedlist>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>FIXME</para>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/XSLT.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

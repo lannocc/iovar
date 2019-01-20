@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toc version="5.1" xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+     xmlns:xi="http://www.w3.org/2001/XInclude"
+     xmlns:trans="http://docbook.org/ns/transclusion"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns:m="http://www.w3.org/1998/Math/MathML"
+     xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns:db="http://docbook.org/ns/docbook">
+  <title>Contents</title>
+
+  <tocdiv>
+    <title>Access</title>
+
+    <tocentry><link xlink:href="purpose.xml">Purpose</link></tocentry>
+
+    <tocentry><link xlink:href="getting_started.xml">Getting
+    Started</link></tocentry>
+
+    <tocentry><link xlink:href="downloads.xml">Downloads</link></tocentry>
+  </tocdiv>
+
+  <tocdiv>
+    <title>Patterns</title>
+
+    <tocentry><link xlink:href="unix.xml">Unix</link></tocentry>
+
+    <!--
+    <tocentry><link xlink:href="http.xml">HTTP(+)</link></tocentry>
+
+    <tocentry><link xlink:href="webdav.xml">WebDAV</link></tocentry>
+
+    <tocentry><link xlink:href="rest.xml">REST</link></tocentry>
+
+    <tocentry><link xlink:href="m-v-c.xml">M-V-C</link></tocentry>
+
+    <tocentry><link xlink:href="docbooks.xml">DocBooks</link></tocentry>
+    -->
+  </tocdiv>
+
+  <!--
+  <tocdiv>
+    <title>Technology</title>
+
+    <tocentry><link xlink:href="shell.xml">Web Shell</link></tocentry>
+
+    <tocentry><link xlink:href="scripting.xml">Scripting</link></tocentry>
+
+    <tocentry><link xlink:href="templates.xml">Templates</link></tocentry>
+
+    <tocentry><link xlink:href="sessions.xml">Sessions</link></tocentry>
+
+    <tocentry><link xlink:href="mime.xml">MIME</link></tocentry>
+  </tocdiv>
+  -->
+
+  <tocdiv>
+    <title>Develop</title>
+
+    <tocentry><link xlink:href="build.xml">Ant Build</link></tocentry>
+
+    <tocentry><link xlink:href="contributing.xml">Contributing</link></tocentry>
+
+    <tocentry><link xlink:href="history.xml">History</link></tocentry>
+
+    <tocentry><link xlink:href="roadmap.xml">Roadmap</link></tocentry>
+  </tocdiv>
+
+  <!--
+  <tocdiv>
+    <title>Integrations</title>
+
+    <tocentry><link xlink:href="terminal.xml">Terminal</link></tocentry>
+
+    <tocentry><link xlink:href="python.xml">Python</link></tocentry>
+
+    <tocentry><link xlink:href="nodejs.xml">Nodejs</link></tocentry>
+
+    <tocentry><link xlink:href="eth.xml">Ethereum</link></tocentry>
+  </tocdiv>
+  -->
+
+  <tocdiv>
+    <title>Reference</title>
+
+    <tocentry><link xlink:href="iosh/index">Commands</link></tocentry>
+
+    <tocentry><link xlink:href="js/index">JavaScript</link></tocentry>
+
+    <tocentry><link xlink:href="xsl/index">Templates</link></tocentry>
+
+    <!--
+    <tocentry><link xlink:href="database.xml">Database</link></tocentry>
+
+    <tocentry><link xlink:href="devices.xml">Devices</link></tocentry>
+    -->
+
+    <tocentry><link xlink:href="ant/index">Build</link></tocentry>
+
+    <tocentry><link xlink:href="api.xml">Java API Docs</link></tocentry>
+  </tocdiv>
+</toc>

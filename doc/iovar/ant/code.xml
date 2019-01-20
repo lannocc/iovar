@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>code</refname>
+
+    <refpurpose>Compile the Java code</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <command role="ant">code</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Compiling on Linux (1 file modified)</title>
+
+      <programlisting language="terminal"><prompt>dummy@tux ~/iovar $ </prompt><userinput>ant code</userinput>
+<computeroutput>Buildfile: /home/dummy/iovar/build.xml
+
+project.init:
+     [echo] Prepare IOVAR Java Foundation
+
+project.install.fail:
+
+app.install.check:
+
+app.install.fail:
+
+code.init:
+     [echo] Prepare Java Code
+
+code:
+     [echo] Java Code
+    [javac] Compiling 1 source file to /home/dummy/iovar/WEB-INF/classes
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.5
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 4 warnings
+
+BUILD SUCCESSFUL
+Total time: 1 second</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/build.xml#code"
+                    xlink:role="ant_target" xlink:show="replace"/>
+  </refsection>
+</refentry>

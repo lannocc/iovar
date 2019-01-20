@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>json</refname>
+
+    <refpurpose>Traverse JSON input to retrieve a value</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/json" role="iosh">
+      <command role="iosh">json</command>
+
+      <arg rep="repeat"><replaceable>node</replaceable></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Easily retrieve a JSON value</title>
+
+      <para>Given the following sample JSON file at
+      <filename>/foo.json</filename>...</para>
+
+      <programlisting language="json">{
+    "data": {
+        "header": "Sample JSON data",
+        "items": [
+            {
+                "id": "Open"
+            },
+            {
+                "id": "OpenNew",
+                "label": "Open New"
+            },
+            null,
+            {
+                "id": "ZoomIn",
+                "label": "Zoom In"
+            },
+            true,
+            false,
+            1981,
+            {
+                "id": "Mute"
+            },
+            {
+                "id": "About",
+                "label": "About this JSON..."
+            }
+        ]
+    }
+}</programlisting>
+
+      <para>...then we can retrieve a value as follows:</para>
+
+      <programlisting language="shell">get /foo.json | json data items 8 label</programlisting>
+
+      <screen>"About this JSON..."</screen>
+
+      <para>The output can be cleaned up with the <literal>?clean</literal>
+      option:</para>
+
+      <programlisting language="shell">get /foo.json | json ?clean data items 8 label</programlisting>
+
+      <screen>About this JSON...</screen>
+    </example>
+
+    <example>
+      <title>Extract JSON sub-tree</title>
+
+      <para>Assuming a <filename>/foo.json</filename> file exists just as
+      above...</para>
+
+      <programlisting language="shell">get /foo.json | json data items 8</programlisting>
+
+      <screen>{ "id" : "About", "label" : "About this JSON..." }</screen>
+
+      <para>The subtree can again be parsed:</para>
+
+      <programlisting language="shell">get /foo.json | json data items 8 | json label</programlisting>
+
+      <screen>"About this JSON..."</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/JSON.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

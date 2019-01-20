@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xo</refname>
+
+    <refname>XMLOut</refname>
+
+    <refpurpose>Output some XML tags</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/xo" role="iosh">
+      <command role="iosh">xo</command>
+
+      <arg choice="req"><replaceable>tag</replaceable></arg>
+
+      <arg rep="repeat"><replaceable>tag</replaceable></arg>
+
+      <arg choice="req"><replaceable>content</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Builds a simple XML tree by nesting one or more specified tags. The
+    last argument is the content of the deepest tag.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A most basic (x)HTML page</title>
+
+      <programlisting language="terminal"><prompt>iosh $ </prompt><userinput>xo html body p 'Hello world!'</userinput>
+<computeroutput>&lt;?xml version="1.0"?&gt;
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;p&gt;Hello world!&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</computeroutput></programlisting>
+    </example>
+
+    <example>
+      <title>A similarly basic, contrived XML tree</title>
+
+      <programlisting language="terminal"><prompt>iosh $ </prompt><userinput>xo hello to the world</userinput>
+<computeroutput>&lt;?xml version="1.0"?&gt;
+&lt;hello&gt;
+    &lt;to&gt;
+        &lt;the&gt;world&lt;/the&gt;
+    &lt;/to&gt;
+&lt;/hello&gt;</computeroutput></programlisting>
+    </example>
+
+    <example>
+      <title>Used with the opposite command <command role="iosh">xi</command>
+      to get the content back out</title>
+
+      <programlisting language="terminal"><prompt>iosh $ </prompt><userinput>xo hello to the world | xi hello to the</userinput>
+<computeroutput>world</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/XMLOut.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

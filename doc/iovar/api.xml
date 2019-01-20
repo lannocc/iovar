@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.1" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:trans="http://docbook.org/ns/transclusion"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Java API Documentation</title>
+
+    <author>
+      <personname><firstname>Shawn</firstname><surname>Wilson</surname></personname>
+
+      <affiliation>
+        <orgname>Virgo Venture, Inc.</orgname>
+      </affiliation>
+    </author>
+  </info>
+
+  <index xlink:href="/doc/iovar/api/index.html" xlink:show="embed">
+    <title>Javadocs</title>
+  </index>
+</book>

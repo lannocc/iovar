@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>body</refname>
+
+    <refpurpose>Contain the main content area(s), excluding header and
+    footer</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/lib/xhtml/common.xsl" role="xsl">
+      <command role="xsl">body</command>
+    </cmdsynopsis>
+
+    <para>This template is automatically called by the default node-matching
+    when you import <filename>/lib/xhtml/common.xsl</filename>.</para>
+
+    <important>
+      <para>This template is expected to contain an <tag
+      class="element">&lt;xsl:apply-templates/&gt;</tag> node in order to
+      continue standard processing.</para>
+    </important>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A custom view that adds some wrapper divs around the body</title>
+
+      <programlisting language="xml">&lt;?xml version="1.0"?&gt;
+&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    &gt;
+
+    &lt;xsl:variable name="title"&gt;My Web Site&lt;/xsl:variable&gt;
+
+    &lt;xsl:import href="/lib/xhtml/common.xsl"/&gt;
+
+    &lt;xsl:template name="body"&gt;
+        &lt;div class="my_outer_wrapper"&gt;
+            &lt;main id="body"&gt;
+                &lt;div class="my_inner_wrapper"&gt;
+                    &lt;xsl:apply-templates/&gt;
+                &lt;/div&gt;
+            &lt;/main&gt;
+        &lt;/div&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/lib/xhtml/common.xsl#body"
+                    xlink:role="xsl_template" xlink:show="replace"/>
+  </refsection>
+</refentry>

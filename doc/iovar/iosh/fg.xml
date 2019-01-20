@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>fg</refname>
+
+    <refpurpose>Bring job to foreground</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/fg" role="iosh">
+      <command role="iosh">fg</command>
+
+      <arg choice="req"><replaceable>job</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>After a command has been detached, it can reattach with this
+    command. Use the <command role="iosh">jobs</command> command to get a
+    list.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Detach some text output then bring it back</title>
+
+      <programlisting language="shell">echo hello world &amp;
+fg 26964892</programlisting>
+
+      <screen>[26964892] 26964892
+hello world</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/bin/Foreground.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

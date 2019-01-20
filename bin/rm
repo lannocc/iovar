@@ -1,0 +1,6 @@
+#!/bin/iosh
+# Copyright (C) 2011-2014 Lannocc Technologies
+# @%@~LICENSE~@%@
+
+delete $1 || { echo delete failed; exit $? }
+

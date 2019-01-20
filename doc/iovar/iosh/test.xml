@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>test</refname>
+
+    <refpurpose>Comparison tests</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/test" role="iosh">
+      <command role="iosh">test</command>
+
+      <arg><replaceable>expression</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Test <replaceable>expression</replaceable> and return status based
+    on true/false result of the expression. Lack of an expression defaults to
+    false.</para>
+
+    <para>Expression tests:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><code><replaceable>string1</replaceable> =
+        <replaceable>string2</replaceable></code></term>
+
+        <listitem>
+          <para>the two strings are equal</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><code><replaceable>string1</replaceable> !=
+        <replaceable>string2</replaceable></code></term>
+
+        <listitem>
+          <para>the two strings are not equal</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><code><replaceable>int1</replaceable> -gt
+        <replaceable>int2</replaceable></code></term>
+
+        <listitem>
+          <para>the first integer is greater than the second</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><code><replaceable>int1</replaceable> -ge
+        <replaceable>int2</replaceable></code></term>
+
+        <listitem>
+          <para>the first integer is greater than or equal to the
+          second</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><code><replaceable>int1</replaceable> -lt
+        <replaceable>int2</replaceable></code></term>
+
+        <listitem>
+          <para>the first integer is less than the second</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><code><replaceable>int1</replaceable> -le
+        <replaceable>int2</replaceable></code></term>
+
+        <listitem>
+          <para>the first integer is less than or equal to the second</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><code><replaceable>object</replaceable> is
+        <replaceable>type</replaceable></code></term>
+
+        <listitem>
+          <para>strictly determine that <replaceable>object</replaceable>
+          (input string) matches given <replaceable>type</replaceable>, one
+          of:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><code>int</code> or <code>integer</code></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Check that one number is less than another and display a message
+      if so</title>
+
+      <programlisting language="shell">test 1 -lt 2 &amp;&amp; echo '1 is less than 2'</programlisting>
+
+      <screen>1 is less than 2</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/Test.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

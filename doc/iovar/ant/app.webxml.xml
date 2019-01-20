@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>app.webxml</refname>
+
+    <refpurpose>Regenerate the <filename>/WEB-INF/web.xml</filename> file for
+    Tomcat</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <command role="ant">app.webxml</command>
+    </cmdsynopsis>
+
+    <para>The <filename>web.xml</filename> file is regenerated based on
+    <filename>/etc/web.xml</filename> and by scanning the filesystem for links
+    to servlets.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Build on Linux</title>
+
+      <programlisting language="terminal"><prompt>dummy@tux ~/iovar $ </prompt><userinput>ant app.webxml</userinput>
+<computeroutput>Buildfile: /home/dummy/iovar/build.xml
+
+project.init:
+     [echo] Prepare IOVAR Java Foundation
+
+project.install.fail:
+
+app.install.check:
+
+app.install.fail:
+
+tasks.init:
+     [echo] Prepare Ant Tasks
+
+code.init:
+     [echo] Prepare Java Code
+
+ant.task.WebBuilder:
+
+app.webxml:
+    [unzip] Expanding: /home/dummy/iovar/WEB-INF/lib/jars/iovar/idfree-1.0-dev.jar into /home/dummy/iovar/WEB-INF/tmp/ant
+[web-build] scanning for symbolic links to .class files...
+[web-build] link to unsupported location: checklink-target
+[web-build] link to unsupported location: index.xml
+[web-build] link to unsupported location: app/index
+[web-build] web-app definition generated at: /home/dummy/iovar/WEB-INF/web.xml
+
+BUILD SUCCESSFUL
+Total time: 0 seconds</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/build.xml#app.webxml"
+                    xlink:role="ant_target" xlink:show="replace"/>
+  </refsection>
+</refentry>

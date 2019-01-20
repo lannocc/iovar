@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>echo</refname>
+
+    <refpurpose>Display the arguments</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/echo" role="iosh">
+      <command role="iosh">echo</command>
+
+      <arg rep="repeat"><replaceable>text</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Output the input stream followed by any arguments. A newline is
+    automatically appended unless turned off in the options.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Using with arguments only</title>
+
+      <programlisting language="shell">echo hello world</programlisting>
+
+      <screen>hello world</screen>
+    </example>
+
+    <example>
+      <title>Using with input and arguments</title>
+
+      <programlisting language="shell">echo foo bar | echo hello world</programlisting>
+
+      <screen>foo bar
+hello world</screen>
+    </example>
+
+    <example>
+      <title>Same as above, but the arguments are displayed first</title>
+
+      <programlisting language="shell">echo foo bar | echo ?first hello world</programlisting>
+
+      <screen>hello world
+foo bar</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/bin/Echo.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

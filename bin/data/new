@@ -1,0 +1,5 @@
+#!/bin/sh
+
+MODULE=data/codetable
+get /var/lib/$1 | view
+

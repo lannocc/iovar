@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export VIEW=$1
+echo '<html><head><meta http-equiv="refresh" content="0;URL='"'/\$/$2'\"></head></html>" | cat ?type=text/html
+

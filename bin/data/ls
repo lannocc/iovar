@@ -1,0 +1,6 @@
+#!/bin/sh
+
+MODULE=data/codetable
+
+get /var/lib/$1/ * | view || { echo fail at $0; exit 1; }
+

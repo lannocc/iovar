@@ -1,0 +1,83 @@
+#!/bin/sh
+
+echo IOVAR Web Shell
+echo version $IOVAR_VERSION
+
+echo
+echo This is by no means a complete list of everything installed.
+echo Feel free to browse around the source code and discover more.
+echo
+echo 'Shell-interpreted examples begin with "$" while installed utilities are surrounded by back-quotes: ` `'
+
+echo
+echo
+echo I/O BASICS
+echo
+echo '  $ foo > bar     # send output of "foo" command to a resource named "bar"'
+echo '  $ foo < bar     # retrieve contents of "bar" and send as input to the "foo" command'
+echo '  $ foo | bar     # send output of "foo" command as input to "bar" command'
+echo
+echo '  `echo`          # output some text (e.g. `echo hello world`)'
+echo '  `cat`           # output contents (retrieve on or more resources in order)'
+
+echo
+echo
+echo RESOURCE ACCESS AND MANIPULATION
+echo
+echo Resources are referenced as URIs, where scheme part determines the transport handler that gets used.
+echo Transport handlers are currently installed for http:, local:, file:, and res: URIs.
+echo When no scheme is included, local: is assumed.
+echo
+echo '  $ foo > http://example.com/bar'
+echo '                  # searches for local:foo to invoke and sends output over http to "bar".'
+echo
+echo HTTP paradigm:
+echo '  `get`           # retreive'
+echo '  `put`           # update'
+echo '  `post`          # process / invoke'
+echo '  `delete`        # remove'
+echo
+echo File paradigm:
+echo '  `touch`         # update modification time (or create)'
+echo '  `rm`            # remove'
+echo '  `mkdir`         # make directory'
+echo '  `rmdir`         # remove directory'
+
+echo
+echo
+echo QUOTING
+echo
+echo Normal behavior for shell interpreter is to strip away excess whitespace around words and treat each word as a separate argument. It looks for quotes and other special characters to change the default behavior. A backslash can precede any character that should be taken literally.
+echo
+echo '  $ echo  hello    world'
+echo '                  # invokes the echo command with two arguments: "hello" and "world"'
+echo '  $ echo "hello    world"'
+echo '                  # invokes echo with one argument: "hello    world"'
+echo '  $ echo '\''hello    world'\'
+echo '                  # same as above with everything treated literally; will not expand variables or interpret backslash'
+
+echo
+echo
+echo ENVIRONMENT VARIABLES
+echo
+echo '  $ A=hello       # assign value "hello" to variable named A'
+echo '  $ $A            # reference the variable A (as a command to invoke)'
+echo '  $ echo $A       # reference the variable A (as an argument to the echo command)'
+echo 
+echo '  `exit`          # exit with numerical value (assigned to $?)'
+echo '  `export`        # assign variable in parent session'
+echo '  `set`           # list currently assigned variables'
+
+echo
+echo 
+echo JOB CONTROL
+echo
+echo '  $ foo &         # ampersand after a command starts it in the background'
+echo
+echo '  `jobs`          # list jobs'
+echo '  `fg`            # bring a job to foreground (make current)'
+
+echo
+echo
+echo Most shell utilities can be passed the \?help option to see usage information.
+

@@ -1,0 +1,9 @@
+#!/bin/iosh
+
+#local:/bin/sh local:/etc/environment
+
+#local:/bin/export PATH=local:/usr/local/bin,local:/usr/bin,local:/bin,local:/opt/bin
+
+# USER is set by the initial shell
+#export HOME=local:/home/${USER}
+

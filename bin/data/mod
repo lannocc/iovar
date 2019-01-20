@@ -1,0 +1,4 @@
+#!/bin/sh
+
+form2xml $1 > /var/lib/$1/$2 && redirect '/$/bin/data/ls?='$1 || { echo fail at $0; exit 1; }
+

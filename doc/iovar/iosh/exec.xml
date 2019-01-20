@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>exec</refname>
+
+    <refpurpose>Handle any executable resource that lacks a
+    hash-bang</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/exec" role="iosh">
+      <command role="iosh">exec</command>
+
+      <arg choice="req"><replaceable>resource</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>This command is called by the <link
+    xlink:href="/src/net/iovar/web/dev/trans/File.java">File</link> transport
+    handler when a file has the executable bit set and is about to be executed
+    but the file does not begin with a hash-bang directive specifying an
+    interpreter.</para>
+
+    <para>The developer can easily override the default execution behavior by
+    installing their own <command>exec</command> command that either replaces
+    this one or takes precedence in the user <varname>PATH</varname> (e.g.
+    into <filename class="directory">/usr/bin/</filename> or <filename
+    class="directory">/usr/local/bin/</filename>).</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>No examples here.</para>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="shell" xlink:href="/bin/exec"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

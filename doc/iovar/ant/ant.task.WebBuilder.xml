@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>ant.task.WebBuilder</refname>
+
+    <refpurpose>Load the custom <literal>&lt;web-build&gt;</literal> Ant
+    taskdef.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <command role="ant">ant.task.WebBuilder</command>
+    </cmdsynopsis>
+
+    <para>This target is not normally called directly by the user. It is used
+    as a dependant step for the <command role="ant">app.webxml</command>
+    target.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>No example here.</para>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/build.xml#ant.task.WebBuilder"
+                    xlink:role="ant_target" xlink:show="replace"/>
+  </refsection>
+</refentry>

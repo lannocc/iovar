@@ -1,0 +1,177 @@
+/*
+ * Copyright (C) 2018-2019 Virgo Venture, Inc.
+ * @%@~LICENSE~@%@
+ */
+
+@media all {
+
+    html, body {
+        font-family: sans-serif;
+    }
+
+    .legacy {
+        display: none;
+    }
+
+    #footer {
+        font-size: x-small;
+    }
+
+    #copyright {
+        text-align: right;
+    }
+}
+
+@media screen {
+
+    html {
+        height: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        /* border: 2px solid white; */
+        color: black;
+    }
+
+    a:target {
+        background-color: yellow;
+    }
+
+    a:link {
+        color: #39A;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: #078;
+    }
+
+    a:link:hover {
+        text-decoration: underline;
+    }
+
+    h1 {
+        margin: 0;
+        padding: .5em;
+    }
+
+    #apphome img {
+        vertical-align: middle;
+    }
+
+    #body {
+        flex: 1 auto;
+        padding: 1em;
+    }
+
+    #footer {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #footer a {
+        display: block;
+    }
+
+    h1, #footer {
+        background-color: #DE9D00;
+    }
+
+    h1 a:link, #footer a:link {
+        color: #800;
+    }
+
+    h1 a:visited, #footer a:visited {
+        color: #900;
+    }
+
+    #copyright {
+        padding: .5em;
+        min-width: fit-content;
+        width: fit-content;
+    }
+
+    .easyaccess {
+        float: right;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-size: cover;
+        padding-top: 1em;
+        font-size: small;
+        box-sizing: border-box;
+        margin-left: 1em;
+    }
+
+    .error {
+        color: red;
+        font-family: serif;
+        background-color: yellow;
+    }
+
+    label { /* makes label act more button-like */
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    }
+
+    .show-dropdown {
+        display: none;
+    }
+
+    .show-dropdown:checked ~ .dropdown {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 640px) {
+
+    .dropdown {
+        display: none;
+    }
+
+}
+
+@media print {
+
+    #apphome {
+        display: none;
+    }
+
+    a:link {
+        color: #067;
+    }
+
+    #footer {
+        display: block;
+        color: gray;
+        border-top: 1px solid gray;
+    }
+
+    #footer a:link, #footer a:visited {
+        text-decoration: none;
+        color: gray;
+    }
+
+    .easyaccess {
+        display: none;
+    }
+
+}
+

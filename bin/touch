@@ -1,0 +1,6 @@
+#!/bin/iosh
+# Copyright (C) 2011-2014 Lannocc Technologies
+# @%@~LICENSE~@%@
+
+put $1 || { echo touch failed; exit $? }
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+DATA=$1
+
+xo log user "$USER" | xo action 40 | xo table "$DATA" > /var/lib/log/
+

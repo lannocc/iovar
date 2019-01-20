@@ -1,0 +1,9 @@
+#!/bin/iosh
+# Copyright (C) 2018 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+# TODO: Some day this will actually index any/all installed doc subdirectories
+#       and present each of them.
+
+redirect /doc/iovar/
+

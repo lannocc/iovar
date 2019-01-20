@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>js-function</refname>
+
+    <refpurpose>Pull out a single Javascript function definition from given
+    source text</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/lib/iovar/js.xsl" role="xsl">
+      <command role="xsl">js-function</command>
+
+      <arg choice="req"><replaceable>source</replaceable></arg>
+
+      <arg choice="req"><replaceable>name</replaceable></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A contrived demonstration that works for any XML input</title>
+
+      <programlisting language="xml">&lt;?xml version="1.0"?&gt;
+&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    &gt;
+
+    &lt;xsl:output
+        method="xml"
+        media-type="text/xml"
+        omit-xml-declaration="no"
+        /&gt;
+
+    &lt;xsl:import href="/lib/iovar/js.xsl"/&gt;
+
+    &lt;xsl:template match="/"&gt;
+        &lt;xsl:variable name="myjs"&gt;
+function foo () {
+    alert ('hello');
+}
+
+function bar () {
+    alert ('goodbye');
+}
+        &lt;/xsl:variable&gt;
+        &lt;foobar&gt;
+            &lt;xsl:call-template name="js-function"&gt;
+                &lt;xsl:with-param name="source" select="$myjs"/&gt;
+                &lt;xsl:with-param name="name" select="'bar'"/&gt;
+            &lt;/xsl:call-template&gt;
+        &lt;/foobar&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</programlisting>
+
+      <screen>&lt;?xml version="1.0"?&gt;
+&lt;foobar&gt;
+function bar () {
+    alert ('goodbye');
+}
+&lt;/foobar&gt;</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/lib/iovar/js.xsl#js-function"
+                    xlink:role="xsl_template" xlink:show="replace"/>
+  </refsection>
+</refentry>

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+test "$USER" = '' && {
+    get /var/lib/log/ * ?order='time DESC' ?limit=100 | view
+} || {
+    get /var/lib/log/ * ?where='user IS NOT NULL' ?order='time DESC' ?limit=100 | view
+}
+

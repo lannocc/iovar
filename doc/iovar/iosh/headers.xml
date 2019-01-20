@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>headers</refname>
+
+    <refpurpose>Output the HTTP headers</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/headers" role="iosh">
+      <command role="iosh">headers</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Print some headers</title>
+
+      <programlisting language="shell">echo hello world | headers</programlisting>
+
+      <screen>transfer-encoding: chunked
+content-type: 
+host: localhost:8080
+connection: Keep-Alive
+user-agent: Apache-HttpClient/4.3.3 (java 1.5)
+cookie: JSESSIONID=5A45D82C5CDDC2CB7E84F1FE62B5B146
+cookie2: $Version=1
+accept-encoding: gzip,deflate</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/Headers.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

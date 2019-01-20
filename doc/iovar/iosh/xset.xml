@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xset</refname>
+
+    <refpurpose>Store XML data into the session</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/xset" role="iosh">
+      <command role="iosh">xset</command>
+
+      <arg rep="repeat"><replaceable>node</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Store XML data from stdin to the session. Use the <command
+    role="iosh">xget</command> command to get the XML back out.</para>
+
+    <para>Any arguments are <replaceable>node</replaceable> names representing
+    the hieararchy under which to store the data:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>missing nodes are created automatically</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>By default, the storage key is the first node listed or the root
+    node tag name of the input data.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>FIXME</para>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/XMLSet.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

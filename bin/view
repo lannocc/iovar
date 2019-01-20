@@ -1,0 +1,64 @@
+#!/bin/iosh
+#
+# Copyright (C) 2016-2019 Virgo Venture, Inc.
+# Copyright (C) 2015 Lannocc Technologies
+# @%@~LICENSE~@%@
+
+#setxsl /usr/$VIEW/$MODULE.xsl || { echo fail in $0; exit 1; }
+
+# FIXME #14: would rather use buffer here
+xset ?key=_view_ && {
+
+    test "$VIEW" = '' && {
+
+        VIEW=xhtml
+    }
+
+    module="$MODULE"
+    gotit=0
+
+    test "$module" = '' && {
+        module=default
+    } || {
+        exists /srv/"$VIEW"/"$module".xsl && {
+            gotit=1
+        } || {
+            module="$module"/default
+        }
+    }
+
+    test "$gotit" = 1 || {
+        exists /srv/"$VIEW"/"$module".xsl && {
+            gotit=1
+        } || {
+
+            echo $0: MODULE not found (and no default available either): "$MODULE"
+            echo make sure that /srv/"$VIEW"/"$MODULE".xsl or /srv/"$VIEW"/"$module".xsl exists
+            exit 2
+
+        }
+    }
+
+    test "$gotit" = 1 && {
+
+        #user | set userxml
+        userxml='<not-implemented/>'
+        xget ?key=_view_ | xslt /srv/"$VIEW"/"$module".xsl ?userxmlstr="$userxml" ?source="$1" ?variables -- WEBAPP ioframe $@ || { echo fail in $0; exit 3; }
+        exit 0
+
+    }
+
+
+} || {
+
+    echo $0: not XML data
+    exit 4
+
+}
+
+# FIXME: the xslt command above should actually be setting the final content-type but that doesn't
+#        work until the whole content-type chain pipeline is fixed. For now, we need to output the
+#        content-type as the last command in order to have any effect.
+
+test "$VIEW" = 'xhtml' && cat ?type='application/xhtml+xml'
+

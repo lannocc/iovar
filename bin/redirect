@@ -1,0 +1,138 @@
+#!/bin/iosh
+#
+# Copyright (C) 2016-2017 Virgo Venture, Inc.
+# Copyright (C) 2015 Lannocc Technologies
+# @%@~LICENSE~@%@
+
+set data
+
+cat ?type=text/html
+
+test "$method" = POST || redirect_uri="$data"
+test "$@" = '' || redirect_uri="$@"
+test "$wait" = '' && wait=0
+test "$wait" is int || wait=0
+test "$method" = POST && {
+    echo ?noline $data | cat ?type=application/x-www-form-urlencoded | form2xml postdata | xset
+}
+
+test "$VIEW" = 'text' && {
+
+    echo ' >> GO TO >>>>' $redirect_uri
+
+} || {
+
+    echo '<html>
+    <head>
+        <title>Redirecting...</title>
+        <link rel="next" title="Continue..." href="'"$redirect_uri"'">
+        <script language="javascript" type="text/javascript">
+            var self = false;
+            var inparent = false;
+            var wait = 0;
+            var post = false;'
+
+            test "$self" = "true" && echo "self = true;"
+            test "$parent" = "true" && echo "inparent = true;"
+            test "$wait" -gt 0 && echo "wait = $wait;"
+            test "$method" = "POST" && echo "post = true;"
+            test "$script" = '' || echo "$script"
+            echo '
+
+            if (inparent && window.parent)
+            {
+                window.parent.location.href = '\'$redirect_uri\'';
+            }
+            else if (!self && window.parent.loadInPopup && window.parent.get ("popup"))
+            {
+                //alert ("redirecting: '$redirect_uri'");
+                window.parent.loadInPopup (null, '\'$redirect_uri\'');
+            }
+            else
+            {
+                //alert ("redirecting: '$redirect_uri'");
+                
+                if (!post) {
+                    if (wait > 0) {
+                        window.setTimeout(function() { window.location.href = '\'$redirect_uri\''; }, wait);
+                    }
+                    else {
+                        window.location.href = '\'$redirect_uri\'';
+                    }
+                }
+            }
+        </script>
+        <noscript>
+            <meta http-equiv="refresh" content="'$wait';URL='$redirect_uri'">
+        </noscript>
+        <style type="text/css">
+            html, body {
+                font-family: sans-serif;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            @keyframes intro {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+
+            center {
+                animation: 1s ease-in 0s 1 intro;
+            }
+
+            sup, sub {
+                font-size: xx-small;
+            }
+
+            form {
+                display: inline;
+            }
+
+            input[type=submit] {
+                background: none;
+                cursor: pointer;
+                border: none;
+                color: blue;
+                font-weight: blue;
+                font-size: 150%;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            a:hover, input[type=submit]:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body onload="if (post) { if (wait > 0) { window.setTimeout(function() { document.forms[0].submit(); }, wait); } else { document.forms[0].submit(); } }">
+        <center>
+            <h1>
+                <sup>&gt;&gt;&gt;</sup>'
+                test "$method" = POST && {
+                    echo '
+                    <form method="POST" action="'"$redirect_uri"'">
+                        '
+                        xget postdata | xslt /lib/redirect.xsl
+                        echo '
+                        <input type="submit" title="Click here if you are not redirected automatically" value="Redirecting...">
+                    </form>'
+                } || {
+                    echo '<a title="Click here if you are not redirected automatically" href="'$redirect_uri'">Redirecting...</a>'
+                }
+                echo '
+                <sub>&gt;&gt;&gt;</sub>
+            </h1>
+        </center>
+    </body>
+</html>'
+
+    cat ?type=text/html
+}
+

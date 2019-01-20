@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>docs.api</refname>
+
+    <refpurpose>Run javadocs tool to build API documentation for the Java
+    code</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <command role="ant">docs.api</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Build on Linux (always regenerates)</title>
+
+      <programlisting language="terminal"><prompt>dummy@tux ~/iovar $ </prompt><userinput>ant docs.api</userinput>
+<computeroutput>Buildfile: /home/dummy/iovar/build.xml
+
+project.init:
+     [echo] Prepare IOVAR Java Foundation
+
+project.install.fail:
+
+docs.api.init:
+     [echo] Prepare API Documentation
+
+docs.api:
+     [echo] API Documentation
+  [javadoc] Generating Javadoc
+  [javadoc] Javadoc execution
+  [javadoc] Loading source files for package net.iovar...
+  [javadoc] Loading source files for package net.iovar.ant...
+  [javadoc] Loading source files for package net.iovar.json...
+  [javadoc] Loading source files for package net.iovar.parse...
+  [javadoc] Loading source files for package net.iovar.web...
+  [javadoc] Loading source files for package net.iovar.web.bin...
+  [javadoc] Loading source files for package net.iovar.web.bin.shell...
+  [javadoc] Loading source files for package net.iovar.web.bin.shell.task...
+  [javadoc] Loading source files for package net.iovar.web.dev...
+  [javadoc] Loading source files for package net.iovar.web.dev.trans...
+  [javadoc] Loading source files for package net.iovar.web.lib...
+  [javadoc] Loading source files for package net.iovar.web.proc...
+  [javadoc] Loading source files for package net.iovar.web.sbin...
+  [javadoc] Loading source files for package net.iovar.web.usr.bin...
+  [javadoc] Loading source files for package net.iovar.web.usr.sbin...
+  [javadoc] Loading source files for package net.iovar.xml...
+  [javadoc] Constructing Javadoc information...
+  [javadoc] /home/dummy/iovar/src/net/iovar/ant/WebBuilder.java:16: error: package org.apache.tools.ant does not exist
+  [javadoc] import org.apache.tools.ant.*;
+  [javadoc] ^
+  [javadoc] /home/dummy/iovar/src/net/iovar/ant/WebBuilder.java:26: error: cannot find symbol
+  [javadoc] public class WebBuilder extends Task
+  [javadoc]                                 ^
+  [javadoc]   symbol: class Task
+  [javadoc] /home/dummy/iovar/src/net/iovar/ant/WebBuilder.java:103: error: cannot find symbol
+  [javadoc]     void validateAttributes () throws BuildException, IOException
+  [javadoc]                                       ^
+  [javadoc]   symbol:   class BuildException
+  [javadoc]   location: class WebBuilder
+  [javadoc] /home/dummy/iovar/src/net/iovar/ant/WebBuilder.java:117: error: cannot find symbol
+  [javadoc]     public void execute () throws BuildException
+  [javadoc]                                   ^
+  [javadoc]   symbol:   class BuildException
+  [javadoc]   location: class WebBuilder
+  [javadoc] Standard Doclet version 1.8.0_192
+  [javadoc] Building tree for all the packages and classes...
+  [javadoc] <remark>...(numerous warnings omitted)...</remark>
+  [javadoc] Building index for all the packages and classes...
+  [javadoc] Building index for all classes...
+  [javadoc] Generating /home/dummy/iovar/doc/iovar/api/help-doc.html...
+  [javadoc] 100 warnings
+
+BUILD SUCCESSFUL
+Total time: 5 seconds</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/build.xml#docs.api"
+                    xlink:role="ant_target" xlink:show="replace"/>
+  </refsection>
+</refentry>

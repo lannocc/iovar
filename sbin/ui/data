@@ -1,0 +1,61 @@
+#!/bin/iosh
+
+name=$1
+obj=/etc/ui/data/${name}.xml
+bin=/bin/data/$name
+
+XSL=/lib/ui/data
+VIEW=/srv/xhtml
+MODULE=data
+
+test "$name" = '' && {
+
+    echo you must supply an object name
+    exit 1
+
+} || {
+
+
+# try {
+
+
+### SHELL AND ASSOCIATED XSL ###
+
+exists "$bin"/ || mkdir "$bin"
+
+xslt $XSL/find.xsl $obj ?name="$name" ?bin="$bin" > $bin/find
+xslt $XSL/ls.xsl $obj ?name="$name" ?bin="$bin" > $bin/ls
+xslt $XSL/mk.xsl $obj ?name="$name" ?bin="$bin" > $bin/mk
+xslt $XSL/mod.xsl $obj ?name="$name" ?bin="$bin" > $bin/mod
+xslt $XSL/new.xsl $obj ?name="$name" ?bin="$bin" > $bin/new
+xslt $XSL/rm.xsl $obj ?name="$name" ?bin="$bin" > $bin/rm
+xslt $XSL/view.xsl $obj ?name="$name" ?bin="$bin" > $bin/view
+
+xslt $XSL/link.xsl $obj ?name="$name" ?bin="$bin" | sed ?filter='s/XXXTransformXXX/Transform/g' | sed ?filter='s/xxx/xsl/g' > $bin/link.xsl
+
+
+
+
+### XHTML ###
+
+exists "/srv/xhtml/$MODULE"/ || mkdir "/srv/xhtml/$MODULE"
+
+xslt $XSL/xhtml/new.xsl $obj | sed ?filter='s/XXXTransformXXX/Transform/g' | sed ?filter='s/xxx/xsl/g' > /srv/xhtml/$MODULE/$name-new.xsl
+xslt $XSL/xhtml/edit.xsl $obj | sed ?filter='s/XXXTransformXXX/Transform/g' | sed ?filter='s/xxx/xsl/g' > /srv/xhtml/$MODULE/$name.xsl
+
+
+### XML ###
+
+exists "/srv/xml/$MODULE"/ || mkdir "/srv/xml/$MODULE"
+
+xslt $XSL/xml/new.xsl $obj | sed ?filter='s/XXXTransformXXX/Transform/g' | sed ?filter='s/xxx/xsl/g' > /srv/xml/$MODULE/$name-new.xsl
+xslt $XSL/xml/edit.xsl $obj | sed ?filter='s/XXXTransformXXX/Transform/g' | sed ?filter='s/xxx/xsl/g' > /srv/xml/$MODULE/$name.xsl
+
+
+# } || { echo ui failed; exit 1 }
+
+echo all done
+exit 0
+
+}
+

@@ -1,0 +1,9 @@
+#!/bin/iosh
+
+echo '<history>'
+echo "$HISTORY" | sed ?filter='s/&/&amp;/g' | sed ?filter='s/</&lt;/g' | sed ?filter='s/>/&gt;/g' | sed ?filter='s/^(.*)$/    <entry>$1<\/entry>/g'
+echo
+echo '</history>'
+
+cat ?type=text/xml
+

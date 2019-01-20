@@ -1,0 +1,8 @@
+#!/bin/iosh
+#
+# Copyright (C) 2018 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+local "$1" | set exec_local
+get "$1" | view "$exec_local"
+

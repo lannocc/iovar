@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xget</refname>
+
+    <refpurpose>Retrieve XML tree from the session</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/xget" role="iosh">
+      <command role="iosh">xget</command>
+
+      <arg rep="repeat"><replaceable>node</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Retrieve XML DOM tree from the session and send to stdout. Use the
+    <command role="iosh">xset</command> command to save an XML tree to the
+    session in the first place.</para>
+
+    <para>Any arguments are <replaceable>node</replaceable> names representing
+    the hieararchy to retrieve. By default, the retrieval key is the first
+    node listed. The <literal>?key</literal> option must be used if no
+    arguments are given. Use the <literal>?text</literal> option if you want
+    node value.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>FIXME</para>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/XMLGet.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

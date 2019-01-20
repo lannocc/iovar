@@ -1,0 +1,618 @@
+/*
+ * Copyright (C) 2018-2019 Virgo Venture, Inc.
+ * @%@~LICENSE~@%@
+ */
+
+@media all {
+
+    #doc>iframe {
+        border: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    h2 {
+        border-bottom: 1px solid #AAA;
+    }
+
+    li {
+        margin-top: .2em;
+    }
+
+    li p {
+        margin-top: .5em;
+        margin-bottom: 0;
+    }
+
+    li p:first-child {
+        margin-top: 0;
+    }
+
+    label[for='show-contents'] {
+        display: none;
+        position: relative;
+        float: right;
+        margin-right: .5em;
+        top: -1.7em;
+        padding: 0;
+        border-radius: .4em;
+        z-index: 70;
+    }
+
+    .docmeta {
+        display: block;
+        float: right;
+        text-align: right;
+        background-color: #EFE;
+        padding: .5em;
+        font-style: italic;
+        font-size: small;
+        font-family: serif;
+    }
+
+    .docmeta .author, .docmeta .pubdate, .docmeta .revision {
+        display: block;
+    }
+
+    .toc {
+        background-image: linear-gradient(to right, #FEBD44, rgba(255,220,155,0.5), rgba(255,255,255,0), rgba(255,255,255,0));
+        margin: 2em 4em 2em 4em;
+        padding: 1em;
+        border-radius: .7em;
+    }
+
+    .toc.appendices {
+        list-style-type: upper-alpha;
+    }
+
+    .toc li {
+        margin-left: 2em;
+        padding: .1em;
+    }
+
+    .toc li a {
+        font-weight: bold;
+    }
+
+    .toc li>sup {
+        font-size: x-small;
+        vertical-align: middle;
+    }
+
+    .preface, .purpose, .chapter, .article, .appendix {
+        margin-bottom: 2em;
+    }
+
+    .preface, .purpose {
+        background-color: #FFF5F5;
+        padding: 1em;
+        border: 1px dashed #EAA;
+        margin: 2em;
+    }
+
+    .preface h2, .purpose h2, .preface h3, .purpose h3 {
+        margin-top: 0;
+        font-style: italic;
+    }
+
+    .chapter {
+        /* border: 1px solid red; */
+        max-width: 100%;
+    }
+
+    .article {
+        /* border: 1px solid green; */
+    }
+
+    .appendix {
+        /* border: 1px solid blue; */
+    }
+
+    .section {
+        margin-left: 1em;
+    }
+
+    blockquote {
+        position: relative;
+        display: inline-block;
+        box-shadow: 0 0 .5em #888;
+        margin-left: 2em;
+        padding: 1em;
+        border-radius: 1.5em;
+        background-color: #F7FFFF;
+    }
+
+    blockquote:before, blockquote:after {
+        position: absolute;
+        font-size: 7em;
+        display: block;
+        text-shadow: .03em .03em #CCC;
+    }
+
+    blockquote:before {
+        content: '\00201C';
+        left: -.2em;
+        top: -.2em;
+    }
+
+    blockquote:after {
+        content: '\00201D';
+        right: -.2em;
+        bottom: -.8em;
+    }
+
+    blockquote .pubdate, blockquote .revision, blockquote .author {
+        display: block;
+        position: absolute;
+        right: 2em;
+        text-align: right;
+        font-style: italic;
+        font-family: serif;
+    }
+
+    blockquote .pubdate, blockquote .revision {
+        top: -1.5em;
+    }
+
+    blockquote .author {
+        bottom: -2em;
+    }
+
+    em.tip, em.important {
+        display: block;
+        background-color: #FFD;
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 24px;
+        padding: 1em 1em 1em 30px;
+    }
+
+    em.tip {
+        background-image: url(tip.png);
+    }
+
+    em.important {
+        background-image: url(important.png);
+    }
+
+    .example, .listing {
+        display: block;
+        padding: 0;
+    }
+
+    .example, .listing {
+        box-shadow: 0 0 .5em #888;
+        margin: 1em;
+    }
+
+    .example>.title, .listing>.title, .output>.title {
+        display: block;
+        font-family: serif;
+        text-align: center;
+        font-weight: bold;
+        margin: 0;
+        padding: .4em 1em .4em 1em;
+        font-style: normal;
+    }
+
+    .example>.title sup, .listing>.title sup, .output>.title sup, .example>.title sub, .listing>.title sub, .output>.title sub {
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    .example>.title {
+        background-color: #ECC;
+    }
+
+    .example>.margin {
+        margin: 0;
+        height: 0;
+    }
+
+    .example>p {
+        margin: 1em;
+    }
+
+    .listing {
+        background-color: #EEF;
+        margin: 1em;
+        font-family: monospace;
+        overflow-x: auto;
+    }
+
+    .listing>.title {
+        background-color: #ECF;
+    }
+
+    .listing pre {
+        padding: .5em;
+    }
+
+    .example .listing {
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .output {
+        margin: .5em;
+        border: 1px dashed #DDD;
+    }
+
+    .output>.title {
+        background-color: #E9FFF9;
+    }
+
+    .screen {
+        background-color: #444;
+        color: #FFE;
+        margin: 0;
+        padding: .5em;
+        overflow-x: auto;
+    }
+
+    .literal, .varname, .command, .filename {
+        font-family: monospace;
+        white-space: pre;
+        font-weight: bold;
+        color: #209;
+    }
+
+    .replaceable {
+        font-style: italic;
+    }
+
+    /* override styles from prism */
+    pre[class*='language-'], code[class*='language-'] {
+        line-height: 1.2;
+        font-size: small;
+        margin: 0;
+    }
+
+    .example pre[class*='language-'], .example code[class*='language-'] {
+        margin: 0;
+    }
+
+    code .output {
+        background-color: white;
+    }
+
+    .remark {
+        background-color: #FF8;
+        font-size: smaller;
+        color: #777;
+    }
+
+}
+
+@media screen {
+
+    #body {
+        display: flex;
+        justify-content: space-between;
+        max-width: 100%;
+        overflow: clip;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    #docnav {
+        display: block;
+        float: right;
+        text-align: right;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        right: 0;
+        z-index: 60;
+        font-size: small;
+        font-family: serif;
+        margin-top: .1em;
+    }
+
+    #docnav a {
+        margin: .1em .1em .1em .3em;
+        display: inline-block;
+        border: 1px solid gray;
+        background-color: #EEE;
+        box-shadow: 3px 3px 3px gray;
+    }
+
+    #docnav a[rel='next'] {
+        padding-right: .2em;
+    }
+
+    #docnav a:hover {
+        background-color: yellow;
+        text-decoration: none;
+    }
+
+    #docnav a.here {
+        background-color: lightgray;
+    }
+
+    #docnav img {
+        vertical-align: middle;
+        width: 16px;
+    }
+
+    #contents-select, #contents {
+        font-family: serif;
+    }
+
+    #contents-select h3, #contents h3 {
+        border-bottom: 3px solid #CCC;
+        margin-bottom: 0;
+    }
+
+    #contents-select h4, #contents h4 {
+        margin-bottom: 0;
+        background-color: #DDD;
+        color: #444;
+        font-weight: normal;
+        border-bottom: 2px solid white;
+    }
+
+    #contents-select ul, #contents ul, #contents-select li, #contents li {
+        display: block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #contents-select ul, #contents ul {
+        margin-bottom: 1em;
+        background-color: #EEE;
+    }
+
+    #contents-select li, #contents li {
+        border-bottom: 1px solid white;
+    }
+
+    #contents-select li a, #contents li a, #contents-select h4, #contents h4 {
+        display: block;
+        padding: .1em .5em .1em .5em;
+    }
+
+    #contents-select li a:hover, #contents li a:hover {
+        background-color: yellow;
+        text-decoration: none;
+    }
+
+    #contents-select li a:active, #contents li a:active {
+        text-decoration: underline;
+    }
+
+    #contents-select .here, #contents .here {
+        font-weight: bold;
+        background-color: #FFC;
+    }
+
+    #contents-select {
+        position: relative;
+        margin-top: -1em;
+    }
+
+    #contents-select h3 {
+        padding: .1em;
+        margin: 0;
+    }
+
+    #contents-select ul {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 120%;
+    }
+
+    #contents-select ul li {
+        border-left: 2px solid white;
+    }
+
+    #contents-select ul li:first-child {
+        border-left: none;
+    }
+
+    #contents-select ul .here {
+        background-color: #FEBD44;
+    }
+
+    #contents {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    /*
+    a.here:link {
+        text-decoration: underline;
+    }
+    */
+
+    #doc {
+        width: auto;
+        /* border: 1px solid teal; */
+        margin-left: 1em;
+        flex-grow: 1;
+        min-width: 0;
+    }
+
+    #doc a[href^='https://']::before, #doc a[href^='http://']::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        background-image: url(external.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-right: .2em;
+    }
+
+    #doc code a[href^='https://']::before, #doc code a[href^='http://']::before {
+        /* hide the icon for code since the prism syntax highlighter doesn't open links in new window */
+        content: none;
+        display: none;
+    }
+
+    #doc a[href^='https://en.wikipedia.org/']::before, #doc a[href^='http://en.wikipedia.org/']::before {
+        background-image: url(wikipedia.png);
+    }
+
+    #doc a[href^='https://www.amazon.com/']::before, #doc a[href^='http://www.amazon.com/']::before {
+        background-image: url(amazon.png);
+    }
+
+    .docmeta .author {
+        display: none; /* TODO: make visible once we have more than one author */
+    }
+
+    .command::before, .filename::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-right: .2em;
+    }
+
+    .command.role_ant::before {
+        background-image: url(ant.png);
+        width: 2em;
+    }
+
+    .filename.directory::before {
+        background-image: url(folder.png);
+    }
+
+    pre a:link, code a:link {
+        text-decoration: underline;
+    }
+
+    pre a:hover, code a:hover {
+        background-color: #FFD;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    #body {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #doc {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+
+    .section {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .example, .listing {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+    #body {
+        display: block;
+        padding: 0;
+    }
+
+    #doc {
+        margin-left: 0;
+        padding: .15em;
+        height: 100%; /* this ensures an iframe-only doc fills the page */
+    }
+
+    #contents-select {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 50;
+        border-bottom: 4px solid white;
+        background-color: white;
+    }
+
+    #contents-select h3 {
+        overflow: clip;
+    }
+
+    #contents-select ul, #contents ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #contents-select ul li {
+        margin: 0;
+        border-bottom: none;
+    }
+
+    label[for='show-contents'] {
+        display: block;
+        position: sticky;
+        margin-top: -1.7em;
+        top: 1.7em;
+    }
+
+    label[for='show-contents']:hover {
+        background-color: yellow !important;
+    }
+
+    label[for='show-contents'] img {
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    #show-contents:checked ~ label[for='show-contents'] {
+        background-color: #FEFDE4;
+    }
+
+    #show-contents:checked ~ #contents {
+        display: flex;
+    }
+
+    #contents {
+        position: sticky;
+        top: 4em;
+        right: 0;
+        box-sizing: border-box;
+        background-color: #FEFDE4;
+        border-left: 5px solid white;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: .2em .2em .5em .2em;
+        font-size: smaller;
+        text-align: center;
+        z-index: 40;
+    }
+
+    #contents h4 {
+        margin-top: .2em;
+    }
+
+    .toc {
+        margin: 0;
+    }
+}
+
+
+@media print {
+
+    #docnav {
+        display: none;
+    }
+
+    #contents-select, #contents {
+        display: none;
+    }
+
+    .toc a:link[href^='#'] {
+        text-decoration: none;
+    }
+}
+

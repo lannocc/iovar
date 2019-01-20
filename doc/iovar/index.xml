@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.1" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:trans="http://docbook.org/ns/transclusion"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>IOVAR Platform</title>
+
+    <author>
+      <personname><firstname>Shawn</firstname><surname>Wilson</surname></personname>
+
+      <affiliation>
+        <orgname>Virgo Venture, Inc.</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate>2018-12-20</pubdate>
+
+    <revhistory>
+      <revision>
+        <date>2019-01-11</date>
+      </revision>
+
+      <revision>
+        <date>2019-01-13</date>
+      </revision>
+    </revhistory>
+  </info>
+
+  <preface>
+    <title>A Shell for the Web...</title>
+
+    <para>IOVAR begins as a collection of web utilities on a Java foundation.
+    It continues by providing a web-aware shell environment and scripting
+    language. Common patterns, protocols, and schemas are embraced to provide
+    familiar environments for the user and wider opportunity for
+    automation.</para>
+  </preface>
+
+  <toc>
+    <!--
+    <tocentry><link
+    xlink:href="01.introduction/">introduction</link></tocentry>
+
+    <tocentry><link xlink:href="02.overview/">overview</link></tocentry>
+    -->
+  </toc>
+
+  <article>
+    <title>News &amp; Announcements</title>
+
+    <tip>
+      <para>The 1.1 release is almost ready.</para>
+    </tip>
+
+    <para/>
+
+    <section>
+      <title>1.1 Release Imminent</title>
+
+      <para>New features and changes in this release include:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Documentation system</para>
+        </listitem>
+
+        <listitem>
+          <para>Sources and releases available on GitHub</para>
+        </listitem>
+
+        <listitem>
+          <para>JAR executable bit with the <literal>.ioexec</literal>
+          extension</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Migration from <literal>iovar.win</literal> to
+      <literal>iovar.net</literal></title>
+
+      <para>The more easily-recognizable <literal>iovar.net</literal> domain
+      name has now been chosen for all official IOVAR developments and
+      releases, and abandon the old website at <literal>iovar.win</literal>.
+      Any references to the old domain or package namespace must be
+      updated.</para>
+    </section>
+  </article>
+
+  <chapter>
+    <title>Message from the Developer</title>
+
+    <blockquote>
+      <info>
+        <author>
+          <personname><firstname>Shawn</firstname><surname>Wilson</surname></personname>
+
+          <uri>http://lannocc.com</uri>
+        </author>
+
+        <pubdate>2019-01-11</pubdate>
+      </info>
+
+      <para>I am happy to share the IOVAR system in the hopes that others may
+      find it useful.</para>
+
+      <para>What began many years ago as a means to work with XML on the web
+      has blossomed into a fully-featured development platform. It has been my
+      passion to explore new ways of programming while also embracing with
+      fresh eyes the existing tried-and-true methods. Although I am
+      embarrassed to say that IOVAR still has a number of bugs and remains
+      woefully incomplete for its intended purpose, I also recognize that in
+      software, much like life itself, perfection is impossible.</para>
+    </blockquote>
+  </chapter>
+
+  <chapter>
+    <title>License</title>
+
+    <para>IOVAR is open source. All IOVAR source code is licensed under the
+    <link xlink:href="https://opensource.org/licenses/MIT"
+    xlink:role="license">MIT License</link>, however, third-party dependencies
+    downloaded and used by this project may be licensed under other
+    licenses.</para>
+
+    <para>A copy of this project's license text is included here:</para>
+
+    <programlisting xlink:href="/LICENSE" xlink:show="replace"/>
+  </chapter>
+</book>

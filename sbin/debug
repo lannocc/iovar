@@ -1,0 +1,12 @@
+#!/bin/iosh
+
+uptime
+
+echo
+echo ?noline "shell sessions: "
+cat /proc/shell/
+
+echo
+echo "memory stats:"
+cat /proc/meminfo
+

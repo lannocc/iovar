@@ -1,0 +1,4 @@
+#!/bin/iosh
+
+local:/bin/export ?master PATH=local:/usr/local/bin,local:/usr/bin,local:/bin,local:/opt/bin
+

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.1" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:trans="http://docbook.org/ns/transclusion"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Build Environment</title>
+
+    <author>
+      <personname><firstname>Shawn</firstname><surname>Wilson</surname></personname>
+
+      <affiliation>
+        <orgname>Virgo Venture, Inc.</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate>2018-12-24</pubdate>
+  </info>
+
+  <preface>
+    <title>Overview</title>
+
+    <para>IOVAR utilizes <link xlink:href="http://ant.apache.org">Apache
+    Ant</link> for project build tasks and provides a <olink
+    targetdoc="/build.xml">build.xml</olink> file in the root
+    directory.</para>
+
+    <para>The build file targets are grouped into the following general
+    categories:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><command role="ant">project</command></term>
+
+        <listitem>
+          <para>The entire project</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><command role="ant">app</command></term>
+
+        <listitem>
+          <para>Just what's necessary for a running application</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><command role="ant">tasks</command></term>
+
+        <listitem>
+          <para>Custom Ant tasks</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><command role="ant">code</command></term>
+
+        <listitem>
+          <para>Main Java code</para>
+        </listitem>
+      </varlistentry>
+
+      <!--
+      <varlistentry>
+        <term><command role="ant">tests</command></term>
+
+        <listitem>
+          <para>Test suites</para>
+        </listitem>
+      </varlistentry>
+      -->
+
+      <varlistentry>
+        <term><command role="ant">docs</command></term>
+
+        <listitem>
+          <para>Documentation</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </preface>
+
+  <toc/>
+
+  <chapter>
+    <title>First-Time Setup</title>
+
+    <para>FIXME</para>
+  </chapter>
+
+  <chapter>
+    <title>Compiling</title>
+
+    <para>FIXME</para>
+  </chapter>
+
+  <chapter>
+    <title>Clean-Up</title>
+
+    <para>FIXME</para>
+  </chapter>
+
+  <chapter>
+    <title>Updating Dependencies</title>
+
+    <para>FIXME</para>
+  </chapter>
+
+  <appendix>
+    <title>Ant Targets</title>
+
+    <para/>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>project.install</literal> - Copy sample files</para>
+      </listitem>
+    </itemizedlist>
+  </appendix>
+
+  <appendix>
+    <title>Ant Properties</title>
+
+    <para/>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>project</literal> - A description of the entire
+        project</para>
+      </listitem>
+    </itemizedlist>
+  </appendix>
+
+  <appendix>
+    <title>build.xml</title>
+
+    <para/>
+
+    <programlisting language="xml" xlink:href="/build.xml"
+                    xlink:show="replace"/>
+  </appendix>
+</book>

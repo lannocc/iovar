@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>delete</refname>
+
+    <refpurpose>Remove resource</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/delete" role="iosh">
+      <command role="iosh">delete</command>
+
+      <arg choice="req"><replaceable>resource</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>This accesses the <replaceable>resource</replaceable> using HTTP
+    DELETE method. Any named parameters or anonymous arguments are passed
+    through. See also the <command role="iosh">rm</command> command.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Delete a text file</title>
+
+      <programlisting language="shell">delete foo.txt</programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/bin/Delete.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

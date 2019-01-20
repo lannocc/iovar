@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.1" xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:trans="http://docbook.org/ns/transclusion"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:m="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Roadmap</title>
+
+    <author>
+      <personname><firstname>Shawn</firstname><surname>Wilson</surname></personname>
+
+      <affiliation>
+        <orgname>Virgo Venture, Inc.</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate>2019-01-10</pubdate>
+  </info>
+
+  <preface>
+    <title/>
+
+    <para/>
+  </preface>
+
+  <chapter>
+    <title>Interface Work-in-Progress</title>
+
+    <para/>
+
+    <section>
+      <title>Frame</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>Space</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>Dash</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>Page</title>
+
+      <para/>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Version 2</title>
+
+    <para/>
+
+    <section>
+      <title>Buffers with Content-Type and Variables as Buffers</title>
+
+      <para>Variables are now simply buffers, which means they retain
+      <literal>Content-Type</literal> (and other headers) and can be addressed
+      on the filesystem like any other file or stream.</para>
+    </section>
+
+    <section>
+      <title>Job Control</title>
+
+      <para/>
+    </section>
+
+    <section>
+      <title>Content-Type Negotiation and Conversion
+      (Back-Propagating)</title>
+
+      <para>The new command environment makes extensive use of the HTTP
+      <literal>Accept</literal> header to identify expected input content
+      types for the commands. Consider the case when the I/O of 2 or more
+      commands are chained, such as <code>echo hello | foo</code>. The
+      right-most command (<command>foo</command>) is checked first via HTTP
+      <literal>HEAD</literal> and if it returns an Accept header then this is
+      sent with the HTTP <literal>POST</literal> to the preceding command
+      (<command>echo</command>). Now knowing what is accepted, the command can
+      convert its output to an accepted content type on its own or allow the
+      automatic MIME commands to attempt a conversion.</para>
+
+      <para>When a conversion of content-type is necessary from one output
+      source to another input source (such as two commands chained together)
+      then a MIME converter is searched for using the usual command search
+      mechanisms that involve the user's <varname>PATH</varname>
+      variable.</para>
+    </section>
+
+    <section>
+      <title>Indented Mode Scripts</title>
+
+      <para>The new shell syntax parser will supported a Python-like
+      indentation mode.</para>
+
+      <para>Here is an example.</para>
+
+      <example>
+        <title>New "Indented Mode" Script Syntax</title>
+
+        <para>The example script is broken out into multiple parts
+        here.</para>
+
+        <programlisting language="shell">#!/bin/iosh
+
+# This sample script illustrates the new "indented mode"
+
+! +indent 4                     # this turns on indented mode processing
+
+    # In standard mode, it is up to the current processing line to determine
+    # whether or not the next line combines with the current (by ending the
+    # line with a single back-slash character ('\'), or leaving some quotes
+    # unterminated.
+
+    # In indented mode, the line following the current line determines whether
+    # and how it combines with the current. A following line beginning with
+    # certain shell symbols, or an indented line, both have potential signficance
+    # to operate with the current line.
+
+
+
+&amp; &gt; $/in                        # the indented block is detached and output saved to variable $in
+    accept application/json     # this is the first command and takes the &lt;stdin&gt; of this script
+    |                           # chain to next command
+    cat ?type=application/xml   # by iovar mime magic, the user's json is converted to xml
+
+
+echo hello world &gt; $/thing      # &gt; /proc/shell/XXX/thing (path to new variable $thing)
+</programlisting>
+
+        <para>This next part shows how a command with long or many arguments
+        is extended to multiple lines, and how multiple commands have their
+        I/O chained together in a vertical fashion.</para>
+
+        <programlisting continuation="continues" language="shell">
+big_thing_many_arguments
+\   foo bar 'this is a single text argument'
+\   more_stuff other_things and_then_some
+|
+do_something
+|
+more_stuff
+|
+last_thing
+
+
+</programlisting>
+
+        <para>When an indented block begins after a simple command without any
+        special symbols, the block is logically connected to the command as
+        though with the <literal>&amp;&amp;</literal> operator.</para>
+
+        <programlisting continuation="continues" language="shell">
+
+thing1                          # if thing1 succeeds then do thing2 and thing3
+    thing2
+    thing3 &lt; $/in               # this blocks on the script's &lt;stdin&gt; (detached above) until EOF
+
+
+</programlisting>
+
+        <para>A "try" block simply means that any command which returns a
+        non-zero (aka error) status and that is not being I/O or logically
+        chained to another command will cause the rest of the indented block
+        to be skipped.</para>
+
+        <programlisting continuation="continues" language="shell">
+
+
+~                               # try
+    foo1                        # if foo1 fails we stop here (and get the fail message)
+    foo2                        # if foo2 fails we stop here
+    foo | bar                   # if foo fails it's up to bar; if bar fails we stop here
+    foo3                        # if foo3 fails we get the fail message
+&amp;&amp;                              # and then (no failure)
+    echo we done
+||                              # else (catch a failure)
+    echo fail
+    exit 2
+
+
+</programlisting>
+
+        <para>Multiple indentation levels, arithmetic expressions and tests,
+        and logic branches.</para>
+
+        <programlisting continuation="continues" language="shell">
+
+
+&gt;!                              # send all output to null
+    @ $a=1                      # test
+        ~
+            a=($a+7)            # expr
+            a1
+            foo
+            bar
+        ||
+            echo we suck
+    ||                          # else (if)
+    @ ($a-1)=1                  # test and expr
+        a2
+
+
+    test1
+        b1
+    ||
+    test2
+        b2
+
+</programlisting>
+
+        <para>Here we illustrate some loops.</para>
+
+        <programlisting continuation="continues" language="shell">
+
+
+* seq 1 10                      # for-each 1 to 10
+    print _                     # print current output row
+    print .                     # print current row index
+
+
+*                               # for-each of following commands output (1 to 10)
+    echo 1
+    echo 2
+    seq 3 10
+&amp;&amp;                              # &amp;&amp; is required here
+    print _
+    print .
+
+
+seq 1 10 | *                    # same loop done with piped input instead
+&amp;&amp;                              # &amp;&amp; is required here too
+    print _
+    print .
+
+
+* &lt; somefile                    # loop through each line of file
+&amp;&amp;
+    print _
+    print .
+
+
+</programlisting>
+
+        <para>FIXME</para>
+
+        <programlisting continuation="continues" language="shell">
+
+
+thing4
+||
+&gt; /var/log                      # else send the following to log (FIXME)
+    x= 48
+    y= 72
+    do_a_thing
+
+
+&amp; &gt; $/stuff                     # FIXME
+    bar1
+    bar2
+    bar3
+
+&amp; do_a_thing
+    echo what now?              # FIXME
+
+&amp; set in
+    echo or this?               # FIXME
+
+
+</programlisting>
+
+        <para>FIXME</para>
+
+        <programlisting continuation="continues" language="shell">
+
+rug_ties_the_room_together $|in $|stuff
+
+
+z=
+    echo 1
+    echo 2
+    echo 3
+
+</programlisting>
+      </example>
+    </section>
+
+    <section>
+      <title/>
+
+      <para/>
+    </section>
+  </chapter>
+</book>

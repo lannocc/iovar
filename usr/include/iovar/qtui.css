@@ -1,0 +1,147 @@
+/*
+ * Copyright (C) 2017 Virgo Venture, Inc.
+ * @%@~LICENSE~@%@
+ */
+
+@media screen {
+
+    html, body {
+        border: none;
+        margin: 0;
+        padding: 0;
+        background-color: #FFE;
+    }
+
+    .qtui-widget {
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .qtui-widget .qtui-widget {
+        max-width: 100%;
+    }
+
+    .qtui-widget>.qtui-layout {
+    }
+
+    .qtui-widget.QMainWindow, .qtui-widget.QDialog {
+        background-color: #EEE;
+        border: 3px solid gray;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+    }
+
+    .qtui-widget.QMainWindow {
+        border-color: black;
+        box-shadow: 5px 5px 10px gray;
+    }
+
+    .qtui-widget.QMainWindow>h2, .qtui-widget.QDialog>h2 {
+        position: absolute;
+        margin-top: -1.4em;
+        background-color: #CCF;
+    }
+
+    .qtui-widget.QMenuBar {
+        background-color: #FCFCFE;
+        border-bottom: 2px inset gray;
+    }
+
+    .qtui-widget.QMenuBar>ul, .qtui-widget.QMenuBar>ul>li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .qtui-widget.QMenuBar>ul {
+        display: block;
+    }
+
+    .qtui-widget.QMenuBar>ul>li {
+        display: inline-block;
+        margin-left: .5em;
+    }
+
+    .qtui-widget.QMenu {
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .qtui-widget.QMenu a {
+        display: block;
+    }
+
+    .qtui-widget.QMenu:hover>a, .qtui-action:hover>a {
+        color: blue;
+    }
+
+    .qtui-widget.QMenu code {
+        font-family: inherit;
+        text-decoration: underline;
+    }
+
+    .qtui-widget.QMenu>ul, .qtui-widget.QMenu>ul>li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .qtui-widget.QMenu>ul {
+        display: none;
+        position: absolute;
+        margin-left: -.2em;
+        background-color: #FCFCFE;
+        border: 1px inset gray;
+        border-top: none;
+        padding: .2em;
+    }
+
+    .qtui-widget.QMenu:hover>ul {
+        display: block;
+    }
+
+    .qtui-widget.QStatusBar {
+        position: absolute;
+        bottom: 0;
+        background-color: #FEFFFE;
+        width: 100%;
+        height: 1em;
+        border-top: 1px inset gray;
+    }
+
+    .qtui-widget.QLabel {
+        margin: 0;
+        padding: 0;
+    }
+
+    .qtui-layout {
+        flex-grow: 1;
+        display: flex;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .qtui-layout.QVBoxLayout {
+        flex-direction: column;
+    }
+
+    .qtui-layout.QHBoxLayout {
+        flex-direction: row;
+    }
+
+    .qtui-item {
+        display: flex;
+    }
+
+    .qtui-item * {
+        flex-grow: 1;
+    }
+
+    .qtui-spacer {
+    }
+
+}
+

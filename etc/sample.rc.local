@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# /etc/rc.local: Put your own fun stuff here
+
+# Output template to use
+#export ?master VIEW=xhtml
+
+# Default module
+#export ?master MODULE=iovar
+

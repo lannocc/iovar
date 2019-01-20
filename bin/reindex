@@ -1,0 +1,9 @@
+#!/bin/iosh
+#
+# Copyright (C) 2019 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+# usage: reindex <type> <role/language> <title>
+
+system file:find local:/doc/iovar/ -- -type f -name '*.xml' | sed ?filter='s/^(.+)$/local "file:$1" | set source; xslt /lib/iovar/doc/reindex.xsl "file:$1" ?variables source ?type="'"$1"'" ?role="'"$2"'"/g' | sh | echo ?first '<refs>' | echo '</refs>' | xslt /lib/iovar/doc/reindex2.xsl ?title="$3"
+

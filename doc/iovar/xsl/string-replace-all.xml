@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>string-replace-all</refname>
+
+    <refpurpose>Replace all occurrences of some text in a string with
+    another</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/lib/iovar/strings.xsl" role="xsl">
+      <command role="xsl">string-replace-all</command>
+
+      <arg choice="req"><replaceable>text</replaceable></arg>
+
+      <arg choice="req"><replaceable>replace</replaceable></arg>
+
+      <arg choice="req"><replaceable>with</replaceable></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A contrived demonstration that works for any XML input</title>
+
+      <programlisting language="xml">&lt;?xml version="1.0"?&gt;
+&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    &gt;
+
+    &lt;xsl:output
+        method="xml"
+        media-type="text/xml"
+        omit-xml-declaration="no"
+        /&gt;
+
+    &lt;xsl:import href="/lib/iovar/strings.xsl"/&gt;
+
+    &lt;xsl:template match="/"&gt;
+        &lt;foobar&gt;
+            &lt;xsl:call-template name="string-replace-all"&gt;
+                &lt;xsl:with-param name="text" select="'Hello World'"/&gt;
+                &lt;xsl:with-param name="replace" select="'Hell'"/&gt;
+                &lt;xsl:with-param name="with" select="'Brav'"/&gt;
+            &lt;/xsl:call-template&gt;
+        &lt;/foobar&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</programlisting>
+
+      <screen>&lt;?xml version="1.0"?&gt;
+&lt;foobar&gt;Bravo World&lt;/foobar&gt;</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml"
+                    xlink:href="/lib/iovar/strings.xsl#string-replace-all"
+                    xlink:role="xsl_template" xlink:show="replace"/>
+  </refsection>
+</refentry>

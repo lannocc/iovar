@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xi</refname>
+
+    <refname>XMLIn</refname>
+
+    <refpurpose>Pull out a node text value from an XML tree</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/xi" role="iosh">
+      <command role="iosh">xi</command>
+
+      <arg rep="repeat"><replaceable>tag</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>Pulls out a text value from the first matching nested XML tag that
+    is part of a tree passed as input. If no tags are specified, the text
+    value of the root node is returned.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A basic, contrived XML tree</title>
+
+      <programlisting language="terminal"><prompt>iosh $ </prompt><userinput>echo '&lt;foo&gt;&lt;bar&gt;Hello World&lt;/bar&gt;&lt;/foo&gt;' | xi foo bar</userinput>
+<computeroutput>Hello World</computeroutput></programlisting>
+    </example>
+
+    <example>
+      <title>Same as previous example, this time using the <command
+      role="iosh">xo</command> command to build the tree</title>
+
+      <programlisting language="terminal"><prompt>iosh $ </prompt><userinput>xo foo bar 'Hello World' | xi foo bar</userinput>
+<computeroutput>Hello World</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/usr/bin/XMLIn.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

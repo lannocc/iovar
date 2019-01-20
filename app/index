@@ -1,0 +1,9 @@
+#!/bin/iosh
+#
+# Copyright (C) 2018 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+# A real application would replace this with something else...
+
+redirect /doc ?wait=1000
+

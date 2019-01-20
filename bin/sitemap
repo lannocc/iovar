@@ -1,0 +1,9 @@
+#!/bin/iosh
+#
+# Copyright (C) 2019 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+# usage: sitemap <canon_base>
+
+xslt /lib/iovar/doc/sitemap.xsl ?canon_base="$1"
+

@@ -1,0 +1,7 @@
+#!/bin/iosh
+#
+# Copyright (C) 2016 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+system file:uname -s | system file:tr -d '\n'
+

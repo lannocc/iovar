@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>date-text-from-digits</refname>
+
+    <refpurpose>Convert date from ISO-8601 short form to a long form
+    date</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/lib/iovar/dates.xsl" role="xsl">
+      <command role="xsl">date-text-from-digits</command>
+
+      <arg><replaceable>date</replaceable></arg>
+    </cmdsynopsis>
+
+    <para>The <replaceable>date</replaceable> must be in
+    <literal>YYYY-MM-DD</literal> format; if not specified, it is taken from
+    the current node.</para>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>A contrived demonstration that works for any XML input</title>
+
+      <programlisting language="xml">&lt;?xml version="1.0"?&gt;
+&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    &gt;
+
+    &lt;xsl:output
+        method="xml"
+        media-type="text/xml"
+        omit-xml-declaration="no"
+        /&gt;
+
+    &lt;xsl:import href="/lib/iovar/dates.xsl"/&gt;
+
+    &lt;xsl:template match="/"&gt;
+        &lt;foobar&gt;
+            &lt;xsl:call-template name="date-text-from-digits"&gt;
+                &lt;xsl:with-param name="date" select="'1981-09-18'"/&gt;
+            &lt;/xsl:call-template&gt;
+        &lt;/foobar&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</programlisting>
+
+      <screen>&lt;?xml version="1.0"?&gt;
+&lt;foobar&gt;September 18, 1981&lt;/foobar&gt;</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml"
+                    xlink:href="/lib/iovar/dates.xsl#date-text-from-digits"
+                    xlink:role="xsl_template" xlink:show="replace"/>
+  </refsection>
+</refentry>

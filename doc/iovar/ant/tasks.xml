@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>tasks</refname>
+
+    <refpurpose>Build any custom Ant taskdefs</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <command role="ant">tasks</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Build on Linux (nothing to do)</title>
+
+      <programlisting language="terminal"><prompt>dummy@tux ~/iovar $ </prompt><userinput>ant tasks</userinput>
+<computeroutput>Buildfile: /home/dummy/iovar/build.xml
+
+project.init:
+     [echo] Prepare IOVAR Java Foundation
+
+project.install.fail:
+
+app.install.check:
+
+app.install.fail:
+
+tasks.init:
+     [echo] Prepare Ant Tasks
+
+tasks:
+     [echo] Ant Tasks
+
+BUILD SUCCESSFUL
+Total time: 0 seconds</computeroutput></programlisting>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="xml" xlink:href="/build.xml#tasks"
+                    xlink:role="ant_target" xlink:show="replace"/>
+  </refsection>
+</refentry>

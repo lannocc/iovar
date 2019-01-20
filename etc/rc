@@ -1,0 +1,14 @@
+#!/bin/iosh
+
+# set up basic environment (use absolute paths here)
+local:/bin/sh local:/etc/environment
+
+# load transports cache
+#/proc/map transports /var/cache/iovar/transports
+
+# local startup
+sh /etc/rc.local
+
+# if interactive runlevel
+#sh /etc/shrc
+

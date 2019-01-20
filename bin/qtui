@@ -1,0 +1,43 @@
+#!/bin/iosh
+#
+# Copyright (C) 2017 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+xset ?key=qtui > /dev/null && ok=1 || ok=0
+
+test "$ok" = 1 && {
+    view=$1
+    test "$view" = '' && ok=0
+
+    cat # FIXME shell bug chains the next || to the && on the line above without this extra statement
+
+} || {
+    
+    echo "$0: bad input data"
+}
+
+test "$ok" = 1 && {
+
+    xsl=/lib/qtui/"$view".xsl
+
+    exists "$xsl" && {
+
+        xget ?key=qtui | xslt "$xsl"
+
+    } || {
+        echo "$0: view transform style not found: $xsl"
+        ok=0
+    }
+
+} || {
+
+    echo 'usage: qtui <view>'
+    echo '  Pipe a QT5 .ui file to qtui and pass it the name of a view to produce.'
+    echo '  Available views are in /lib/qtui.'
+    echo
+    echo 'Example:'
+    echo '  cat myscreen.ui | qtui xhtml'
+
+    exit 99
+}
+

@@ -1,0 +1,616 @@
+Copyright (C) 2016-2019 Virgo Venture, Inc.
+Copyright (C) 2011-2015 Lannocc Technologies
+@%@~LICENSE~@%@
+
+saw_012019_4 - First commit for git.
+
+saw_012019_3 - Ant target app.jars now includes docs. Add shell.js, forgotten in a previous commit.
+
+saw_012019_2 - Merge from 1.0 branch.
+
+saw_012019_1 - [1.0] Complete migration from win.iovar to net.iovar and remove dependencies on idfree.
+
+saw_011819_1 - Animated shell logo. Minor documentation update.
+
+saw_011719_1 - Add Bing site verification.
+
+saw_011319_6 - Complete migration from win.iovar to net.iovar and temporarily remove dependencies
+               on idfree.
+
+saw_011319_5 - Change order of sections in the main contents and fix a mobile contents issue.
+
+saw_011319_4 - Add a couple facebook opengraph properties.
+
+saw_011319_3 - Fix some broken links.
+
+saw_011319_2 - Include https://iovar.net deployment canonical link for documentation pages.
+
+saw_011319_1 - Add a sitemap. Drop empty documentation pages from the toc until they're ready.
+
+saw_011219_3 - Simplify the logo.
+
+saw_011219_2 - New logo.
+
+saw_011219_1 - More documentation. Getting close now!
+
+saw_011019_2 - A couple more adjustments.
+
+saw_011019_1 - Add some relative document navigation, and improve mobile access to the sections.
+
+saw_010919_3 - Just a couple doc style fixes.
+
+saw_010919_2 - Improved mobile style. More documentation on XSL templates.
+
+saw_010919_1 - Add documentation for the rest of the shell commands.
+
+saw_010819_3 - Add documentation for a bunch of shell commands.
+
+saw_010819_2 - More documentation (templates reference, mostly).
+
+saw_010819_1 - Add a reference section for XSL templates, and other misc. documentation updates.
+
+saw_010719_5 - More Ant targets documented.
+
+saw_010719_4 - The bulk of the Ant targets should now be documented.
+
+saw_010719_3 - Documentation improvements including better style for the examples and listings.
+
+saw_010719_2 - Fix some documentation quirks.
+
+saw_010719_1 - Add Google site verification, robots.txt. Update description and Google Analytics.
+
+saw_010619_2 - Misc. documentation tweaks.
+
+saw_010619_1 - Add ?first option to /bin/echo command. More work on documentation, now with indexes!
+
+saw_123018_1 - More documentation and improvements to the presentation.
+
+saw_122918_3 - Add 'docs' Ant target for building the API javadocs. Begin creating some platform
+               documentation using the DocBooks schema.
+
+saw_122918_2 - Add /bin/exec and /bin/local. Update the default file handler so that non-script
+               files (anything without a hash-bang) may be set executable and will then be handled
+               by the exec command, which could be customized.
+
+saw_122918_1 - Update dependency jar URLs for the new iovar.net domain.
+
+saw_022118_2 - Small interface adjustments. Name 1.0 branch.
+
+saw_022118_1 - Minimalistic shell interface for 1.0 release.
+
+saw_091117_1 - Add Utils.hexToBytes().
+
+saw_091017_1 - Add Utils.bytesToHex().
+
+saw_031317_1 - Add reference to tomcat-8 catalina.jar in sample.app.properties for Jenkins.
+
+saw_031217_3 - Update default location to servlet-api.jar for quick building with Jenkins.
+
+saw_031217_2 - Add ?method=POST support to /bin/redirect.
+
+saw_031217_1 - Fixing /bin/redirect with ?wait option.
+
+saw_031117_4 - Improve content-type matching in /bin/form2xml.
+
+saw_031117_3 - Add "next" meta link in /bin/redirect.
+
+saw_031117_2 - Fix possible NullPointerException in Default introduced in saw_021817_1.
+
+saw_031117_1 - Add /lib/iovar/strings.xsl to collect string-related helper templates for xslt.
+
+saw_022817_1 - Fix resolution of relative symbolic links in Default.
+
+saw_022717_2 - Improving the look of /bin/redirect.
+
+saw_022717_1 - New /bin/redirect options: ?script for adding javascript; ?wait for adding delay.
+
+saw_021817_1 - Resource now supports auto-exec and auto ./index.
+
+saw_020817_1 - #17: Form2XML working again, tested in conjunction with idfree Authentication.
+
+saw_020617_1 - MySql driver now ensures configs are loaded from real files beneath project root.
+
+saw_020317_4 - Updated /bin/view from [W] with more features and better error-handling.
+
+saw_020317_3 - Add 'projectKey' attribute to web-build task for isolating mysql config files of the
+               same name in inherited IOVAR webapps.
+
+saw_020317_2 - Update MySql driver config namespace to http://iovar.win/ns/mysql.
+
+saw_020317_1 - Add /bin/qtui for easily generating interfaces from QT5 .ui files!
+
+saw_013017_5 - WebBuilder now includes mysql references in the links file.
+
+saw_013017_4 - Updated build process for tracking dependent webapp servlet mappings.
+
+saw_013017_3 - Fix sample.project.xml for new location of idfree jar.
+
+saw_013017_2 - Include the dependency .url files and store them under /sys/jars/ when building the
+               jar.
+
+saw_013017_1 - All JARs now removed from the repository! New Ant task 'project.update' created to
+               handle updating the binary dependencies. Tag 'jars_included' set to mark the
+               previous commit as the last one where jars were still included.
+
+saw_012017_1 - Working on proper session propagation through local loopback.
+
+saw_122516_1 - XArgs now supports text/xml input.
+
+saw_122216_1 - Add /bin/print to safely and efficiently output any shell variable.
+
+saw_120916_1 - Add /bin/date and /bin/uname commands. Fix Form2XML for CatTTamboo. Add ?replace
+               option to XMLSet. Fix to Default for handling canonical URLs.
+
+saw_120616_1 - Remove some debug calls that were inadvertantly committed.
+
+saw_112816_1 - Fix the regression in Default that prevented normal form POST data from being
+               propagated (bug introduced in saw_102716_1).
+
+saw_112716_4 - Starting to solve some exit value propagation issues but this is going to take a
+               pretty serious rewrite to really work well.
+
+saw_112716_3 - Fix a little bug in /bin/echo where if echo is first statement in a script it was
+               printing an extra space first due to bad input determination.
+
+saw_112716_2 - Add ?graph option to the shell to display the graph of the task to be executed.
+
+saw_112716_1 - Start to take a hard line on session exit reassignment (will be tackling this more
+               in depth soon).
+
+saw_112316_3 - Beginning a data store for the resource legend stuff (not done).
+
+saw_112316_2 - Add /bin/cookie and /bin/form from [W].
+
+saw_112316_1 - Begin /bin/ls for listing resource entries. Only works for file: right now.
+
+saw_112216_1 - Fix /bin/json ?clean option to not print newlines.
+
+saw_112116_3 - Add /bin/json for grabbing a value from json data. Finally incorporated the json
+               parser I wrote a couple years ago in response to a challenge from Chuck Lowery.
+
+saw_112116_2 - Clean up the distribution jar.
+
+saw_112116_1 - Move win.iovar.web.proc.ShellSession$Instance to win.iovar.web.lib.Session and
+               rename ShellSession to Sessions.
+
+saw_112016_4 - Moved win.iovar.web.proc.Job to win.iovar.web.lib package.
+
+saw_112016_3 - Package com.iovar renamed to win.iovar to reflect domain changes. Bumped version
+               string to 1.0 since that's the version we're working towards (a 1.0-alpha branch
+               has been created for the previous changeset in case fixes need to get applied for
+               production services that are using the alpha version.
+
+saw_111916_1 - Moved etc/web.xml to etc/sample.web.xml. Was working on debugging form submission
+               pass-through issue but this debugging has been commented out for the moment.
+
+saw_111616_1 - Add support for ${#1}, ${#2}, ... to get the length of the anonymous arguments. MySql
+               device now actually returns proper column labels to allow "SELECT COUNT(*) AS X" in
+               list queries. Add a handlerHref() utility method to Transport that allows a query
+               embedded in the path (required for backwards compatibility with Thompson project).
+               /bin/test now internally uses BigInteger for numerical tests, allowing for very large
+               integer comparisons.
+
+               Interactive mode stylesheet path updated to new /usr/include/iovar location.
+
+saw_110216_1 - A fix to frame.js.
+
+saw_103116_4 - Pull in new common, ajax, and frame user libraries from [W].
+
+saw_103116_3 - Move all /usr/include stuff into /usr/include/iovar.
+
+saw_103116_2 - Trying to get Access-Control-Allow-Origin working (not there yet).
+
+saw_103116_1 - Add 'excludeDirs' option to the WebBuilder ant task which takes
+               a colon-separated list of relative path names to exclude.
+
+			   Add '?variables' option to XSLT.
+
+saw_102916_1 - Add a simple Application.java that turns on auto-exec support (you'll have to add
+               it to web.xml and map it for a directory e.g. /app).
+
+saw_102716_1 - WebBuilder ant task and MySql device now support configs for
+               multiple databases beneath /dev/mysql. ShellSession gets
+			   setUser() and getUser(). Improvements to xmlget, xmlin, and
+			   xmlset. XSLT TransportResolver now handles embedded
+			   data:text/xml content-type. More changes for auto-exec.
+
+saw_092716_1 - Pull in xmlset, xmlget, and xmlwrap commands from [W].
+
+saw_092116_1 - First commit for Virgo Venture, changes include:
+				- /bin/redirect displays usable output when VIEW=text.
+				- /bin/system now better handles processes that output lots of data.
+				- /dev/trans/https added for https transport support.
+				- /dev/trans/file now looks for index file on POST to directory,
+                                  checks execute bit.
+				- /bin/test gets new test to check if input string is given type
+                                  (integer, for now).
+				- Add an auto-exec mode to the Default servlet handler.
+
+saw_100115_1 - Add direct command-line syntax support to the shell alias (e.g.: /$?=echo+hello).
+
+saw_092215_1 - #6: Some work on remote session handling. Very poor support at the moment.
+
+saw_092115_2 - Fix to ShellSession... don't store actual Instance in HttpSession. In order to
+               minimize stale instances floating around we now just store the ID instead.
+
+saw_092115_1 - Interactive servlet now supports an XML+XSL mode via 'style' property defined in
+               /etc/interactive.conf and also updates HISTORY variable.
+
+saw_091915_1 - Misc. fixes and enhancements. Added the (temporary) ?preproc option to xslt. Simple
+               built-in support for canonicalized/keyword URLs aka canon.
+
+saw_080315_1 - Add missing files for creating new codetable entries.
+
+saw_072415_1 - #6: Improving the way sessions are handled when calling scripts.
+
+saw_071715_1 - #6: Adding cookie support to HTTP transport handler.
+
+saw_071315_2 - #5: Fix to default handler for references to directories.
+               
+               Make "app.jars" the default target in build.xml.
+
+saw_071315_1 - #2: Fixes to Resource for handling JAR-packaged files.
+
+saw_071115_1 - #2: Moved the default local file/resource handler servlet
+               (com.iovar.web.dev.trans.Local$Servlet) to com.iovar.web.Default.
+
+saw_070815_1 - Splitting off iovar-demo as a separate repository.
+
+saw_070715_1 - Update copyright year in LICENSE file.
+
+saw_062015_2 - Some significant reorganization in the interest of making it easier to secure sites
+               deployed with IOVAR. The /usr directory now only contains resources accessible to
+               end-users directly:
+                - /usr/bin moved to /bin
+                - /usr/sbin moved to /sbin
+                - views (/usr/xhtml, /usr/xml, etc.) have been moved to /srv
+
+saw_062015_1 - Fix NullPointerException in /bin/which. Add aditional comparison tests to
+               /usr/bin/test.
+
+saw_041215_1 - Incorporating many UI scripts and images, still a work-in-progress.
+
+saw_032215_1 - Add do/while loop. Add /usr/bin/expr for evaluating arithmetic expressions. Fix to
+               /usr/bin/uptime.
+
+saw_020315_5 - Allow customizable wait time for /sbin/init process.
+
+saw_020315_4 - Add support for .ioshrc in /root/ and /home/$USER/.
+
+saw_020315_3 - Fixes on recent ShellSession work.
+
+saw_020315_2 - Intermediate shell sessions are now automatically removed once out of scope.
+
+saw_020315_1 - Much work on ShellSession to properly handle user sessions.
+
+saw_013115_1 - Add /proc/meminfo, /proc/uptime, /usr/bin/uptime, and /sbin/debug. Modify
+               /proc/shell to return session count when referenced as /proc/shell/.
+
+saw_012915_1 - Create TaskData class for encapsulating the data necessary for task execution,
+               thereby simplifying numerous method signatures.
+
+saw_012615_1 - Enhancements and fixes:
+                - User support.
+                - Rewritten Call exec with improved variable handling.
+                - Pass-through for content-disposition.
+                - /bin/set now exports variable to parent session, which is in the caller's scope.
+                - /bin/cat support for setting content-disposition.
+                - /bin/echo gets ?noline option.
+                - MySQL device improvements, including: bulk update (POST); multi-table delete;
+                  ?join, ?group, and ?limit options.
+                - /usr/bin/formfile gets ?quiet option; ?export renamed to ?set.
+                - /usr/bin/sed now requires the "g" option since it currently only operates as a
+                  global substitution.
+                - /usr/bin/xlink gets ?quiet option and also allows embedding non-XML resources.
+                - /usr/bin/xmlout now escapes tag names, adds "tag-name-orig" attribute.
+                - Add /usr/bin/xmlin (also /bin/xi).
+                - /usr/bin/xslt passes in extra anonymous arguments as arg1, arg2,... parameters.
+
+saw_082214_1 - More features and fixes:
+                - Add /bin/exists.
+                - Add /bin/patch.
+                - Add /usr/bin/formfile.
+                - Add /usr/bin/headers.
+                - Add /usr/bin/test.
+                - Initial support for hot quote actions (e.g. `echo foo`).
+                - /bin/export and /bin/set now accept a value from standard input.
+                - /$ execution now ignores ?iosession parameter (needs redesign).
+                - Add ?first option to /bin/cat to display command-line resources before standard
+                  input.
+                - /bin/delete and /bin/put now pass-through any arguments.
+                - /bin/echo now prints literal newline instead of system default.
+                - Add double-dash to /bin/system command.
+                - MySQL device improvements.
+                - /usr/bin/form2xml now handles multipart/form-data.
+                - Add daily and specific-time modes to /usr/sbin/cron.
+                - Add a version of pipe() to Utils that stops when a specified sequence is found.
+
+saw_061014_1 - Many improvements:
+                - /usr/bin/sed (simple stream editor), uses Java's String.replaceAll ().
+                - /usr/bin/java2xml and /usr/bin/xml2java (dependency on XStream).
+                - /sbin/cron for simple command scheduling.
+                - Shell session instance management slightly improved and added concept of a
+                  'master' session.
+                - New (optional) init system and implementation via Init servlet (/sbin/init),
+                  init configuration at /etc/inittab, and scripts at /etc/rc and /etc/environment.
+                - Add support for 'iovar.sessions', 'iovar.log.level', and 'iovar.log.file'
+                  context parameters.
+                - Log and Init servlets are specified explicitly in web.xml to ensure load on
+                  startup.
+                - WebBuilder Ant task adds optional support for a starting <load-on-startup> value
+                  that all automatic servlet entries can be given incrementally.
+                - Http transport now supports PATCH method (dependency on Apache httpclient).
+                - Better handling and pass-through of content-type (still not complete).
+                - Misc. bug fixes.
+
+saw_050914_1 - /bin/help.
+
+saw_050814_10 - Transport handlers now extend HttpServlet and behave as shell utilities. This
+                allows pluggable handlers to work when WAR-packaged and lacking the original
+                symlinks.
+
+saw_050814_9 - Clean out more old files.
+
+saw_050814_8 - Updated INSTALL file for Google Code.
+
+saw_050814_7 - Minor INSTALL / README file updates.
+
+saw_050814_6 - Add LICENSE (MIT). Add sample.project.xml for Netbeans.
+
+saw_050814_5 - Add sample.build.properties and sample.app.properties.
+
+saw_050814_4 - Add /bin/iosh as another link to the IOVAR shell. Scripts that cannot or should not
+               be used in BASH now reference /bin/iosh instead of /bin/sh (or /bin/bash, etc.).
+
+saw_050814_3 - Preparing for beta release: removing old and extra stuff.
+
+saw_050814_2 - More build.xml fixes.
+
+saw_050814_1 - Cleaning up build.xml. Ant 'project' task now builds a WAR (deployment not tested).
+
+saw_050214_1 - /usr/bin/xlink now copies any additional attributes onto root node.
+
+saw_042714_2 - XML Copy now adds prefix mappings as necessary.
+
+saw_042714_1 - /usr/bin/xlink.
+
+saw_042514_1 - /dev/buffer.
+
+saw_042414_6 - Simply /dev/null.
+
+saw_042414_5 - /bin/system will now pass other named parameters as environment variables.
+
+saw_042414_4 - Escaped shell graph item now properly handles \n, \r, and \t. /bin/system now
+               passes input to the system process.
+
+saw_042414_3 - Shell parameter handling (?x=y) now properly handles multiple assignments for the
+               same parameter name.
+
+saw_042414_2 - MySql ?follow support for getList also.
+
+saw_042414_1 - Add ?follow parameter to MySql driver for following selected columns.
+
+saw_042114_13 - Add ?where and ?order parameters to MySql driver when retrieving a list.
+                /usr/bin/xmlout now (roughly) handles any input passed in and inserts the new
+                node(s) in the top of the document.
+
+saw_042114_12 - Links aren't properly handled when they're pointing to folders (need to work it out
+                later).
+
+saw_042114_11 - The beginnings of proper redirect handling (no longer do we allow HttpURLConnection
+                to follow them automatically). Right now only Call actually properly follows a
+                redirect on invocation.
+
+saw_042114_10 - /bin/system now looks for colon in command arguments and interprets as a local
+                transport handler (still very hacky).
+
+saw_042114_9 - Fix problem when variable assignment is the only command in an operation.
+
+saw_042114_8 - /bin/system should send process error stream to stdout.
+
+saw_042114_7 - /bin/sh should only try processing POST data if no anonymous args passed in.
+
+saw_042114_6 - /bin/sh will now process POST data as though it were a shell script.
+
+saw_042114_5 - MySql driver now supports DELETE.
+
+saw_042114_4 - MySql driver needs to quote column names when doing insert.
+
+saw_042114_3 - MySql driver now does insert in PUT / (instead of POST).
+
+saw_042114_2 - Make sure table name is quoted when getting description in MySql driver.
+
+saw_042114_1 - MySql driver now differentiates between request for directory listing (ending with
+               slash) and request for new item template (no slash).
+
+saw_041914_7 - Fix problem of Background ('&') gobbling up '&&'.
+
+saw_041914_6 - /bin/sleep.
+
+saw_041914_5 - Basic job control.
+
+saw_041914_4 - /bin/system - execute system call. Add file: transport support.
+
+saw_041914_3 - MySql driver and /usr/bin/form2xml now add "tag-name-orig" attribute if the tag
+               name had to be modified to follow XML spec.
+
+saw_041914_2 - Some basic column name sanitation for XML tag name in MySql driver.
+
+saw_041914_1 - Remove the "iolink" init-parameter hack; use getServletPath () instead.
+
+saw_041714_8 - /usr/bin/form2xml - converts standard input URLEncoded data into simple xml tree.
+
+saw_041714_7 - /usr/bin/get now passes along any parameters. MySql and PostreSQL drivers will now
+               fetch an optional list of columns when requesting a list.
+
+saw_041714_6 - /usr/bin/xslt now passes named parameters to stylesheets. Created /usr/bin/setxsl
+               for easily adding <?xsl-stylesheet?> instructions to XMl documents.
+
+               Scripts can now utilize standard input (passed automatically to the first
+               operation).
+
+saw_041714_5 - Make sure session gets persisted when variable assignment happens.
+
+saw_041714_4 - Variable assignments as part of an operation work again (instead of only via the
+               export command).
+
+saw_041714_3 - Default session handler should also execute /etc/shrc.
+
+saw_041714_2 - Now supporting GET requests to $/* as a convenience mechanism to POST to * and
+               utilize a default session.
+
+saw_041714_1 - /usr/bin/xargs, currently handling application/x-www-form-urlencoded input.
+
+saw_041614_1 - Added Parameter type. Http transport and task Return struct now handle content-type.
+               /bin/cat is the first to support named parameters with ?help and ?type= options.
+
+saw_041514_3 - Basic implementations for mkdir, rm, rmdir, touch.
+
+saw_041514_2 - Improve the interactive interface.
+
+saw_041514_1 - GraphReader now supports multiple read-ahead (peek at many). Conditional tests have
+               been moved out of Operation and into Group where they belong, greatly simplifying
+               and improving logic and nested block handling.
+               
+               Still some work to do with status code propagation in certain spots where it should
+               be automatically cleared. E.g. `cat foo || { echo bad && echo good }`.
+
+saw_041414_4 - /bin/which.
+
+saw_041414_3 - All binaries now implement the standard utility doHead, doGet, and doPut methods
+               (where applicable).
+
+saw_041414_2 - Standard utility doGet () and doPut () look for a corresponding source file in /src
+               to retrieve or update; /usr/bin/cat is the first to implement this.
+
+saw_041414_1 - Exit codes ($?) now working properly; /usr/bin/cat now sets exit value.
+
+saw_041114_10 - Starting to imlement some basic error checking for HTTP GET. See the big note in
+                Cat.java for what needs to be done next for proper return code $? variable usage.
+
+saw_041114_9 - Implemented And command ("&&"). Fixed compile error from previous commit.
+
+saw_041114_8 - Basic status support; implemented Or command ("||"). Removed legacy task parser.
+
+saw_041114_7 - Interactive mode now automatically sets focus to the command input.
+
+saw_041114_6 - Echo will now output its input first before any arguments, just like Cat.
+
+saw_041114_5 - Partial support for HTTP PATCH (append).
+
+saw_041114_4 - Fixes to parser text handling.
+
+saw_041114_3 - Misc./minor.
+
+saw_041114_2 - Minor visual improvements to the interactive interface.
+
+saw_041114_1 - Path changes (working on debussy... need to get installation-specific settings out
+               of source control).
+
+saw_101613_1 - Misc. fixes incorporating new parser.
+
+saw_101213_1 - New Graph/Task parser now working with I/O redirection and chaining, and supporting
+               enough features to replace the old parser.
+
+saw_100613_2 - New Operation Graph now successfully assembles with multiple chain, input, and
+               output redirection, though only a single call will currently execute (work in
+               progress).
+
+saw_100613_1 - New Graph/Task parser hooked up to shell (not all features implemented yet).
+
+saw_100313_1 - Fix spelling in comments.
+
+saw_100213_2 - New parser work.
+
+saw_100213_1 - New parser, using Graph and Task interface model (work in progress).
+
+saw_041013_1 - Simple PostgreSQL device (still needs work to handle updates properly).
+
+saw_021713_1 - Simple MySQL device.
+
+saw_021613_1 - /usr/bin/xmlout (aka /usr/bin/xo). Fix WebBuilder task to only add servlet entries
+               once when multiple links to the same servlet are found.
+
+saw_012013_1 - /bin/exit and /bin/status (work in progress).
+
+saw_011313_2 - Misc. cleanup.
+
+saw_011313_1 - Transport handlers now installed in /dev/trans.
+
+saw_011113_5 - Basic i/o redirection support ( < and > ).
+
+saw_011113_4 - Improved output of /bin/set for local variables.
+
+saw_011113_3 - /usr/bin/basename.
+
+saw_011113_2 - Calls are now invoked with local argument variables $#, $@, $1, $2, $3, etc.
+
+saw_011113_1 - Basic inline variable assignment (e.g. $ foo=bar ./do_something).
+
+saw_011013_8 - Bug fixes in Utils and Local.
+
+saw_011013_7 - /usr/bin/head and /usr/bin/tail. Everything now uses the new Resource.handler ()
+               approach.
+
+saw_011013_6 - Misc. cleanup/organization.
+
+saw_011013_5 - Convert Cat and Get to new Resource.handler () approach. Utils.pipe () will now call
+               out.flush ().
+
+saw_011013_4 - Chain command implemented. Misc. bug fixes and improvements.
+
+saw_011013_3 - XSLT processor installed at /usr/bin/xslt.
+
+saw_011013_2 - Remove unused Java files.
+
+saw_011013_1 - Remove Orbeon-related stuff.
+
+saw_010913_1 - Implemented $PATH searching. Interactive mode now runs /etc/shrc to set up $PATH.
+
+saw_010813_2 - Make sure Ant tasks are built by default.
+
+saw_010813_1 - Parser rewritten and greatly simplified.
+
+saw_123012_1 - Split Parser into com.iovar.web.bin.shell.input package. Added Script input type.
+
+saw_122412_1 - Reorganize Parser.java.
+
+saw_122312_1 - /bin/export. Also some work on resource handling and shell session reference
+               passing.
+
+saw_122212_1 - Symbolic links to servlets now reference the .class file directly instead of using
+               the 'iojava:' prefix hack.
+
+saw_122112_1 - Add README, INSTALL files.
+
+saw_122012_2 - Proper /bin/cat.
+
+saw_122012_1 - Misc. cleanup/improvements.
+
+saw_121912_2 - Misc. cleanup.
+
+saw_121912_1 - Now includes a basic system logger at /dev/log.
+
+saw_121812_1 - Now depends on Java 1.7. Moved a bunch of stuff around. Implemented filesystem-based
+               symbolic links for mapping url resources to Java servlets.
+
+saw_012012_2 - Some basic commands now working from the interactive prompt!
+
+saw_012012_1 - Fix Parser bugs. Split Shell interactive move into its own servlet.
+
+saw_102611_1 - Shell and Parser integration. Still need to exclude comment strings.
+
+saw_102511_2 - Hashbang execution support; updating shell for new invocation methods (not complete).
+
+saw_102511_1 - Working get, put (empty), and delete with new anonymous argument syntax (?=).
+
+saw_060411_3 - /bin/cat.
+
+--
+--
+--
+
+saw_060411_2 - Created timescroll database.
+
+saw_060411_1 - Cloned from usians repository.
+

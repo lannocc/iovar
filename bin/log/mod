@@ -1,0 +1,7 @@
+#!/bin/sh
+
+TABLE=$1
+ROW=$2
+
+xo log user "$USER" | xo action 20 | xo table "$TABLE" | xo row "$ROW" > /var/lib/log/
+

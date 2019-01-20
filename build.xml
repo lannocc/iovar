@@ -1,0 +1,962 @@
+<?xml version="1.0"?>
+<!--
+    Copyright (C) 2016-2019 Virgo Venture, Inc.
+    Copyright (C) 2011-2015 Lannocc Technologies
+    @%@~LICENSE~@%@
+-->
+<project name="IOVAR" default="project.jars" basedir=".">
+    <property file="etc/build.properties"/>
+    <property file="etc/app.properties"/>
+
+    <!-- project -->
+    <property name="project" value="IOVAR Java Foundation"/>
+    <property name="project.name" value="iovar"/>
+    <property name="project.copyright" value="Virgo Venture, Inc."/>
+    <property name="project.copyright.year" value="2011-2019"/>
+    <property name="project.dir" location="${basedir}"/>
+
+    <!-- application -->
+    <property name="app" value="IOVAR Web Platform and Shell"/>
+    <property name="app.name" value="iovar"/>
+    <property name="app.dir" location="${project.dir}/WEB-INF"/>
+    <property name="app.lib.dir" location="${app.dir}/lib" />
+    <path id="app.libs">
+        <fileset dir="${app.lib.dir}" includes="*.jar"/>
+    </path>
+    <property name="app.temp.dir" location="${app.dir}/tmp"/>
+    <property name="app.pkg" value="net.iovar.web"/>
+
+    <!-- Tomcat -->
+    <property name="tomcat.catalina.jar" value="/usr/share/tomcat-6/lib/catalina.jar"/>
+    
+    <!-- dependency jars -->
+    <property name="jars" value="Java Dependencies"/>
+    <property name="jars.dir" location="${app.lib.dir}/jars"/>
+    <property name="jars.build.dir" location="${jars.dir}/build"/>
+    <path id="jars.build">
+        <fileset dir="${jars.build.dir}" includes="*.jar"/>
+    </path>
+    <property name="jars.common.dir" location="${jars.dir}/common"/>
+    <path id="jars.common">
+        <fileset dir="${jars.common.dir}" includes="*.jar"/>
+    </path>
+    <property name="jars.code.dir" location="${jars.dir}/code"/>
+    <path id="jars.code">
+        <fileset dir="${jars.code.dir}" includes="*.jar"/>
+        <fileset dir="${jars.common.dir}" includes="*.jar"/>
+        <fileset file="${jars.servlet-api}"/>
+        <fileset file="${tomcat.catalina.jar}"/>
+    </path>
+    <property name="jars.code.tests.dir" location="${jars.code.dir}_tests"/>
+    <path id="jars.code.tests">
+        <fileset dir="${jars.code.tests.dir}" includes="*.jar"/>
+    </path>
+    <property name="jars.iovar.dir" location="${jars.dir}/iovar"/>
+    <path id="jars.iovar">
+        <fileset dir="${jars.iovar.dir}" includes="*.jar"/>
+    </path>
+    <property name="jars.run.dir" location="${jars.dir}/run"/>
+    <path id="jars.run">
+        <fileset dir="${jars.run.dir}" includes="*.jar"/>
+    </path>
+    <path id="jars.servlet-api">
+        <fileset file="${jars.servlet-api.file}"/>
+    </path>
+
+
+    <!-- main code -->
+    <property name="code" value="Java Code"/>
+    <property name="code.dir" location="${app.dir}/classes"/>
+    <property name="code.src.dir" location="${project.dir}/src"/>
+    <assertions id="code.exec.assertions" enableSystemAssertions="${java.enable-system-assertions}">
+        <enable package="${app.pkg}"/>
+    </assertions>
+    <assertions id="code.debug.assertions" enableSystemAssertions="${java.enable-system-assertions}">
+        <enable package="${app.pkg}"/>
+    </assertions>
+    <path id="code.classpath">
+        <path refid="jars.code"/>
+        <path refid="jars.common"/>
+        <path refid="jars.iovar"/>
+        <path refid="jars.run"/>
+        <path refid="jars.servlet-api"/>
+        <dirset dir="${code.dir}"/>
+    </path>
+    <path id="code.classpath.build">
+        <path refid="jars.build"/>
+        <path refid="jars.code"/>
+        <path refid="jars.common"/>
+        <path refid="jars.iovar"/>
+        <path refid="jars.servlet-api"/>
+    </path>
+    <property name="code.tests" value="${code} Unit Tests"/>
+    <property name="code.tests.name" value="tests"/>
+    <property name="code.tests.dir" location="${code.dir}_${code.tests.name}" />
+    <property name="code.tests.src.dir" location="${app.dir}/src_${code.tests.name}"/>
+    <fileset id="code.tests.src.files" dir="${code.tests.src.dir}">
+        <include name="**/Test*.java" />
+        <exclude name="**/TestUtil.java" />
+        <exclude name="**/old*/**"/>
+    </fileset>
+    <path id="code.tests.classpath">
+        <path refid="code.classpath"/>
+        <path refid="jars.code.tests"/>
+        <dirset dir="${code.tests.dir}"/>
+    </path>
+    <path id="code.tests.classpath.build">
+        <path refid="code.classpath"/>
+        <path refid="jars.code.tests"/>
+    </path>
+
+    <!-- ant tasks -->
+    <property name="tasks" value="Ant Tasks"/>
+    <property name="tasks.name" value="ant"/>
+    <property name="tasks.dir" location="${app.temp.dir}/${tasks.name}"/>
+    <property name="tasks.pkg" value="net.iovar.${tasks.name}"/>
+    <property name="tasks.pkg.path" value="net/iovar/${tasks.name}"/>
+    <property name="tasks.tests" value="${tasks} Unit Tests"/>
+    <property name="tasks.tests.dir" location="${code.tests.dir}/${tasks.pkg.path}"/>
+    <fileset id="tasks.tests.src.files" dir="${code.tests.src.dir}">
+        <include name="${tasks.pkg.path}/Test*.java" />
+        <exclude name="**/TestUtil.java" />
+        <exclude name="**/old*/**"/>
+    </fileset>
+    <path id="tasks.tests.classpath.build">
+        <path refid="tasks.classpath"/>
+        <path refid="jars.code.tests"/>
+    </path>
+    <path id="tasks.classpath">
+        <dirset dir="${tasks.dir}"/>
+        <path refid="tasks.classpath.build"/>
+        <dirset dir="${code.dir}"/>
+    </path>
+    <path id="tasks.classpath.build">
+        <path refid="jars.build"/>
+        <path refid="jars.code"/>
+        <fileset file="${jars.ant.file}"/>
+        <path refid="jars.servlet-api"/>
+    </path>
+    <path id="tasks.external.classpath">
+        <path refid="jars.build"/>
+        <path refid="jars.common"/>
+    </path>
+
+    <!-- build -->
+    <property name="build" value="Ant Build"/>
+    <property name="build.name" value="build"/>
+    <property name="build.dir" location="${app.dir}"/>
+    <property name="build.src.dir" location="${build.dir}/src_${build.name}" />
+    <path id="build.classpath">
+        <path refid="jars.build"/>
+        <path refid="jars.common"/>
+        <path refid="tasks.classpath"/>
+    </path>
+
+    <!-- documentation -->
+    <property name="docs" value="Documentation"/>
+    <property name="docs.name" value="doc"/>
+    <property name="docs.dir" location="${project.dir}/${docs.name}/${project.name}" />
+    <property name="docs.api" value="API ${docs}"/>
+    <property name="docs.api.name" value="api"/>
+    <property name="docs.api.dir" location="${docs.dir}/${docs.api.name}"/>
+
+    <!-- test suites -->
+    <property name="tests" value="Test Suite"/>
+    <property name="tests.name" value="unit_tests"/>
+    <property name="tests.dir" location="${project.dir}/${tests.name}"/>
+    <property name="tests.haltonfailure" value="no"/>
+   
+    <!-- miscellany -->
+    <property name="browser.executable" value="chrome"/>
+    <propertyset id="proxy.properties">
+        <propertyref prefix="java.net.useSystemProxies"/>
+        <propertyref prefix="http."/>
+        <propertyref prefix="https."/>
+        <propertyref prefix="ftp."/>
+        <propertyref prefix="socksProxy"/>
+    </propertyset>
+
+    <!-- normalize some common descriptive text -->
+    <!-- (unfortunately properties cannot be used in the target descriptions themselves) -->
+    <property name="descr.init" value="Prepare"/>
+    <property name="descr.clean" value="Clean up"/>
+    <property name="descr.install" value="Install"/>
+    <property name="descr.deploy" value="Deploy"/>
+
+
+
+    <!-- ======================================================= -->
+    <!-- Ant Task Definitions (3rd party / custom)               -->
+    <!-- ======================================================= -->
+
+    <!-- loads the ant-contrib tasks... needed for 'foreach' -->
+    <target name="ant.task.contrib" depends="tasks.init, code.init">
+        <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="tasks.classpath"/>
+    </target>
+    
+    <target name="ant.task.WebBuilder" depends="tasks.init, code.init">
+        <taskdef name="web-build" classname="${tasks.pkg}.WebBuilder" classpathref="tasks.classpath"/>
+    </target>
+
+
+
+
+
+    <!-- ======================================================= -->
+    <!-- PROJECT                                                 -->
+    <!-- ======================================================= -->
+
+    <target name="project.init">
+        <echo>${descr.init} ${project}</echo>
+        <tstamp/>
+        <available file="etc/build.properties" property="project.installed"/>
+        <antcall target="project.install.fail"/>
+    </target>
+    <target name="project.install.fail" unless="project.installed">
+        <echo message="Project not yet installed!"/>
+        <fail message="You need to set up etc/build.properties with a basic configuration first (try the project.install task)."/>
+    </target>
+    <target name="project.clean" depends="docs.clean, tests.clean, app.clean"
+        description="Clean up entire project" >
+        <echo>${descr.clean} ${project}</echo>
+
+        <delete file="${app.lib.dir}/${project.name}.jar" verbose="true"/>
+        <delete file="${app.dir}/${project.name}.war" verbose="true"/>
+    </target>
+
+    <target name="project.install" description="Set up a working project configuration">
+        <echo>${descr.install} ${project}</echo>
+
+        <filterset id="project.install.filters">
+            <filter token="PROJECT" value="${project}"/>
+            <filter token="PROJECT_NAME" value="${project.name}"/>
+        </filterset>
+
+        <!-- this might seem overcomplicated, but this is required to -->
+        <!-- copy sample.build.properties -> build.properties -->
+        <!-- ONLY IF build.properties DOES NOT EXIST -->
+        <copy todir="etc" verbose="true">
+            <fileset dir="etc" includes="sample.build.properties">
+                <present present="srconly" targetdir=".">
+                    <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+                </present>
+            </fileset>
+            <filterset refid="project.install.filters"/>
+            <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+        </copy>
+        <property file="etc/build.properties"/>
+        
+        <!-- recursively copy & map sample.* files to * -->
+        <!-- only if (not sample.*.zip) and (* doesn't exist) -->
+        <copy todir="${project.dir}" preservelastmodified="true" verbose="true">
+            <fileset 
+                dir="${project.dir}"
+                includes="**/sample.*"
+                excludes="**/sample.*.zip, etc/sample.app.properties,
+                          WEB-INF/**">
+
+                <present present="srconly" targetdir="${project.dir}">
+                    <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+                </present>
+            </fileset>
+            <filterset refid="project.install.filters"/>
+            <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+        </copy>
+
+        <!-- because project.update requires ant-contrib and it may not have been downloaded
+             yet, we first try to get it now (however, the user could already have it their classpath) -->
+        <loadfile property="ant.contrib.url" srcFile="${jars.build.dir}/ant-contrib.url"/>
+        <get dest="${jars.build.dir}" src="${ant.contrib.url}" skipexisting="true"/>
+
+        <antcall target="project.update"/>
+
+        <echo>Project Installed</echo>
+        <echo>Edit etc/build.properties as necessary and then run 'app.install' to set up a working application</echo>
+    </target>
+    <target name="project.install.clean" depends="project.clean, app.install.clean"
+        description="Clean up project build and installation">
+        <echo>${descr.clean} ${project} ${descr.install}</echo>
+
+        <input addproperty="project.install.clean.configs" validargs="y,n">
+            Delete your local configuration files? These are not tracked!
+        </input>
+        <condition property="do.project.install.clean.configs">
+            <equals arg1="${project.install.clean.configs}" arg2="y"/>
+        </condition>
+        <antcall target="project.install.clean.configs"/>
+    </target>
+    <target name="project.install.clean.configs" if="do.project.install.clean.configs">
+        <!--
+        <delete dir="${project.dir}/etc" verbose="true">
+            <fileset 
+                dir="${project.dir}/etc"
+                includes="sample.*"
+                excludes="sample.*.zip"/>
+            <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+        </delete>
+        -->
+        <delete file="${project.dir}/etc/build.properties" verbose="true"/>
+    </target>
+
+    <target name="project.update" description="Download updated or missing project jars" depends="ant.task.contrib">
+        <echo>Downloading any missing/update project JAR files</echo>
+        <foreach target="project.update.build" param="project.update.file">
+            <fileset dir="${jars.build.dir}" includes="*.url"/>
+        </foreach>
+        <foreach target="project.update.code" param="project.update.file">
+            <fileset dir="${jars.code.dir}" includes="*.url"/>
+        </foreach>
+        <foreach target="project.update.common" param="project.update.file">
+            <fileset dir="${jars.common.dir}" includes="*.url"/>
+        </foreach>
+        <foreach target="project.update.iovar" param="project.update.file">
+            <fileset dir="${jars.iovar.dir}" includes="*.url"/>
+        </foreach>
+        <foreach target="project.update.run" param="project.update.file">
+            <fileset dir="${jars.run.dir}" includes="*.url"/>
+        </foreach>
+    </target>
+    <target name="project.update.build">
+        <loadfile property="project.update.url" srcFile="${project.update.file}"/>
+        <get dest="${jars.build.dir}" src="${project.update.url}" verbose="on" usetimestamp="true"/>
+    </target>
+    <target name="project.update.code">
+        <loadfile property="project.update.url" srcFile="${project.update.file}"/>
+        <get dest="${jars.code.dir}" src="${project.update.url}" verbose="on" usetimestamp="true"/>
+    </target>
+    <target name="project.update.common">
+        <loadfile property="project.update.url" srcFile="${project.update.file}"/>
+        <get dest="${jars.common.dir}" src="${project.update.url}" verbose="on" usetimestamp="true"/>
+    </target>
+    <target name="project.update.iovar">
+        <loadfile property="project.update.url" srcFile="${project.update.file}"/>
+        <get dest="${jars.iovar.dir}" src="${project.update.url}" verbose="on" usetimestamp="true"/>
+    </target>
+    <target name="project.update.run">
+        <loadfile property="project.update.url" srcFile="${project.update.file}"/>
+        <get dest="${jars.run.dir}" src="${project.update.url}" verbose="on" usetimestamp="true"/>
+    </target>
+
+    <target name="project" depends="project.init, project.jars, tests, docs" description="Build entire project">
+        <echo>${project}</echo>
+
+        <war destfile="${app.dir}/${project.name}.war" webxml="${app.dir}/web.xml">
+            <lib dir="${app.lib.dir}">
+                <include name="*.jar"/>
+            </lib>
+            <classes dir="${code.dir}">
+                <include name="**/*.class"/>
+            </classes>
+            <fileset dir="${project.dir}" followsymlinks="false">
+                <exclude name="WEB-INF/**"/>
+            </fileset>
+        </war>
+    </target>
+    <target name="project.production" depends="project.init, app.production, tests" description="Build entire project (for production)">
+        <echo>${project}</echo>
+    </target>
+
+    <target name="project.jars" depends="tasks.jar, app.jars" description="Build all project jars for distribution">
+        <echo>${project}</echo>
+    </target>
+    <target name="project.jars.production" depends="tasks.jar, app.jars.production" description="Build production project jars for distribution">
+        <echo>${project}</echo>
+    </target>
+
+
+
+    <!-- ======================================================= -->
+    <!-- APPLICATION                                             -->
+    <!-- ======================================================= -->
+
+    <target name="app.init" depends="project.init, app.install.check, app.install.fail">
+        <echo>${descr.init} ${app}</echo>
+    </target>
+    <target name="app.clean" depends="code.clean"
+            description="Clean up application">
+        <echo>${descr.clean} ${app}</echo>
+        <delete quiet="true">
+            <fileset
+                dir="${app.lib.dir}"
+                includes="*.jar"
+                />
+        </delete>
+        <!--
+        <delete dir="${app.lib.tests.dir}" quiet="true"/>
+        -->
+        <delete dir="${code.dir}" quiet="true"/>
+        <delete dir="${app.temp.dir}" quiet="true" />
+    </target>
+
+    <target name="app.install.check">
+        <available file="etc/app.properties" property="app.installed"/>
+    </target>
+    <target name="app.install.fail" unless="app.installed">
+        <echo message="Application not yet installed!"/>
+        <fail message="You need to set up etc/app.properties with a basic configuration first (try the app.install task)"/>
+    </target>
+    <target name="app.install" depends="project.init"
+        description="Set default application configuration">
+        <echo>${descr.install} ${app}</echo>
+
+        <input addproperty="app.install.ant.jar">
+            Full path to your Ant JAR (ant.jar)
+        </input>
+        <available file="${app.install.ant.jar}" property="app.install.ant.jar.found"/>
+        <antcall target="app.install.ant.jar.notfound"/>
+
+        <!-- FIXME: double-check JSR (servlet spec version) requirement -->
+        <input addproperty="app.install.servlet-api.jar">
+            Full path to your container's JSR-053 Java Servlet 2.3 -compliant implementation JAR (servlet-api.jar)
+        </input>
+        <available file="${app.install.servlet-api.jar}" property="app.install.servlet-api.jar.found"/>
+        <antcall target="app.install.servlet-api.jar.notfound"/>
+
+        <!-- this might seem overcomplicated, but this is required to -->
+        <!-- copy sample.app.properties -> app.properties -->
+        <!-- ONLY IF app.properties DOES NOT EXIST -->
+        <copy todir="etc" verbose="true">
+            <fileset dir="etc" includes="sample.app.properties">
+                <present present="srconly" targetdir=".">
+                    <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+                </present>
+            </fileset>
+            <!--filterchain refid="app.install.filters"/-->
+            <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+        </copy>
+        <property file="etc/app.properties"/>
+
+        <copy todir="${app.dir}" preservelastmodified="true" verbose="true">
+            <fileset 
+                dir="${app.dir}"
+                includes="**/sample.*"
+                excludes="etc/sample.build.properties,
+                          etc/sample.app.properties,
+                          **/sample.*.zip">
+
+                <present present="srconly" targetdir="${app.dir}">
+                    <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+                </present>
+            </fileset>
+            <!--filterchain refid="app.install.filters"/-->
+            <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+        </copy>
+
+        <!-- extract sample.*.zip files in WEB-INF -->
+        <!-- unfortunately, this cannot be made to work recursively -->
+        <unzip dest="${app.dir}">
+            <fileset dir="${app.dir}" includes="sample.*.zip"/>
+        </unzip>
+
+        <echo>${app} Installed</echo>
+        <echo>Edit etc/app.properties as necessary before running</echo>
+    </target>
+    <target name="app.install.ant.jar.notfound" unless="app.install.ant.jar.found">
+        <fail message="File not found: ${app.install.ant.jar}"/>
+    </target>
+    <target name="app.install.servlet-api.jar.notfound" unless="app.install.servlet-api.jar.found">
+        <fail message="File not found: ${app.install.servlet-api.jar}"/>
+    </target>
+    <target name="app.install.clean" depends="app.clean" description="Clean up application build and installation">
+        <echo>${descr.clean} ${app} ${descr.install}</echo>
+
+        <input addproperty="app.install.clean.configs" validargs="y,n">
+            Delete your local configuration files? These are not tracked!
+        </input>
+        <condition property="app.install.clean.configs.confirmed">
+            <equals arg1="${app.install.clean.configs}" arg2="y"/>
+        </condition>
+        <antcall target="app.install.clean.configs"/>
+    </target>
+    <target name="app.install.clean.configs" if="app.install.clean.configs.confirmed">
+        <!--
+        <delete dir="${app.dir}" verbose="true">
+            <fileset 
+                dir="${app.dir}"
+                includes="**/sample.*"
+                excludes="sample.build.properties,
+                          **/sample.*.zip"/>
+            <mapper type="regexp" from="^(.*)sample\.(.+)$" to="\1\2"/>
+        </delete>
+        -->
+        <delete file="${project.dir}/etc/app.properties" verbose="true"/>
+    </target>
+
+    <target name="app" depends="tasks, code, app.libs, app.webxml" description="Build the application">
+        <echo>${app}</echo>
+    </target>
+    <target name="app.production" depends="code.production, app.libs" description="Build the application (for production)">
+        <echo>${app}</echo>
+    </target>
+    <target name="app.libs" description="Install application libraries">
+        <mkdir dir="${app.lib.dir}"/>
+        <copy todir="${app.lib.dir}">
+            <fileset dir="${jars.code.dir}" includes="*.jar"/>
+            <fileset dir="${jars.common.dir}" includes="*.jar"/>
+            <fileset dir="${jars.iovar.dir}" includes="*.jar"/>
+            <fileset dir="${jars.run.dir}" includes="*.jar"/>
+            <regexpmapper from="^(.+)(-[0-9].*)\.jar$$" to="\1.jar" handledirsep="true"/>
+        </copy>
+
+        <!--
+        <mkdir dir="${app.lib.tests.dir}"/>
+        <copy todir="${app.lib.tests.dir}">
+            <fileset dir="${jars.code.tests.dir}" includes="*.jar"/>
+            <regexpmapper from="^(.+)(-[0-9].*)\.jar$$" to="\1.jar" handledirsep="true"/>
+        </copy>
+        -->
+    </target>
+
+    <target name="app.jars" depends="app, docs, app.jars.nodeps" description="Build application jars for distribution">
+        <echo>${app}</echo>
+    </target>
+    <target name="app.jars.production" depends="app.production, app.jars.nodeps" description="Build production application jars for distribution">
+        <echo>${app}</echo>
+    </target>
+    <target name="app.jars.nodeps">
+        <jar destfile="${jars.dir}/${project.name}.jar">
+            <fileset dir="${project.dir}" followsymlinks="false">
+                <exclude name="WEB-INF/**"/>
+                <exclude name="**/sample.*"/>
+                <exclude name="**/.DS_Store"/>
+                <exclude name="**/.keep"/>
+                <exclude name="**/*.bak"/>
+                <exclude name="**/*.orig"/>
+                <exclude name="**/*.swp"/>
+
+                <!-- also exclude these unless and until they have something useful to distribute -->
+                <exclude name="dev/**"/>
+                <exclude name="etc/app.properties"/>
+                <exclude name="etc/build.properties"/>
+                <exclude name="etc/rc.local"/>
+                <exclude name="etc/web.xml"/>
+                <exclude name="nbproject/**"/>
+                <exclude name="proc/**"/>
+                <exclude name="test/**"/>
+                <exclude name="var/**"/>
+                <exclude name="build.xml"/>
+                <exclude name="INSTALL"/>
+            </fileset>
+            <fileset dir="${code.dir}" followsymlinks="false">
+                <include name="**/*.class"/>
+            </fileset>
+            <!-- we include the jars/**.url files so other scripts can figure out dependencies from the jar
+                 (mapped to /sys/jars/*) -->
+            <mappedresources>
+                <fileset dir="${jars.dir}" followsymlinks="false">
+                    <include name="**/*.url"/>
+                </fileset>
+                <globmapper from="*" to="sys/jars/*"/>
+            </mappedresources>
+            <mappedresources>
+                <fileset dir="${app.dir}" followsymlinks="false">
+                    <include name="${project.name}.web.xml"/>
+                </fileset>
+                <globmapper from="*" to="sys/servlets/*"/>
+            </mappedresources>
+        </jar>
+    </target>
+
+    
+    <target name="app.webxml" depends="ant.task.WebBuilder">
+        <!-- FIXME: normalize this sys/servlets stuff -->
+        <mkdir dir="${tasks.dir}/sys/servlets"/>
+
+        <!-- extract web.xml snippets from any iovar jar dependencies -->
+        <unzip dest="${tasks.dir}">
+            <fileset dir="${jars.iovar.dir}">
+                <include name="**/*.jar"/>
+            </fileset>
+            <patternset>
+                <include name="sys/servlets/**"/>
+            </patternset>
+        </unzip>
+
+        <web-build
+            dir="${project.dir}"
+            src="${project.dir}/etc/web.xml"
+            include="${tasks.dir}/sys/servlets"
+            dst="${app.dir}/web.xml"
+            links="${app.dir}/${project.name}.web.xml"
+            excludeDirs="home:pub:tmp:var/cache:var/tmp"
+            projectKey="${project.name}"
+            />
+            <!-- startupBegin="100" -->
+            <!-- sqlStart="50" -->
+    </target>
+
+
+
+    <!-- ======================================================= -->
+    <!-- TASKS - Local Ant Tasks                                 -->
+    <!-- ======================================================= -->
+
+    <target name="tasks.init" depends="project.init, app.install.check, app.install.fail">
+        <echo>${descr.init} ${tasks}</echo>
+        <mkdir dir="${tasks.dir}"/>
+    </target>
+    <target name="tasks.tests.init" depends="project.init">
+        <echo>${descr.init} ${tasks.tests}</echo>
+        <mkdir dir="${tasks.tests.dir}"/>
+    </target>
+
+    <target name="tasks.clean" description="Clean up tasks">
+        <echo>${descr.clean} ${tasks}</echo>
+        <delete dir="${tasks.dir}"/>
+    </target>
+    <target name="tasks.tests.clean" description="Clean up tasks tests">
+        <echo>${descr.clean} ${tasks.tests}</echo>
+        <delete dir="${tasks.tests.dir}" quiet="true" />
+    </target>
+
+    <target name="tasks" depends="tasks.init" description="Build custom Ant tasks">
+        <echo>${tasks}</echo>
+        <javac
+            srcdir="${code.src.dir}"
+            destdir="${tasks.dir}"
+            includes="${tasks.pkg.path}/*.java"
+            excludes="**/old*/**"
+            classpathref="tasks.classpath.build"
+            includeJavaRuntime="no"
+            compiler="${javac.compiler}"
+            debug="${javac.debug}"
+            optimize="${javac.optimize}"
+            deprecation="${javac.deprecation}"
+            verbose="${javac.verbose}"
+            nowarn="${javac.nowarn}"
+            target="${build.target.vm.version}"
+        >
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+    <target name="tasks.tests" depends="tasks, tasks.tests.init" description="Build taskdef unit tests" >
+        <javac
+            srcdir="${code.tests.src.dir}"
+            destdir="${code.tests.dir}"
+            includes="${tasks.pkg.path}/*.java"
+            excludes="**/old*/**"
+            classpathref="tasks.tests.classpath.build"
+            target="${build.target.vm.version}"
+        >
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="tasks.jar" depends="tasks" description="Create custom taskdef jar file" >
+        <jar destfile="${jars.dir}/${project.name}-ant.jar">
+            <fileset dir="${tasks.dir}" followsymlinks="false">
+                <include name="${tasks.pkg.path}/**/*.class"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <!-- verify the custom taskdef is actually available -->
+    <target name="tasks.verify" depends="tasks" description="Verify the custom taskdef works" >
+        <taskdef name="echo2" classname="${tasks.pkg}.SampleTaskdef" classpathref="tasks.classpath"/>
+        <echo2 message="Verified SampleTaskdef works!"/>
+    </target>
+
+
+
+    <!-- ======================================================= -->
+    <!-- CODE - Main Java Code                                   -->
+    <!-- ======================================================= -->
+
+    <target name="code.init" depends="project.init, app.install.check, app.install.fail">
+        <echo>${descr.init} ${code}</echo>
+        <mkdir dir="${code.dir}" />
+
+        <!-- copy assorted resources to the classes directory -->
+        <!--
+        <copy todir="${code.dir}" preservelastmodified="true">
+            <fileset dir="${code.src.dir}">
+                <include name="**/*.properties"/>
+                <include name="**/*.directives"/>
+                <include name="**/*.sql"/>
+                <include name="**/*.key" />
+                <include name="**/*.xml" />
+				<include name="**/*.csv" />
+                <include name="**/character-sets*"/>
+            </fileset>
+        </copy>
+        -->
+    </target>
+    <target name="code.tests.init" depends="project.init, app.install.check, app.install.fail">
+        <echo>${descr.init} ${code.tests}</echo>
+        <mkdir dir="${code.tests.dir}" />
+
+        <!-- copy assorted resources to the classes_tests directory -->
+        <!--
+        <copy todir="${code.tests.dir}" preservelastmodified="true">
+            <fileset dir="${code.tests.src.dir}">
+                <include name="**/*.properties"/>
+                <include name="**/*.directives"/>
+                <include name="**/*.sql"/>
+                <include name="**/*.key" />
+                <include name="**/*.xml" />
+              <include name="**/character-sets*"/>
+            </fileset>
+        </copy>
+        -->
+    </target>
+
+    <target name="code.clean" description="Clean up code" >
+        <echo>${descr.clean} ${code}</echo>
+        <delete dir="${code.dir}" quiet="true" />
+    </target>
+    <target name="code.tests.clean" description="Clean up code unit tests" >
+        <echo>${descr.clean} ${code.tests}</echo>
+        <delete dir="${code.tests.dir}" quiet="true" />
+    </target>
+
+    <target name="code" depends="code.init" description="Build code">
+        <echo>${code}</echo>
+        <javac
+            srcdir="${code.src.dir}"
+            destdir="${code.dir}"
+            includes="**/*.java"
+            excludes="**/old*/**, ${tasks.pkg.path}/**"
+            classpathref="code.classpath.build"
+            compiler="${javac.compiler}"
+            debug="${javac.debug}"
+            optimize="${javac.optimize}"
+            deprecation="${javac.deprecation}"
+            verbose="${javac.verbose}"
+            nowarn="${javac.nowarn}"
+            target="${build.target.vm.version}"
+        >
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+    <target name="code.production" depends="code.init" description="Build code (for production)">
+        <echo>${code}</echo>
+        <javac
+            srcdir="${code.src.dir}"
+            destdir="${code.dir}"
+            includes="**/*.java"
+            excludes="**/old*/**, ${tasks.pkg.path}/**"
+            classpathref="code.classpath.build"
+            compiler="${javac.compiler.production}"
+            debug="${javac.debug.production}"
+            optimize="${javac.optimize.production}"
+            deprecation="${javac.deprecation.production}"
+            verbose="${javac.verbose.production}"
+            nowarn="${javac.nowarn.production}"
+            target="${build.target.vm.version}"
+        />
+    </target>
+    <target name="code.tests" depends="code, code.tests.init" description="Build code unit tests" >
+        <echo>${code.tests}</echo>
+        <javac
+            srcdir="${code.tests.src.dir}"
+            destdir="${code.tests.dir}"
+            includes="**/*.java"
+            excludes="**/old*/**"
+            classpathref="code.tests.classpath.build"
+            compiler="${javac.compiler}"
+            debug="${javac.debug}"
+            optimize="${javac.optimize}"
+            deprecation="${javac.deprecation}"
+            verbose="${javac.verbose}"
+            nowarn="${javac.nowarn}"
+            target="${build.target.vm.version}"
+        >
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="code.files" if="code.files" description="Compile a defined set of files">
+        <echo>${code}</echo>
+        <javac srcdir="${code.src.dir}"
+            destdir="${code.dir}"
+            includes="${code.files}"
+            classpathref="code.classpath.build"
+            debug="${javac.debug}"
+            optimize="${javac.optimize}"
+            deprecation="${javac.deprecation}"
+            verbose="${javac.verbose}"
+            nowarn="false"
+            target="${build.target.vm.version}"
+        >
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+    <target name="code.tests.files" if="code.tests.files" description="Compile a defined set of test files">
+        <javac srcdir="${code.tests.src.dir}"
+            destdir="${code.tests.dir}"
+            includes="${code.tests.files}"
+            classpathref="code.tests.classpath.build"
+            debug="${javac.debug}"
+            optimize="${javac.optimize}"
+            deprecation="${javac.deprecation}"
+            verbose="${javac.verbose}"
+            nowarn="${javac.nowarn}"
+            target="${build.target.vm.version}"
+        >
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="code.debug" description="Debug a class file">
+        <nbjpdastart addressproperty="jpda.address" name="${app.name}" transport="dt_socket">
+            <classpath refid="code.classpath"/>
+        </nbjpdastart>
+        <input addproperty="code.debug.args">Enter arguments:</input>
+        <java classname="${code.debug.class}" 
+              fork="true">
+            <classpath refid="code.classpath"/>
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <assertions refid="code.debug.assertions"/>
+            <arg line="${code.debug.args}"/>
+        </java>
+    </target>
+    <target name="code.tests.debug" description="Debug a test class file">
+        <nbjpdastart addressproperty="jpda.address" name="${app.name}" transport="dt_socket">
+            <classpath refid="code.tests.classpath"/>
+        </nbjpdastart>
+        <input addproperty="code.tests.debug.args">Enter arguments:</input>
+        <java classname="${code.tests.debug.class}" 
+              fork="true">
+            <classpath refid="code.tests.classpath"/>
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <assertions refid="code.tests.debug.assertions"/>
+            <arg line="${code.tests.debug.args}"/>
+        </java>
+    </target>
+
+    <target name="code.exec" description="Execute a class file">
+        <echo>${code}</echo>
+        <input addproperty="code.exec.class">Enter full class name (e.g. ${app.pkg}.FooBar):</input>
+        <input addproperty="code.exec.args">Enter arguments:</input>
+        <java classname="${code.exec.class}"
+              fork="true"
+              dir="${app.dir}"
+              failonerror="true"
+              classpathref="code.classpath">
+            <jvmarg value="-Xmx512M"/>
+            <jvmarg value="-ea"/>
+            <syspropertyset refid="proxy.properties"/>
+            <assertions refid="code.exec.assertions"/>
+            <arg line="${code.exec.args}"/>
+        </java>
+    </target>
+    <target name="code.tests.exec" description="Execute a test class file">
+        <echo>${code.tests}</echo>
+        <input addproperty="code.tests.exec.class">Enter full test class name (e.g. ${app.pkg}.TestFooBar):</input>
+        <input addproperty="code.tests.exec.args">Enter arguments:</input>
+        <java classname="${code.tests.exec.class}"
+              fork="true"
+              dir="${app.dir}"
+              failonerror="true"
+              classpathref="code.tests.classpath">
+            <jvmarg value="-Xmx256M"/>
+            <jvmarg value="-ea"/>
+            <syspropertyset refid="proxy.properties"/>
+            <assertions refid="code.tests.exec.assertions"/>
+            <arg value="batch=true"/>
+            <arg line="${code.tests.exec.args}"/>
+        </java>
+    </target>
+
+
+
+
+
+    <!-- ======================================================= -->
+    <!-- TESTS - Test Suites                                     -->
+    <!-- ======================================================= -->
+
+    <target name="tests.clean" depends="code.tests.clean" description="Clean up all tests">
+        <echo>${descr.clean} ${tests}</echo>
+        <delete quiet="true" includeEmptyDirs="true">
+            <fileset dir="${tests.dir}" excludes="**/sample.*" />
+        </delete>
+        <delete dir="${code.tests.dir}" quiet="true"/>
+    </target>
+    <target name="tests.init" depends="project.init">
+        <echo>${descr.init} ${tests}</echo>
+    </target>
+    <target name="tests" depends="code.tests, tests.init" description="Build all tests">
+        <echo>${tests}</echo>
+    </target>
+
+    <target name="tests.run" depends="tests" description="Run all tests as a batch">
+        <echo>${tests}</echo>
+        <!-- FIXME
+        <antcall target="tests.junit.batch">
+            <param name="tests.junit.batch" value="code.tests.src.files"/>
+        </antcall>
+        <antcall target="tests.open"/>
+        -->
+    </target>
+
+    <target name="tests.open" description="Open browser pointed to test results">
+        <exec executable="${browser.executable}">
+            <arg file="${tests.dir}/index.html"/>
+        </exec>
+    </target>
+
+
+
+
+
+    <!-- ======================================================= -->
+    <!-- DOCS - Documentation                                    -->
+    <!-- ======================================================= -->
+
+    <target name="docs.init" depends="project.init">
+        <echo>${descr.init} ${docs}</echo>
+    </target>
+    <target name="docs.api.init" depends="docs.init">
+        <echo>${descr.init} ${docs.api}</echo>
+        <mkdir dir="${docs.api.dir}"/>
+    </target>
+
+    <target name="docs.clean" depends="docs.api.clean" description="Clean up docs">
+        <echo>${descr.clean} ${docs}</echo>
+    </target>
+    <target name="docs.api.clean" description="Clean up API docs">
+        <echo>${descr.clean} ${docs.api}</echo>
+        <delete quiet="true" includeEmptyDirs="true">
+            <fileset dir="${docs.api.dir}" excludes="index"/>
+        </delete>
+    </target>
+
+    <target name="docs" depends="docs.api" description="Build docs">
+        <echo>${docs}</echo>
+    </target>
+    <target name="docs.api" depends="docs.api.init" description="Build API docs">
+        <echo>${docs.api}</echo>
+        <javadoc
+            sourcepath="${code.src.dir}"
+            classpathref="code.classpath"
+            destdir="${docs.api.dir}"
+            additionalparam="-breakiterator"
+            author="true"
+            version="true"
+            linksource="true"
+            use="true"
+            windowtitle="${project.name} ${docs.api}"
+            doctitle="${project}"
+            bottom="Copyright (C) ${project.copyright.year} ${project.copyright}"
+            failonerror="true"
+            maxmemory="512M">
+
+            <packageset dir="${code.src.dir}" includes="**"/>
+
+            <link href="https://docs.oracle.com/javase/6/docs/api"/>
+            <link href="https://docs.oracle.com/javaee/6/api"/>
+            <link href="https://ant.apache.org/manual/api"/>
+        </javadoc>
+    </target>
+
+</project>
+

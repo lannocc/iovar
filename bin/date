@@ -1,0 +1,51 @@
+#!/bin/iosh
+#
+# Copyright (C) 2016 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+# usage:
+#   date [<datetime>]
+#
+# date and time may be passed in via stdin instead
+#
+# Options:
+#   ?format=<format>    - format the output
+#   ?input=<format>     - the input is the specified format
+
+set data
+
+test "$format" = '' && format='%Y-%m-%d %H:%M:%S'
+test "$1" = '' || data="$1"
+test "$2" = '' || data="$data $2"
+
+test "$data" = '' && {
+
+    system file:date -- +"$format" | system file:tr -d '\n'
+
+} || { # we have data
+
+    test "$input" = '' && {
+
+        # since no input format was specified, we'll try to normalize the input
+        input='%Y-%m-%d %H:%M:%S'
+
+        echo "$data" | system file:grep -- -q ' ' || {
+            data="$data 00:00:00"
+        }
+
+        echo "$data" | sed ?filter='s/\.\d+$//g' | set data
+    }
+
+    uname | set os
+    test "$os" = 'Darwin' && {
+
+        # BSD date
+        system file:date -- -f "$input" -j "$data" +"$format" | system file:tr -d '\n'
+
+    } || { # not Darwin; assume GNU date
+
+        #   FIXME: GNU date does not support a user-specified input format!
+        system file:date -- -d "$data" +"$format" | system file:tr -d '\n'
+    }
+}
+
