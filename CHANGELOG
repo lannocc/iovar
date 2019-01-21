@@ -2,6 +2,8 @@ Copyright (C) 2016-2019 Virgo Venture, Inc.
 Copyright (C) 2011-2015 Lannocc Technologies
 @%@~LICENSE~@%@
 
+saw_012019_5 - Combine INSTALL and README into README.md.
+
 saw_012019_4 - First commit for git.
 
 saw_012019_3 - Ant target app.jars now includes docs. Add shell.js, forgotten in a previous commit.

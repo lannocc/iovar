@@ -20,6 +20,12 @@
     </author>
 
     <pubdate>2019-01-12</pubdate>
+
+    <revhistory>
+      <revision>
+        <date>2019-01-20</date>
+      </revision>
+    </revhistory>
   </info>
 
   <preface>
@@ -33,14 +39,6 @@
   <chapter>
     <title>README</title>
 
-    <programlisting xlink:href="/README" xlink:show="replace"/>
-  </chapter>
-
-  <chapter>
-    <title>INSTALL</title>
-
-    <para/>
-
-    <programlisting xlink:href="/INSTALL" xlink:show="replace"/>
+    <programlisting language="md" xlink:href="/README.md" xlink:show="replace"/>
   </chapter>
 </book>

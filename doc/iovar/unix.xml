@@ -27,6 +27,10 @@
       <revision>
         <date>2019-01-18</date>
       </revision>
+
+      <revision>
+        <date>2019-01-20</date>
+      </revision>
     </revhistory>
   </info>
 
@@ -54,8 +58,8 @@
     <para>IOVAR, like Unix, contains a large number of simple, single-purpose
     programs. Each program should <link
     xlink:href="http://www.faqs.org/docs/artu/ch01s06.html">do one thing
-    well</link>, and we expect the output of every program/command to become the input
-    to another.</para>
+    well</link>, and we expect the output of every program/command to become
+    the input to another.</para>
   </chapter>
 
   <chapter>
@@ -67,8 +71,8 @@
     xlink:href="https://en.wikipedia.org/wiki/Everything_is_a_file">everything
     is a file</link>" idea is a defining feature of Unix.</para>
 
-    <para>IOVAR, as a web system, does not merely work directly with files
-    on local storage but instead addresses URI resources through any number of
+    <para>IOVAR, as a web system, does not merely work directly with files on
+    local storage but instead addresses URI resources through any number of
     protocol handlers. One such handler is in fact a local file handler. Thus,
     in IOVAR, everything is a URI.</para>
   </chapter>
@@ -94,15 +98,6 @@
           <para>Project root folder</para>
 
           <variablelist>
-            <varlistentry>
-              <term><filename class="directory">WEB-INF/</filename></term>
-
-              <listitem>
-                <para><remark>Not in FHS</remark> Java resources used by the
-                servlet container (Tomcat)</para>
-              </listitem>
-            </varlistentry>
-
             <varlistentry>
               <term><filename class="directory">app/</filename></term>
 
@@ -131,7 +126,7 @@
               <term><filename class="directory">doc/</filename></term>
 
               <listitem>
-                <para><remark>Not in FHS</remark> System documentation</para>
+                <para><remark>Not in FHS</remark> Documentation</para>
               </listitem>
             </varlistentry>
 
@@ -281,10 +276,88 @@
             </varlistentry>
 
             <varlistentry>
+              <term><filename class="directory">sys/</filename></term>
+
+              <listitem>
+                <para><remark>Not in FHS</remark> Various system meta-data for
+                media that don't store this information (e.g. JAR
+                files)</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term/>
+
+                    <listitem>
+                      <para/>
+                    </listitem>
+                  </varlistentry>
+
+                  <!--
+                  <varlistentry>
+                    <term>depend/</term>
+
+                    <listitem>
+                      <para>Pointers to the downloadable JAR dependencies (the
+                      <literal>.url</literal> files from <filename
+                      class="directory">WEB-INF/lib/jars/</filename>)</para>
+                    </listitem>
+                  </varlistentry>
+                  -->
+
+                  <varlistentry>
+                    <term><filename class="directory">exec/</filename></term>
+
+                    <listitem>
+                      <para>The resource at the given path shall be treated as
+                      executable (execute bit set)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">link/</filename></term>
+
+                    <listitem>
+                      <para>The contents of the resource at the given path
+                      shall be treated as symbolic link target</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <!--
+                  <varlistentry>
+                    <term>remove/</term>
+
+                    <listitem>
+                      <para>A resource that is provided in a JAR file may be
+                      virtually removed with a positive entry under this
+                      path</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>servlets/</term>
+
+                    <listitem>
+                      <para/>
+                    </listitem>
+                  </varlistentry>
+                  -->
+
+                  <varlistentry>
+                    <term/>
+
+                    <listitem>
+                      <para/>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
               <term><filename class="directory">usr/</filename></term>
 
               <listitem>
-                <para/>
+                <para>Shareable read-only data</para>
 
                 <variablelist>
                   <varlistentry>
@@ -334,6 +407,15 @@
                     </listitem>
                   </varlistentry>
                 </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><filename class="directory">WEB-INF/</filename></term>
+
+              <listitem>
+                <para><remark>Not in FHS</remark> Java resources used by the
+                servlet container (Tomcat)</para>
               </listitem>
             </varlistentry>
           </variablelist>
