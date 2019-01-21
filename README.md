@@ -1,5 +1,7 @@
 # IOVAR Web Platform and Shell
 
+The official website and complete documentation is at https://iovar.net.
+
 ## A Shell for the Web
 
 IOVAR begins as a collection of web utilities on a Java foundation. It continues by providing a
