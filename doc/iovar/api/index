@@ -1,0 +1,16 @@
+#!/bin/iosh
+#
+# Copyright (C) 2018 Virgo Venture, Inc.
+# @%@~LICENSE~@%@
+
+exists /doc/iovar/api/index.html && {
+
+    redirect index.html
+
+} || {
+
+    echo The API Javadocs have not been built.
+    echo Run the \'docs.api\' Ant target first.
+
+}
+
