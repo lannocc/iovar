@@ -2,6 +2,26 @@ Copyright (C) 2016-2019 Virgo Venture, Inc.
 Copyright (C) 2011-2015 Lannocc Technologies
 @%@~LICENSE~@%@
 
+saw_012919_2 - Documentation for /bin/ls.
+
+saw_012919_1 - We now have a working /bin/ls for file: and res: (and partial local:) transports!
+               This incorporates the new /sys/index scheme for indexing iovar JAR resources.
+               Simple /bin/grep that just defers to system grep for now.
+
+saw_012819_2 - New modular build setup with a sparse root build.xml and most of the logic moved to
+               /lib/build.xml so subprojects can easily embrace and extend it. Misc. documentation
+               updates.
+
+saw_012819_1 - The Resource transport (/dev/trans/res) now follows virtual links in /sys/link/ and
+               honors virtual execution bit in /sys/exec/.
+
+saw_012619_1 - No need to require Ant 1.10 just yet.
+
+saw_012519_1 - Incorporating sys/link into the build process and introducing more sophisticated
+               servlet mapping.
+
+saw_012219_1 - More docs.
+
 saw_012019_5 - Combine INSTALL and README into README.md.
 
 saw_012019_4 - First commit for git.

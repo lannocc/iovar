@@ -16,7 +16,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <cmdsynopsis role="ant" xlink:href="/lib/build.xml#">
       <command role="ant">app.install.fail</command>
     </cmdsynopsis>
 
@@ -34,7 +34,7 @@
   <refsection>
     <title>Source</title>
 
-    <programlisting language="xml" xlink:href="/build.xml#app.install.fail"
+    <programlisting language="xml" xlink:href="/lib/build.xml#app.install.fail"
                     xlink:role="ant_target" xlink:show="replace"/>
   </refsection>
 </refentry>

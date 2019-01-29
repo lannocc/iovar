@@ -15,6 +15,7 @@ import net.iovar.web.proc.*;
 // java imports:
 import java.io.*;
 import java.util.*;
+import java.util.Set;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -401,4 +402,54 @@ public class File extends Transport
         return entries;
     }
     */
+    
+    public Set<String> list (final boolean all, final boolean recurse) throws IOException
+    {
+        final java.io.File root = new java.io.File (path).getCanonicalFile ();
+        Set<String> entries = new TreeSet<String> ();
+        
+        if (root.isDirectory ())
+        {
+            final String[] files = root.list ();
+            if (files==null) return null;
+
+            //entries.addAll (Arrays.asList (files));
+            for (final String name : files)
+            {
+                if ( ! all && name.startsWith ("."))
+                {
+                    continue;
+                }
+                
+                final java.io.File file = new java.io.File (root, name);
+                
+                if (file.isDirectory ())
+                {
+                    entries.add (name + "/");
+
+                    if (recurse)
+                    {
+                        for (String rentry : new File (file.getPath (), context, htsession).list (all, true))
+                        {
+                            entries.add (name + "/" + rentry);
+                        }
+                    }
+                }
+                else
+                {
+                    entries.add (name);
+                }
+            }
+        }
+        else if (root.exists ())
+        {
+            entries.add (root.getName ());
+        }
+        else
+        {
+            return null;
+        }
+
+        return entries;
+    }
 }

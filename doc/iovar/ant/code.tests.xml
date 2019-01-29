@@ -15,7 +15,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <cmdsynopsis role="ant" xlink:href="/lib/build.xml#">
       <command role="ant">code.tests</command>
     </cmdsynopsis>
   </refsynopsisdiv>
@@ -60,7 +60,7 @@ Total time: 0 seconds</computeroutput></programlisting>
   <refsection>
     <title>Source</title>
 
-    <programlisting language="xml" xlink:href="/build.xml#code.tests"
+    <programlisting language="xml" xlink:href="/lib/build.xml#code.tests"
                     xlink:role="ant_target" xlink:show="replace"/>
   </refsection>
 </refentry>

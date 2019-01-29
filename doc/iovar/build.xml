@@ -26,9 +26,10 @@
     <title>Overview</title>
 
     <para>IOVAR utilizes <link xlink:href="http://ant.apache.org">Apache
-    Ant</link> for project build tasks and provides a <olink
+    Ant</link> for project build tasks and provides a sparse <olink
     targetdoc="/build.xml">build.xml</olink> file in the root
-    directory.</para>
+    directory which imports a common <olink
+    targetdoc="/lib/build.xml">/lib/build.xml</olink>.</para>
 
     <para>The build file targets are grouped into the following general
     categories:</para>

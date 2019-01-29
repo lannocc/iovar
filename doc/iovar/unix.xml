@@ -31,6 +31,10 @@
       <revision>
         <date>2019-01-20</date>
       </revision>
+
+      <revision>
+        <date>2019-01-29</date>
+      </revision>
     </revhistory>
   </info>
 
@@ -118,7 +122,7 @@
               <term><filename class="directory">dev/</filename></term>
 
               <listitem>
-                <para>Devices</para>
+                <para>Devices and device-specific configurations</para>
               </listitem>
             </varlistentry>
 
@@ -134,7 +138,7 @@
               <term><filename class="directory">etc/</filename></term>
 
               <listitem>
-                <para>Configuration</para>
+                <para>Configuration (general)</para>
               </listitem>
             </varlistentry>
 
@@ -279,8 +283,8 @@
               <term><filename class="directory">sys/</filename></term>
 
               <listitem>
-                <para><remark>Not in FHS</remark> Various system meta-data for
-                media that don't store this information (e.g. JAR
+                <para><remark>Not in FHS</remark> Various filesystem meta-data
+                for media that don't store this information (e.g. JAR
                 files)</para>
 
                 <variablelist>
@@ -305,11 +309,43 @@
                   -->
 
                   <varlistentry>
+                    <term><filename class="directory">dev/</filename></term>
+
+                    <listitem>
+                      <para>Servlet class names for multi-config devices
+                      (.e.g. <filename
+                      class="directory">/dev/mysql</filename>)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
                     <term><filename class="directory">exec/</filename></term>
 
                     <listitem>
                       <para>The resource at the given path shall be treated as
                       executable (execute bit set)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term><filename class="directory">index/</filename></term>
+
+                    <listitem>
+                      <para>Listing of dependency JAR file contents; there is
+                      an entry for each iovar-type JAR included</para>
+
+                      <!--
+                      <variablelist>
+                        <varlistentry>
+                          <term><filename>iovar</filename></term>
+
+                          <listitem>
+                            <para>Index of the <filename>iovar.jar</filename>
+                            file contents (this project)</para>
+                          </listitem>
+                        </varlistentry>
+                      </variablelist>
+                      -->
                     </listitem>
                   </varlistentry>
 
@@ -395,7 +431,7 @@
                     <term><filename class="directory">lib/</filename></term>
 
                     <listitem>
-                      <para>Application data</para>
+                      <para>Application data and database links</para>
                     </listitem>
                   </varlistentry>
 
@@ -415,7 +451,7 @@
 
               <listitem>
                 <para><remark>Not in FHS</remark> Java resources used by the
-                servlet container (Tomcat)</para>
+                servlet container (Tomcat) and the build process (Ant)</para>
               </listitem>
             </varlistentry>
           </variablelist>

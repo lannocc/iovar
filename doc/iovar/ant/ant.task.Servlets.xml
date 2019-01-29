@@ -9,15 +9,15 @@
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>ant.task.WebBuilder</refname>
+    <refname>ant.task.Servlets</refname>
 
-    <refpurpose>Load the custom <literal>&lt;web-build&gt;</literal> Ant
+    <refpurpose>Load the custom <literal>&lt;servlets&gt;</literal> Ant
     taskdef.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <cmdsynopsis role="ant" xlink:href="/build.xml#">
-      <command role="ant">ant.task.WebBuilder</command>
+    <cmdsynopsis role="ant" xlink:href="/lib/build.xml#">
+      <command role="ant">ant.task.Servlets</command>
     </cmdsynopsis>
 
     <para>This target is not normally called directly by the user. It is used
@@ -34,7 +34,7 @@
   <refsection>
     <title>Source</title>
 
-    <programlisting language="xml" xlink:href="/build.xml#ant.task.WebBuilder"
+    <programlisting language="xml" xlink:href="/lib/build.xml#ant.task.Servlets"
                     xlink:role="ant_target" xlink:show="replace"/>
   </refsection>
 </refentry>

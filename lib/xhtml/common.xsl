@@ -43,6 +43,7 @@
         </xsl:comment>
         <html xsl:use-attribute-sets="html" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
             <head profile="http://microformats.org/profile/rel-license">
+                <meta http-equiv="content-language" content="en-us"/>
                 <meta property="og:type" content="article"/>
                 <meta property="fb:app_id" content="258824437902116"/>
 

@@ -4,5 +4,5 @@
 # @%@~LICENSE~@%@
 
 local "$0" | set source_local
-reindex function javascript "JavaScript Functions" | view "$source_local"
+reindex /doc/iovar function javascript "JavaScript Functions" | view "$source_local"
 

@@ -129,6 +129,7 @@ public abstract class Transport extends HttpServlet
     public abstract Boolean executable () throws IOException;
     
     //public abstract List<Legend> list (final User user) throws IOException;
+    public abstract Set<String> list (final boolean all, final boolean recurse) throws IOException;
     
     /**
      * @deprecated not sure this ever really was used so now it does nothing

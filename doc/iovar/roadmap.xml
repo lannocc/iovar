@@ -20,6 +20,12 @@
     </author>
 
     <pubdate>2019-01-10</pubdate>
+
+    <revhistory>
+      <revision>
+        <date>2019-01-22</date>
+      </revision>
+    </revhistory>
   </info>
 
   <preface>
@@ -183,7 +189,8 @@ thing1                          # if thing1 succeeds then do thing2 and thing3
     foo1                        # if foo1 fails we stop here (and get the fail message)
     foo2                        # if foo2 fails we stop here
     foo | bar                   # if foo fails it's up to bar; if bar fails we stop here
-    foo3                        # if foo3 fails we get the fail message
+    foo3 || bar2                # a failure of foo3 continues to bar2
+    foo4                        # if foo4 fails we get the fail message
 &amp;&amp;                              # and then (no failure)
     echo we done
 ||                              # else (catch a failure)
@@ -199,16 +206,16 @@ thing1                          # if thing1 succeeds then do thing2 and thing3
         <programlisting continuation="continues" language="shell">
 
 
-&gt;!                              # send all output to null
+&gt;!                              # send all output to null (FIXME)
     @ $a=1                      # test
-        ~
+        ~                       # try
             a=($a+7)            # expr
             a1
             foo
             bar
-        ||
+        ||                      # catch
             echo we suck
-    ||                          # else (if)
+    ||                          # else ($a != 1)
     @ ($a-1)=1                  # test and expr
         a2
 

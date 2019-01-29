@@ -27,7 +27,7 @@
       </revision>
 
       <revision>
-        <date>2019-01-13</date>
+        <date>2019-01-22</date>
       </revision>
     </revhistory>
   </info>
@@ -67,7 +67,7 @@
 
       <itemizedlist>
         <listitem>
-          <para>Documentation system</para>
+          <para>Documentation system (these docs)</para>
         </listitem>
 
         <listitem>
@@ -75,8 +75,8 @@
         </listitem>
 
         <listitem>
-          <para>JAR executable bit with the <literal>.ioexec</literal>
-          extension</para>
+          <para>JAR executable bit retention via <filename
+          class="directory">/sys/exec</filename> mapping</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -110,13 +110,13 @@
       <para>I am happy to share the IOVAR system in the hopes that others may
       find it useful.</para>
 
-      <para>What began many years ago as a means to work with XML on the web
-      has blossomed into a fully-featured development platform. It has been my
-      passion to explore new ways of programming while also embracing with
-      fresh eyes the existing tried-and-true methods. Although I am
-      embarrassed to say that IOVAR still has a number of bugs and remains
-      woefully incomplete for its intended purpose, I also recognize that in
-      software, much like life itself, perfection is impossible.</para>
+      <para>IOVAR has been an exploration into applying Unix concepts on a
+      modern web-aware namespace filesystem operating in a JVM and offering a
+      powerful scriptable shell with MIME-based content negotiation. The
+      current state of the platform still contains some bugs and lacks a few
+      key features but it does run and can operate a data-driven website such
+      as a blog or product listing and shopping cart without much issue. IOVAR
+      continues to be a work-in-progress.</para>
     </blockquote>
   </chapter>
 

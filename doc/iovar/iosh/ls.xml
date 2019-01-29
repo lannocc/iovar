@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.1" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:trans="http://docbook.org/ns/transclusion"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:m="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>ls</refname>
+
+    <refpurpose>List resources and directory contents</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis label="/bin/ls" role="iosh">
+      <command role="iosh">ls</command>
+
+      <arg choice="req" rep="repeat"><replaceable>resource</replaceable></arg>
+    </cmdsynopsis>
+
+    <para/>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>Here are some examples.</para>
+
+    <example>
+      <title>Listing the project root</title>
+
+      <programlisting language="shell">ls /</programlisting>
+
+      <screen>$
+CHANGELOG
+LICENSE
+README.md
+WEB-INF/
+app/
+auth/
+bin/
+build.xml
+dev/
+doc/
+etc/
+home/
+index
+jar
+lib/
+nbproject/
+proc/
+root/
+sbin/
+src/
+srv/
+sys/
+tmp/
+usr/
+var/
+</screen>
+    </example>
+
+    <example>
+      <title>Listing more than one directory at once</title>
+
+      <programlisting language="shell">ls /home /etc</programlisting>
+
+      <screen>BingSiteAuth.xml
+google5fb30e84331873ab.html
+robots.txt
+app.properties
+build.properties
+environment
+init
+rc
+rc.local
+sample.app.properties
+sample.build.properties
+sample.rc.local
+sample.web.xml
+shrc
+web.xml
+</screen>
+    </example>
+
+    <example>
+      <title>Listing entries from the underlying filesystem</title>
+
+      <programlisting language="shell">ls file:/mnt</programlisting>
+
+      <screen>backup/
+cdrom/
+usb/
+</screen>
+    </example>
+  </refsection>
+
+  <refsection>
+    <title>Source</title>
+
+    <programlisting language="java"
+                    xlink:href="/src/net/iovar/web/bin/List.java"
+                    xlink:show="replace"/>
+  </refsection>
+</refentry>

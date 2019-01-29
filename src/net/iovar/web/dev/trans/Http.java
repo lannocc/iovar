@@ -10,13 +10,13 @@ import net.iovar.web.*;
 import net.iovar.web.bin.shell.*;
 import net.iovar.web.bin.shell.task.Return;
 import net.iovar.web.dev.*;
-import net.iovar.web.lib.*;
 import net.iovar.web.proc.*;
 
 // java imports:
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.Set;
 
 // 3rd-party imports:
 //import me.idfree.lib.*;
@@ -537,6 +537,7 @@ for (String line; (line = something.readLine ())!=null; )
         try
         {
             HeadResponseHandler resp = new HeadResponseHandler ();
+            Log.debug ("   final uri: "+url.toURI ());
             http.execute (new HttpHead (url.toURI ()), resp);
             
             return resp.exists;
@@ -572,6 +573,12 @@ for (String line; (line = something.readLine ())!=null; )
         return entries;
     }
     */
+    
+    public Set<String> list (final boolean all, final boolean recurse) throws IOException
+    {
+        // FIXME: not yet implemented
+        return null;
+    }
     
     static class HeadResponseHandler implements ResponseHandler
     {

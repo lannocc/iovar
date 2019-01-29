@@ -8,7 +8,6 @@ package net.iovar.web.dev.trans;
 // local imports:
 import net.iovar.web.bin.shell.task.*;
 import net.iovar.web.dev.*;
-import net.iovar.web.lib.*;
 
 // java imports:
 import java.io.*;
@@ -95,4 +94,30 @@ public class Local extends Transport
         return entries;
     }
     */
+    
+    public Set<String> list (final boolean all, final boolean recurse) throws IOException
+    {
+        final File file = new File (context.getRealPath (path), context, htsession);
+        Set<String> fentries = file.list (all, recurse);
+        
+        final Resource resource = new Resource (path, context, htsession);
+        Set<String> rentries = resource.list (all, recurse);
+        
+        if (fentries == null && rentries == null)
+        {
+            return null;
+        }
+        
+        final Set<String> entries = new TreeSet<String> ();
+        if (fentries != null)
+        {
+            entries.addAll (fentries);
+        }
+        if (rentries != null)
+        {
+            entries.addAll (rentries);
+        }
+        
+        return entries;
+    }
 }

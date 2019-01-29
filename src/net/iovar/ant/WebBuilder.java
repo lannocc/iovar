@@ -22,6 +22,8 @@ import org.apache.tools.ant.*;
  * indicate the insertion point.
  *
  * @author  shawn@lannocc.com
+ * 
+ * @deprecated  Replaced by the Servlets task and improvements to the build.xml script.
  */
 public class WebBuilder extends Task
 {

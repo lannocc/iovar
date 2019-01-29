@@ -80,6 +80,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>iovar-application</servlet-name>
+        <url-pattern>/auth/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>iovar-application</servlet-name>
         <url-pattern>/doc/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -94,7 +98,7 @@
         <servlet-name>iovar-application</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>iovar-default</servlet-name>
         <servlet-class>net.iovar.web.Default</servlet-class>

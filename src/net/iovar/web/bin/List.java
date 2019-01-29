@@ -49,17 +49,18 @@ public class List extends HttpServlet
         resp.setContentType ("text/plain");
         final PrintWriter out = resp.getWriter ();
         
-        out.println ("usage: ls <path>");
+        out.println ("usage: ls <path>...");
         out.println ();
-        out.println ("List the entries at the given path.");
+        out.println ("List the entries at the given path(s).");
         out.println ();
         out.println ("Options:");
         out.println ("   ?help      - display this help screen");
+        out.println ("   ?all       - also list hidden files (those starting with dot)");
+        out.println ("   ?recurse   - recursively list subdirectories too");
     }
     
     protected void doPost (final HttpServletRequest req, final HttpServletResponse resp) throws IOException
     {
-        /*
         final ServletContext context = getServletContext ();
         final String query = req.getQueryString ();
         final Map<String,java.util.List<String>> params = Utils.getParams (query);
@@ -72,30 +73,46 @@ public class List extends HttpServlet
         }
         
         final java.util.List<String> args = params.get (null);
-        if (args==null || args.size() != 1)
+        if (args==null || args.size() < 1)
         {
             usage (resp);
             Shell.exit (req, context, 1);
             return;
         }
         
-        final Session session = Sessions.get (req);
-        final String resource = args.get (0);
-        final Transport t = Transport.handler (resource, context, req.getSession ());
-        final PrintWriter out = resp.getWriter ();
+        final boolean all = params.containsKey ("all");
+        final boolean recurse = params.containsKey ("recurse");
         
-        User user; try
+        final PrintWriter out = resp.getWriter (); try
         {
-            user = Authentication.getUser (context, req.getSession (), session);
+            for (final String resource : args)
+            {
+                final Transport t = Transport.handler (resource, context, req.getSession ());
+
+                /*
+                User user; try
+                {
+                    user = Authentication.getUser (context, req.getSession (), session);
+                }
+                catch (final Authentication.NotLoggedInException e)
+                {
+                    user = null;
+                }
+
+                Utils.xstream.toXML (t.list (user), out);
+                */
+                
+                for (final String entry : t.list (all, recurse))
+                {
+                    out.println (entry);
+                }
+            }
         }
-        catch (final Authentication.NotLoggedInException e)
+        finally
         {
-            user = null;
+            out.close ();
         }
-        
-        Utils.xstream.toXML (t.list (user), out);
-        
+
         Shell.exit (req, context, 0);
-        */
     }
 }

@@ -26,7 +26,7 @@ context. Please contact lannocc for information or to offer help.
 ## Install
 
 Basic requirements:
-- Linux or macOS (os possibly some other Posix system)
+- Linux or macOS (or possibly some other Posix system)
 - Java 1.7 SDK or higher
 - Apache Ant
 - Servlet container (Apache Tomcat 6 or higher)

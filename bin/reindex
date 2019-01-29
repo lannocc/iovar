@@ -3,7 +3,11 @@
 # Copyright (C) 2019 Virgo Venture, Inc.
 # @%@~LICENSE~@%@
 
-# usage: reindex <type> <role/language> <title>
+# usage: reindex <root> <type> <role/language> <title>
 
-system file:find local:/doc/iovar/ -- -type f -name '*.xml' | sed ?filter='s/^(.+)$/local "file:$1" | set source; xslt /lib/iovar/doc/reindex.xsl "file:$1" ?variables source ?type="'"$1"'" ?role="'"$2"'"/g' | sh | echo ?first '<refs>' | echo '</refs>' | xslt /lib/iovar/doc/reindex2.xsl ?title="$3"
+# it's important we use res: scheme on the XML docs so we don't trigger auto-exec
+ls ?recurse "$1" | grep '\.xml' \
+| sed ?filter='s/^(.+)$/source="'"$1"'\/$1" xslt /lib/iovar/doc/reindex.xsl "res:'"$1"'/$1" ?variables source ?type="'"$2"'" ?role="'"$3"'"/g' \
+| sh | echo ?first '<refs>' | echo '</refs>' \
+| xslt /lib/iovar/doc/reindex2.xsl ?title="$4"
 

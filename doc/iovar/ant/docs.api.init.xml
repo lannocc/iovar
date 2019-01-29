@@ -15,7 +15,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <cmdsynopsis role="ant" xlink:href="/build.xml#">
+      <cmdsynopsis role="ant" xlink:href="/lib/build.xml#">
       <command role="ant">docs.api.init</command>
     </cmdsynopsis>
 
@@ -33,7 +33,7 @@
   <refsection>
     <title>Source</title>
 
-    <programlisting language="xml" xlink:href="/build.xml#docs.api.init"
+    <programlisting language="xml" xlink:href="/lib/build.xml#docs.api.init"
                     xlink:role="ant_target" xlink:show="replace"/>
   </refsection>
 </refentry>

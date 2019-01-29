@@ -4,5 +4,5 @@
 # @%@~LICENSE~@%@
 
 local "$0" | set source_local
-reindex command ant "Ant Build Targets" | view "$source_local"
+reindex /doc/iovar command ant "Ant Build Targets" | view "$source_local"
 

@@ -456,6 +456,34 @@ public class Utils
     }
     
     /**
+     * Get the relative path of a file relative to a potential parent directory.
+     * Returns null if the file is not a child of that parent location.
+     * @since 1.1
+     */
+    public static String getLocalPath (final File parentDir, final File childFile)
+    {
+        final File parent = childFile.getParentFile ();
+        
+        if (parent == null)
+        {
+            return null;
+        }
+        else if (parent.equals (parentDir))
+        {
+            return "/" + childFile.getName ();
+        }
+        else
+        {
+            final String local = getLocalPath (parentDir, parent);
+            if (local == null) return null;
+            else return local + "/" + childFile.getName ();
+        }
+    }
+
+
+
+    
+    /**
      * For testing
      */
     public static void main (final String[] args) throws Exception

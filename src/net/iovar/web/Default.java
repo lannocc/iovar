@@ -174,10 +174,10 @@ public class Default extends HttpServlet
                     //doPost (req, resp);
                     Interactive.exec (req, resp, context, path + "/index");
                 }
-                else if (! Boolean.FALSE.equals (resource.executable ()))
+                else if (Boolean.TRUE.equals (resource.executable ()))
                 {
                     handled = true;
-                    Log.debug ("auto-exec enabled and resource is (potentially) executable...");
+                    Log.debug ("auto-exec enabled and resource is executable...");
                     //doPost (req, resp);
                     Interactive.exec (req, resp, context, path);
                 }
@@ -332,7 +332,8 @@ for (String line; (line = something.readLine ())!=null; )
     {
         String path = req.getPathInfo ();
         if (path==null) path = "";
-        return req.getServletPath () + "/" + path;
+        if (! path.isEmpty ()) path = "/" + path;
+        return req.getServletPath () + path;
     }
     
     /**

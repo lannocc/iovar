@@ -4,5 +4,5 @@
 # @%@~LICENSE~@%@
 
 local "$0" | set source_local
-reindex command xsl "XSL Templates" | view "$source_local"
+reindex /doc/iovar command xsl "XSL Templates" | view "$source_local"
 

@@ -17,6 +17,7 @@ import net.iovar.web.proc.*;
 import java.io.*;
 import java.io.File;
 import java.util.*;
+import java.util.Set;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -63,6 +64,46 @@ public class Resource extends Transport
         Log.debug ("resource GET: "+path);
         InputStream in = context.getResourceAsStream (path);
         if (in==null) in = getClass ().getResourceAsStream (path);
+        
+        if (in==null)
+        {
+            final String syslink = "/sys/link/" + path;
+            in = context.getResourceAsStream (syslink);
+            if (in==null)
+            {
+                in = Resource.class.getResourceAsStream (syslink);
+            }
+            
+            if (in!=null)
+            {
+                final BufferedReader r = new BufferedReader (new InputStreamReader (in));
+                try
+                {
+                    final String target = r.readLine();
+                    Log.debug ("resource is LINK to: " + target);
+                    
+                    final File root = new File (context.getRealPath ("/")).getCanonicalFile ();
+                    final File parent = new File (context.getRealPath (path)).getCanonicalFile ().getParentFile ();
+                    final File file = new File (parent, target).getCanonicalFile ();
+                    final String local = Utils.getLocalPath (root, file);
+                    Log.debug ("   root: " + root + ", parent: " + parent + ", file: " + file + ", local: " + local);
+                    
+                    if (local != null)
+                    {
+                        return new Resource (local, context, htsession).get ();
+                    }
+                    else
+                    {
+                        return new net.iovar.web.dev.trans.File (file.getPath (), context, htsession).get ();
+                    }
+                }
+                finally
+                {
+                    r.close ();
+                }
+            }
+        }
+        
         return in;
     }
     
@@ -275,6 +316,7 @@ public class Resource extends Transport
                 
                 if (exists (context, path + "/index"))
                 {
+                    // FIXME: do client side redirect here instead?
                     Log.debug ("found a matching ./index Resource to use");
                     in.close ();
                     in = context.getResourceAsStream (path + "/index");
@@ -283,78 +325,53 @@ public class Resource extends Transport
                 }
             }
             
-            if (c0==0x23 && in.read ()==0x21) // shebang magic number: #!
+            final String session;
             {
-                final String session;
+                final List<String> sessions = params.get (Shell.EXT_PARAM_SESSION);
+                if (sessions!=null && sessions.size ()>0) session = sessions.get (0);
+                else session = null;
+            }
+            Log.debug ("session path: "+session);
+            
+            final String interpreter;
+            {
+                if (c0==0x23 && in.read ()==0x21) // shebang magic number: #!
                 {
-                    final List<String> sessions = params.get (Shell.EXT_PARAM_SESSION);
-                    if (sessions!=null && sessions.size ()>0) session = sessions.get (0);
-                    else session = null;
+                    final BufferedReader inr = new BufferedReader (new InputStreamReader (in));
+                    interpreter = inr.readLine ();
                 }
-                Log.debug ("session path: "+session);
-                
-                final BufferedReader inr = new BufferedReader (new InputStreamReader (in));
-                final String interpreter = inr.readLine ();
-                
-                // FIXME: use Parser to parse interpreter line?
-                
-                /*
-                // FIXME: hardcoded reference to res: method
-                String exec = interpreter+"?=res:"+path;
-                if (session!=null) exec += "&"+Shell.EXT_PARAM_SESSION+"="+session;
-                
-                // FIXME: SECURITY
-                final List<String> user = params.get ("REMOTE_USER");
-                if (user!=null && ! user.isEmpty ()) exec += "&"+Shell.INT_PARAM_USER+"="+user.get (0);
-                
-                HttpURLConnection http = Utils.loopback (context, exec);
-                http.setRequestMethod ("POST");
-                Log.debug ("POST to interpreter: "+exec);
-                
-                if (data!=null)
+                else // use default exec
                 {
-                    http.setDoOutput (true);
-                    if (contentType!=null) http.setRequestProperty ("Content-Type", contentType);
-                    Utils.pipe (data, http.getOutputStream ());
-                }
-                
-                return new Return (http.getContentType (), http.getHeaderField ("Content-Disposition"), http.getInputStream (), new Http.Status (http));
-                */
-                
-                
-                // FIXME: this logic is duplicated (small differences) in File.java:
-                // We insert the requested script as the first anonymous argument.
-                // All other anonymous arguments get shifted down and all other
-                // parameters get passed through to the interpreter.
-                List<String> anon = params.get (null);
-                if (anon==null)
-                {
-                    anon = new ArrayList<String> ();
-                    params.put (null, anon);
-                }
-                // FIXME: hardcoded reference to res: method
-                anon.add (0, "res:"+path);
-                
-                final Session shell = Sessions.load (context, htsession, session);
-                Log.debug ("shell session: "+shell);
-                
-                try
-                {
-                    Log.debug ("about to exec "+interpreter+" with params: "+params);
-                
-                    // FIXME: presently only local interpreters are supported
-                    return Shell.exec (interpreter, params, new TaskData (shell, context, user, htsession, data, contentType, null, null));
-                }
-                catch (final ServletException e)
-                {
-                    throw new IOException (e);
+                    interpreter = "local:/bin/exec";
                 }
             }
-            else
+
+            // FIXME: this logic is duplicated (small differences) in File.java:
+            // We insert the requested script as the first anonymous argument.
+            // All other anonymous arguments get shifted down and all other
+            // parameters get passed through to the interpreter.
+            List<String> anon = params.get (null);
+            if (anon==null)
             {
-                //Status.set (resp, resp.SC_METHOD_NOT_ALLOWED, "cannot exec webapp resource `"+resource+"': not a known executable");
-                Log.error ("cannot exec webapp resource `"+path+"': not a known executable");
-                throw new IOException ("cannot exec webapp resource `"+path+"': not a known executable");
+                anon = new ArrayList<String> ();
+                params.put (null, anon);
+            }
+            // FIXME: hardcoded reference to res: method
+            anon.add (0, "res:"+path);
+
+            final Session shell = Sessions.load (context, htsession, session);
+            Log.debug ("shell session: "+shell);
+                
+            try
+            {
+                Log.debug ("about to exec "+interpreter+" with params: "+params);
+
+                // FIXME: presently only local interpreters are supported
+                return Shell.exec (interpreter, params, new TaskData (shell, context, user, htsession, data, contentType, null, null));
+            }
+            catch (final ServletException e)
+            {
+                throw new IOException (e);
             }
         }
         finally
@@ -376,32 +393,34 @@ public class Resource extends Transport
     
     private static boolean exists (final ServletContext context, final String resource) throws IOException
     {
-        /*
-        return context.getResource (resource) != null;
-        */
-        
-        InputStream tmp = null; try
+        InputStream in = null; try
         {
             //Log.debug ("checking for existence through servlet context: "+resource);
-            tmp = context.getResourceAsStream (resource);
-            if (tmp==null)
+            in = context.getResourceAsStream (resource);
+            if (in==null)
             {
                 //Log.debug ("checking for existence through class loader: "+resource);
-                tmp = Resource.class.getResourceAsStream (resource);
+                in = Resource.class.getResourceAsStream (resource);
             }
-            
-            return tmp!=null;
         }
         finally
         {
-            if (tmp!=null) tmp.close ();
+            if (in != null) in.close ();
         }
         
-        /*
-        final File root = new File (context.getRealPath ("/"));
-        final File file = new File (root, File.separator+resource).getCanonicalFile ();
-        return file.exists ();
-        */
+        if (in != null)
+        {
+            return true;
+        }
+        
+        final String syslink = "/sys/link/" + resource;
+        in = context.getResourceAsStream (syslink);
+        if (in==null)
+        {
+            in = Resource.class.getResourceAsStream (syslink);
+        }
+        
+        return (in != null);
     }
     
     public Boolean directory () throws IOException
@@ -429,11 +448,18 @@ public class Resource extends Transport
     
     public Boolean executable () throws IOException
     {
-        final InputStream in = get ();
-        if (in==null) return Boolean.FALSE;
+        InputStream in = get ();
+        if (in==null) return false;
+        
+        final String sysexec = "/sys/exec/" + path;
+        in = context.getResourceAsStream (sysexec);
+        if (in==null)
+        {
+            in = Resource.class.getResourceAsStream (sysexec);
+        }
         
         // FIXME: look for hash-bang here?
-        return null;
+        return in!=null;
     }
     
     /*
@@ -444,4 +470,97 @@ public class Resource extends Transport
         return entries;
     }
     */
+    
+    public Set<String> list (final boolean all, final boolean recurse) throws IOException
+    {
+        String sysindex = "/sys/index/.index";
+        InputStream in = context.getResourceAsStream (sysindex);
+        if (in==null)
+        {
+            in = Resource.class.getResourceAsStream (sysindex);
+        }
+        if (in==null)
+        {
+            return null;
+        }
+        
+        Set<String> entries = new TreeSet<String> ();
+        
+        BufferedReader rindex = new BufferedReader (new InputStreamReader (in)); try
+        {
+            for (String project; (project = rindex.readLine ()) != null; )
+            {
+                sysindex = "/sys/index/" + project;
+                Log.debug ("looking for " + path + " in " + sysindex);
+                
+                in = context.getResourceAsStream (sysindex);
+                if (in==null)
+                {
+                    in = Resource.class.getResourceAsStream (sysindex);
+                }
+                if (in==null)
+                {
+                    continue;
+                }
+                
+                BufferedReader rproject = new BufferedReader (new InputStreamReader (in)); try
+                {
+                    for (String entry; (entry = rproject.readLine ()) != null; )
+                    {
+                        if (("/"+entry).startsWith (path))
+                        {
+                            entry = entry.substring (path.length () - 1);
+                            
+                            if (entry.isEmpty ()) // file
+                            {
+                                entries.add (new File (path).getName ());
+                            }
+                            else // directory
+                            {
+                                if (entry.startsWith ("/")) entry = entry.substring (1);
+                                
+                                if ( ! all && entry.startsWith ("."))
+                                {
+                                    continue;
+                                }
+                                
+                                int slash = entry.indexOf ("/");
+                                if (slash > 0)
+                                {
+                                    if (recurse)
+                                    {
+                                        // FIXME: this should add entries for just the directories
+                                        //  as well; also this doesn't yet recursively handle hidden
+                                        //  files
+                                        entries.add (entry);
+                                    }
+                                    
+                                    entry = entry.substring (0, slash) + "/";
+                                }
+                                
+                                entries.add (entry);
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    rproject.close ();
+                }
+            }
+        }
+        finally
+        {
+            rindex.close ();
+        }
+        
+        if (entries.isEmpty ())
+        {
+            return null;
+        }
+        else
+        {
+            return entries;
+        }
+    }
 }
