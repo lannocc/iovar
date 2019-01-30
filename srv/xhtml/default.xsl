@@ -58,6 +58,9 @@
         </xsl:choose>
     </xsl:variable>
 
+    <xsl:variable name="modules" select="document('/doc/toc.xml')"/>
+    <xsl:variable name="modentries" select="$modules//doc:tocentry/doc:link"/>
+
     <xsl:variable name="module">
         <xsl:if test="starts-with($source, '/doc/')">
             <xsl:value-of select="substring-before(substring($source, 6),'/')"/>
@@ -174,35 +177,22 @@
 
         <nav id="contents-select">
             <h3>Docs</h3>
-            <ul >
-                <li>
-                    <a href="/doc/iovar/"><xsl:choose>
-                            <xsl:when test="starts-with($source, '/doc/iovar/')">
-                                <xsl:attribute name="rel">up</xsl:attribute>
-                                <xsl:attribute name="class">here</xsl:attribute>
-                                <em>iovar</em>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                iovar
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </a>
-                </li>
-                <!--
-                <li>
-                    <a href="/doc/idfree/"><xsl:choose>
-                            <xsl:when test="starts-with($source, '/doc/idfree/')">
-                                <xsl:attribute name="rel">up</xsl:attribute>
-                                <xsl:attribute name="class">here</xsl:attribute>
-                                <em>idfree</em>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                idfree
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </a>
-                </li>
-                -->
+            <ul>
+                <xsl:for-each select="$modentries">
+                    <li>
+                        <a href="/doc/{@xlink:href}/"><xsl:choose>
+                                <xsl:when test="$module = @xlink:href">
+                                    <xsl:attribute name="rel">up</xsl:attribute>
+                                    <xsl:attribute name="class">here</xsl:attribute>
+                                    <em><xsl:value-of select="."/></em>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </a>
+                    </li>
+                </xsl:for-each>
             </ul>
         </nav>
 
@@ -224,40 +214,6 @@
 
 
     <xsl:template match="/doc:book|/doc:part|/doc:chapter|/doc:article|/doc:refentry|/doc:index">
-        <!--
-        <nav id="contents-select">
-            <h3>Docs</h3>
-            <ul >
-                <li>
-                    <a href="/doc/iovar/"><xsl:choose>
-                            <xsl:when test="starts-with($source, '/doc/iovar/')">
-                                <xsl:attribute name="rel">up</xsl:attribute>
-                                <xsl:attribute name="class">here</xsl:attribute>
-                                <em>iovar</em>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                iovar
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </a>
-                </li>
-                <li>
-                    <a href="/doc/idfree/"><xsl:choose>
-                            <xsl:when test="starts-with($source, '/doc/idfree/')">
-                                <xsl:attribute name="rel">up</xsl:attribute>
-                                <xsl:attribute name="class">here</xsl:attribute>
-                                <em>idfree</em>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                idfree
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        -->
-
         <xsl:if test="$toc">
             <input class="show-dropdown" type="checkbox" id="show-contents" role="button"/>
             <label for="show-contents" title="Show/Hide Contents"><img alt="dropdown" src="/usr/include/iovar/dropdown.png"/></label>

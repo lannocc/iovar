@@ -2,6 +2,8 @@ Copyright (C) 2016-2019 Virgo Venture, Inc.
 Copyright (C) 2011-2015 Lannocc Technologies
 @%@~LICENSE~@%@
 
+saw_012919_3 - We now support multiple, pluggable documentation modules by means of /doc/toc.xml.
+
 saw_012919_2 - Documentation for /bin/ls.
 
 saw_012919_1 - We now have a working /bin/ls for file: and res: (and partial local:) transports!

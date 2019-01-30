@@ -20,7 +20,7 @@
     </author>
   </info>
 
-  <index xlink:href="/doc/iovar/api/index.html" xlink:show="embed">
+  <index xlink:href="/doc/iovar/api/index" xlink:show="embed">
     <title>Javadocs</title>
   </index>
 </book>

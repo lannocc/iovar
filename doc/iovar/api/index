@@ -1,9 +1,9 @@
 #!/bin/iosh
 #
-# Copyright (C) 2018 Virgo Venture, Inc.
+# Copyright (C) 2018-2019 Virgo Venture, Inc.
 # @%@~LICENSE~@%@
 
-exists /doc/iovar/api/index.html && {
+exists "$0".html && {
 
     redirect index.html
 

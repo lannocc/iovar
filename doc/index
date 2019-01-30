@@ -1,9 +1,9 @@
 #!/bin/iosh
-# Copyright (C) 2018 Virgo Venture, Inc.
+# Copyright (C) 2018-2019 Virgo Venture, Inc.
 # @%@~LICENSE~@%@
 
-# TODO: Some day this will actually index any/all installed doc subdirectories
-#       and present each of them.
+# Subprojects can override this script to redirect to
+# the primary documentation module of their choice.
 
 redirect /doc/iovar/
 

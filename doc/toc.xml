@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toc version="5.1" xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+     xmlns:xi="http://www.w3.org/2001/XInclude"
+     xmlns:trans="http://docbook.org/ns/transclusion"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns:m="http://www.w3.org/1998/Math/MathML"
+     xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns:db="http://docbook.org/ns/docbook">
+  <title>Documentation Modules</title>
+
+  <!--
+    Subprojects can easily override this file to link
+    to the documentation modules of their choice.
+  -->
+
+  <tocentry><link xlink:href="iovar">iovar</link></tocentry>
+</toc>
